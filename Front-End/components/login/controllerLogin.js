@@ -1,20 +1,24 @@
-angular
+(function(){
+  'use strict'
+
+  angular
   .module('stoneBoard')
   .controller('controllerLogin', function ($scope, authService) {
 
-      $scope.login = function (usuario) {
+    $scope.login = function (usuario) {
 
-        authService.login(usuario)
-          .then(
-            function (response) {
-              console.log(response);
-              alert('Login com sucesso!');
+      authService.login(usuario)
+      .then(
+        function (response) {
+          console.log(response);
+          alert('Login com sucesso!');
 
-            },
-            function (response) {
-              console.log(response);
-              alert('Erro no Login!');
-            });
+        },
+        function (response) {
+          console.log(response);
+          alert('Erro no Login!');
+        });
       };
 
     });
+  })();

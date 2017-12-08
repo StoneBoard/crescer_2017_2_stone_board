@@ -1,30 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Menu Responsive Drop Down</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">  
-  <link rel="stylesheet" href="style.css">
-  
-
-
-</head>
-<body>
-    
-
 <div id="container">
   <nav>
-<a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+<a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
    <ul id="baseMenu" class="menu">
-    <img src="Logo-StoneBoard-Navbar.jpg" id="logo-header">
-     
+    <img src="components/header/Logo-StoneBoard-Navbar.jpg" id="logo-header">
+
     <li id="notification"><a  href="#"><i class="fa fa-bell"></i> Notificações</a>
         <ul class="sub-menu">
          <li><a href="#">Você recebeu um convite para um novo board</a></li>
          </ul>
-        </li>       
+        </li>
 
-    <li id="infouser"><a  href="#"><i class="fa fa-user"></i> Olá, {{ usuario }}</a>
+    <li id="infouser"><a  href="#"><i class="fa fa-user"></i> Olá, {{ usuario.nome }}</a>
   <ul class="sub-menu">
    <li><a href="#">Minha conta</a></li>
    <li><a href="#">Sair</a></li>
@@ -34,9 +20,4 @@
 
   </ul>
   </nav>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script  src="js/index.js"></script>
-
 </div>
-</body>
-</html>

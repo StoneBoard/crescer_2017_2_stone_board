@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('stoneBoard')
-	.directive('navBarHeader', function ($httpProvider,authService, $rootScope) {
+	.directive('navBarHeader', function (authService, $rootScope) {
 
     return {
 
@@ -13,6 +13,12 @@
       templateUrl: 'components/header/headerSuperior.html',
 
       controller: function ($scope) {
+
+        $scope.scrollTo = function(resp-menu) {
+        $location.hash(resp-menu);
+        $anchorScroll();
+      }
+
 
         atualizarUsuario();
 
@@ -33,5 +39,5 @@
     }
 
   });
-  
-});()
+
+})();
