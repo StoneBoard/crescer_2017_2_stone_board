@@ -13,14 +13,15 @@
       })
 
       .when('/dashboard', {
-        controller: '',
-        templateUrl: '',
+        controller: 'controllerDashboard',
+        templateUrl: 'components/dashboard/dashboard.html'/*,
         resolve: {
           autenticado: function (authService) {
             return authService.isAutenticadoPromise();
           }
-        }
-      }).otherwise('/');
+        }*/
+      })
+      .otherwise('/');
   });
 
-  })();
+})();

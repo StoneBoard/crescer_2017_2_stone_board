@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+:root {
+  --lightGreen: #;
+  --green: #11a8ab;
+  --darkGreen: #009699;
+  --pink: #e64c65;
+  --darkPink: #cc324b;
+  --blue: #3468af;
+  --darkBlue: #1a4e95;
+  --orange: #fcb150;
+  --grayBlueDark: #1f253d;
+  --grayBlue: #394264;
+  --grayBlueOk: #50597b;
+  --grayBlueLight: #9099b7;
+}
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+  background-color: #1f253d;
+}
+
+.container-base {
+	background-color:	#394264;
+}
+
+/* B U T O N S */
+
+.btn {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 3px;
+}
+
+.btn-md {
+  padding: 15px 32px;
+  font-size: 14px;	
+  letter-spacing: 1px;
+}
+
+.btn-sm {
+	padding: 10px 16px;
+  font-size: 10px;	
+}
+
+.green-bg-btn {
+  background-color: var(--green);
+}
+
+.green-bg-btn:hover {
+	background-color: var(--darkGreen);
+}
+
+.pink-bg-btn {
+  background-color: var(--pink);
+}
+
+.pink-bg-btn:hover {
+  background-color: var(--darkPink)
+}
+
+.blue-bg-btn {
+  background-color: var(--blue);
+}
+.blue-bg-btn:hover {
+  background-color: var(--darkBlue)
+}
+
+.inactive-bg-btn {
+  background-color: var(--grayBlueOk)
+}
+
+/* I N P U T S */
+
+.input-form {
+  border: 1px solid var(--grayBlueDark);
+  padding: 12px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  background-color: var(--grayBlueOk);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+.input-form::placeholder {
+  color: var(--grayBlueLight);
+}
+
+.input-form:focus {
+	border-color: var(--green);
+}
+
+
+
