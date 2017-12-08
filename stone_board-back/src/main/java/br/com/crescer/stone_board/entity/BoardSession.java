@@ -26,15 +26,16 @@ import lombok.NoArgsConstructor;
  *
  * @author Júlia
  */
+
 @Data
 @Entity
-@Table(name = "SESSION")
+@Table(name = "BOARD_SESSION")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Session {
+public class BoardSession {
     
-    private static final String SQ_NAME = "SQ_SESSION";
+    private static final String SQ_NAME = "SQ_BOARD_SESSION";
     
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = SQ_NAME)
@@ -54,7 +55,7 @@ public class Session {
     @Basic(optional = true)
     @Column(name = "ICON", length=512)
     private String icon;
-    
+     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_SESSION")
     private List<Card> cards;

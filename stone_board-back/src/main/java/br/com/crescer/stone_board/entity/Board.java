@@ -69,6 +69,6 @@ public class Board {
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_BOARD")
-    private List<Session> sessions;
+    private List<BoardSession> sessions;
 
 }
