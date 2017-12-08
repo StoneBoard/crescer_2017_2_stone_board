@@ -1,7 +1,8 @@
 (function(){
   'use strict';
 
-  angular.module('stoneBoard')
+  angular
+    .module('stoneBoard')
     .controller('nomeController as nomeCtrl', nomeController);
 
   function nomeController() {
@@ -13,9 +14,6 @@
       function teste(id) {
 
       }
-
-
-
   }
 
 })();

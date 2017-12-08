@@ -1,14 +1,15 @@
 (function(){
   'use strict'
 
-  angular.module('stoneBoard')
+  angular
+    .module('stoneBoard')
     .config(function ($routeProvider) {
 
     $routeProvider
 
       .when('/login', {
-        controller: '',
-        templateUrl: ''
+        controller: 'controllerLogin',
+        templateUrl: 'components/login/login.html'
       })
 
       .when('/dashboard', {
