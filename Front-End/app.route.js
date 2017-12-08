@@ -1,21 +1,25 @@
-angular.module('stoneBoard')
-    .config(function ($routeProvider) {
-    
-      $routeProvider
+(function(){
+  'use strict'
 
-        .when('/login', {
-          controller: 'controllerLogin',
-          templateUrl: ''
-        })
-    
-        .when('/dashboard', {
-          controller: 'controllerDashboard',
-          templateUrl: '',
-          resolve: {
-            autenticado: function (authService) {
-              return authService.isAutenticadoPromise();
-            }
+  angular.module('stoneBoard')
+    .config(function ($routeProvider) {
+
+    $routeProvider
+
+      .when('/login', {
+        controller: '',
+        templateUrl: ''
+      })
+
+      .when('/dashboard', {
+        controller: '',
+        templateUrl: '',
+        resolve: {
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
           }
-        }).otherwise('/login');
-    });
-    
+        }
+      }).otherwise('/');
+  });
+
+  })();

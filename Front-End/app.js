@@ -1,22 +1,21 @@
 (function(){
-    'use strict';
+  'use strict';
 
-    angular
-    .module('stoneBoard')
+  angular.module('stoneBoard')
     .controller('nomeController as nomeCtrl', nomeController);
 
-    function nomeController() {
-        var vm = this;
-        vm.teste = teste;
-        vm.user = [];
+  function nomeController() {
+    var vm = this;
+      vm.teste = teste;
+      vm.user = [];
 
 
-        function teste(id) {
+      function teste(id) {
 
-        }
+      }
 
 
 
-    }
+  }
 
 })();
