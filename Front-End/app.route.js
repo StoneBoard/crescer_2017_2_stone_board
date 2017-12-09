@@ -21,7 +21,7 @@
           }
         }*/
       })
-      .otherwise('/');
+      .otherwise('/login');
   });
 
 })();

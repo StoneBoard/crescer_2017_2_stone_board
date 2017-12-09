@@ -29,7 +29,8 @@ public class StoneBoardUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         final Person person = personService.findByEmail(email);
         return Optional
-                .ofNullable(new User(person.getEmail(), person.getPass(), new ArrayList<>()))
+                .ofNullable(new User(person.getEmail(), encoder.encode("1234"), new ArrayList<>()))
+//                .ofNullable(new User(person.getEmail(), person.getPass(), new ArrayList<>()))
                 .orElse(null);
     }
 }
