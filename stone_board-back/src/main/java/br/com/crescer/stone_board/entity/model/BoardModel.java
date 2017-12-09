@@ -1,15 +1,22 @@
 package br.com.crescer.stone_board.entity.model;
 
 import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.utils.LocalDateTimeConverter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -23,6 +30,7 @@ public class BoardModel implements Serializable{
     @Size(max = 128, message = "erro.titulo.size")
     private String title;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime deadline;
     private boolean active;
     private List<Long> id_members;

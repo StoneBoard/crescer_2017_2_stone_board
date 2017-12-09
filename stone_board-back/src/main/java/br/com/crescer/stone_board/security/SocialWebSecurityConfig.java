@@ -47,6 +47,7 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// Swagger
 				.antMatchers(
 						"/v2/api-docs",
+                                                "/board",
 						"/configuration/ui",
 						"/swagger-resources/**",
 						"/configuration/**",
