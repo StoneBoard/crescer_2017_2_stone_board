@@ -41,4 +41,12 @@ public class BoardService {
          
          return boardRepository.save(board);
      }
+     
+     public Board findById(Long id) {
+         return boardRepository.findOne(id);
+    }
+     
+     public Iterable<Board> findAllBoards() {
+         return boardRepository.findAll();
+    }
 }

@@ -20,7 +20,7 @@ public class LoginControllerTest extends ControllerTestConfiguration {
     }
 
     @Test
-    @WithMockUser(username = "marcele@teste.com", password = "teste")
+    @WithMockUser(username = "teste@teste.com", password = "teste")
     public void getLoggedPerson() throws Exception {
         Person personTest = personRepository.save(getPersonOne());
         mockMvc.perform(MockMvcRequestBuilders.get("/initial/login"))
@@ -33,7 +33,7 @@ public class LoginControllerTest extends ControllerTestConfiguration {
     private Person getPersonOne() {
         return Person.builder()
                 .fullName("Marcele Teste")
-                .email("marcele@teste.com")
+                .email("teste@teste.com")
                 .pass("teste")
                 .build();
     }

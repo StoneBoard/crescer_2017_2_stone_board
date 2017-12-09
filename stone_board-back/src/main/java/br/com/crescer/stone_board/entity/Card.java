@@ -7,6 +7,7 @@ package br.com.crescer.stone_board.entity;
 
 import br.com.crescer.stone_board.utils.LocalDateTimeConverter;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Basic;
@@ -37,8 +38,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Card {
-    
+public class Card implements Serializable{
     private static final String SQ_NAME = "SQ_CARD";
     
     @Id

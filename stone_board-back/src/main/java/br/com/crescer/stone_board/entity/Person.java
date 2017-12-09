@@ -6,6 +6,7 @@
 package br.com.crescer.stone_board.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Person {
+public class Person implements Serializable{
     
     private static final String SQ_NAME = "SQ_PERSON";
     

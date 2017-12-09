@@ -9,6 +9,8 @@ import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,16 @@ public class BoardController {
     @PostMapping
     public ResponseEntity Save(@RequestBody BoardModel boardModel){
        return ResponseEntity.ok(boardService.save(boardModel));
+    }
+    
+    @GetMapping(path = "/findById/{id}")
+    public ResponseEntity FindById(Long id){
+       return ResponseEntity.ok(boardService.findById(id));
+    }
+    
+    @GetMapping(path = "/FindAll")
+    public ResponseEntity FindAll(){
+       return ResponseEntity.ok(boardService.findAllBoards());
     }
        
 }

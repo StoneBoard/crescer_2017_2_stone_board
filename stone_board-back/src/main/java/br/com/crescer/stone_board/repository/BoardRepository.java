@@ -8,4 +8,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Marcele Dorneles
  */
 public interface BoardRepository extends CrudRepository<Board, Long>{
+   
+    
 }

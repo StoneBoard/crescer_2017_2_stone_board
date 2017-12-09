@@ -5,6 +5,7 @@
  */
 package br.com.crescer.stone_board.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ResultGroup {
+public class ResultGroup implements Serializable{
 
     private static final String SQ_NAME = "SQ_RESULT_GROUP";
 

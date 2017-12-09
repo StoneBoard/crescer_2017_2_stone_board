@@ -5,6 +5,7 @@
  */
 package br.com.crescer.stone_board.entity;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Note {
+public class Note implements Serializable{
     
     private static final String SQ_NAME = "SQ_NOTE";
     
