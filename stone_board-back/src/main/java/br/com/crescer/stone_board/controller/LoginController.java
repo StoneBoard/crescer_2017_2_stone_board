@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author willian
  */
 @RestController
-@RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(path = "/initial", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LoginController {
     
     @Autowired

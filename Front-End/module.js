@@ -8,7 +8,7 @@
   angular
     .module('stoneBoard').constant('authConfig', {
 
-      urlUsuario: 'http://localhost:9090/api/api/login',
+      urlUsuario: 'http://localhost:9090/api/initial/login',
 
       urlLogin: '/login',
 
