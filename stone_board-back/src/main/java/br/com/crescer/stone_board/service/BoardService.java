@@ -44,10 +44,10 @@ public class BoardService {
            board.getSessions().addAll(sessionsBoard);
          }      
          
-//         LoggedPersonModel personLogedModel = personComponent.loggedPerson();
-//         Person personLoged = personRepository.findOne(personLogedModel.getId());
-//         personLoged.getMyBoards().add(board);
-//         
+         LoggedPersonModel personLogedModel = personComponent.loggedPerson();
+         Person personLoged = personRepository.findOne(personLogedModel.getId());
+         personLoged.getMyBoards().add(board);
+         
          return boardRepository.save(board);
      }
 }
