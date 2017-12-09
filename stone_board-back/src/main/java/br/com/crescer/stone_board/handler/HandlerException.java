@@ -1,59 +1,45 @@
 package br.com.crescer.stone_board.handler;
 
+import br.com.crescer.stone_board.entity.model.MessageErrorModel;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- * @author Carlos H. Nonnemacher
- */
+
+
 @ControllerAdvice
-public class HandlerException {
+public class HandlerException  {
 
-    public static final String DEFAULT_ERROR_VIEW = "error";
+    @Autowired
+    private MessageSource messageSource;
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public HandlerExceptionMessage defaultErrorHandler(final HttpServletRequest httpServletRequest, final Exception exception) throws Exception {
-        final HandlerExceptionMessage handlerExceptionMessage = new HandlerExceptionMessage();
-        handlerExceptionMessage.setException(exception);
-        handlerExceptionMessage.setMessage(createCustomExceptionMessage(exception));
-        return handlerExceptionMessage;
+    public MessageErrorModel processoValidacaoDeErro(MethodArgumentNotValidException ex) {
+        BindingResult result = ex.getBindingResult();
+        FieldError error = result.getFieldError();
+
+        return processFieldError(error);
     }
 
-    private String createCustomExceptionMessage(final Exception exception) {
-        return exception.getMessage();
+    private MessageErrorModel processFieldError(FieldError error) {
+        MessageErrorModel message = null;
+        if (error != null) {
+            Locale currentLocale = LocaleContextHolder.getLocale();
+            String errorMessage = messageSource.getMessage(error.getDefaultMessage(), null, currentLocale);
+            message = new MessageErrorModel(errorMessage, "error");
+        }
+        return message;
     }
-
-    public static class HandlerExceptionMessage {
-
-        public HandlerExceptionMessage() {
-
-        }
-
-        Exception exception;
-        String message;
-
-        public Exception getException() {
-            return exception;
-        }
-
-        public void setException(Exception exception) {
-            this.exception = exception;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-    }
-
 }

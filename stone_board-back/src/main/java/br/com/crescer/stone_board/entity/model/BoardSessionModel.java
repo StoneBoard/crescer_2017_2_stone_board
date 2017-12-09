@@ -17,13 +17,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardSessionModel implements Serializable{
-    @NotNull(message = "erro.title.notnull")
+    @NotNull(message = "error.title.notnull")
     @Size(max = 128, message = "erro.titulo.size")
     private String title;
-    @NotNull(message = "erro.color.notnull")
+    @NotNull(message = "error.color.notnull")
     private int color;
-    @NotNull(message = "erro.icon.notnull")
-    @Size(max = 512, message = "erro.icon.size")
+    @NotNull(message = "error.icon.notnull")
+    @Size(max = 512, message = "error.icon.size")
     private String icon;
     private List<Long> id_cards;
     

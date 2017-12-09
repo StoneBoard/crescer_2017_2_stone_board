@@ -16,14 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonModel implements Serializable{
-    @NotNull(message = "erro.fullName.notnull")
-    @Size(max= 255, message = "erro.fullName.size")
+    @NotNull(message = "error.fullName.notnull")
+    @Size(max= 255, message = "error.fullName.size")
     private String fullName;
-    @NotNull(message = "erro.email.notnull")
-    @Size(max= 255, message = "erro.email.size")
+    @NotNull(message = "error.email.notnull")
+    @Size(max= 255, message = "error.email.size")
     private String email;
-    @NotNull(message = "erro.pass.notnull")
-    @Size(max= 128, message = "erro.pass.size")
+    @NotNull(message = "error.pass.notnull")
+    @Size(max= 128, message = "error.pass.size")
     private String pass;
     
     public static Person convertToPerson(PersonModel personModel) {

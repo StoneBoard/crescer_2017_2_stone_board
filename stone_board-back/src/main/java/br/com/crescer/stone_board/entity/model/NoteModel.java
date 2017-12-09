@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class NoteModel implements Serializable{
     
     private long id_writer;
-    @NotNull(message = "erro.text.notnull")
-    @Size(max = 200, message = "erro.text.icon.size")
+    @NotNull(message = "error.text.notnull")
+    @Size(max = 200, message = "error.text.icon.size")
     private String text;
     
      public static Note convertToNote(NoteModel noteModel, Person writer) {
