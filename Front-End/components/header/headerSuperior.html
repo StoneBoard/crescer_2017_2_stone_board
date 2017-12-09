@@ -1,23 +1,38 @@
-<div id="container">
-  <nav>
-<a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>
-   <ul id="baseMenu" class="menu">
-    <img src="components/header/Logo-StoneBoard-Navbar.jpg" id="logo-header">
+<link rel="stylesheet" type="text/css" href="components/header/style.css">
 
-    <li id="notification"><a  href="#"><i class="fa fa-bell"></i> Notificações</a>
-        <ul class="sub-menu">
-         <li><a href="#">Você recebeu um convite para um novo board</a></li>
-         </ul>
-        </li>
+<div class="header">
+  <div class="row between-xs bottom-xs">
 
-    <li id="infouser"><a  href="#"><i class="fa fa-user"></i> Olá, {{ usuario.nome }}</a>
-  <ul class="sub-menu">
-   <li><a href="#">Minha conta</a></li>
-   <li><a href="#">Sair</a></li>
-   </ul>
-  </li>
+    <div class="col-sm col-xs-3">
+      <div class="row start-xs">
+        <div class="col-lg-4 col-md-5 col-sm-6">
+          <div class="box">
+            <img class="img-logo">
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-xs">
+      <div class="row end-xs">
+        <div class="col-xs">              
+          <div class="dropdown">
 
-  </ul>
-  </nav>
-</div>
+            <div class="btn btn-md">
+              <div class="row middle-xs">
+                Olá fulano
+                <i class="material-icons">keyboard_arrow_down</i>   
+              </div>
+            </div>
+
+            <div class="dropdown-content">
+              <span class="dropdown-item">Hellooooo</span>
+              <span class="dropdown-item">Sair</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>  
+</div>          
