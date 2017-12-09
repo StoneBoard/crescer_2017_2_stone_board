@@ -1,8 +1,9 @@
 (function(){
   'use strict';
 
-  angular.module('stoneBoard')
-  .config(function ($httpProvider) {
+  angular
+    .module('stoneBoard')
+    .config(function ($httpProvider) {
 
     let headerAuth = JSON.parse(window.localStorage.getItem('ngStorage-headerAuth'));
     if (headerAuth) {

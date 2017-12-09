@@ -10,9 +10,7 @@
     let urlLogout = authConfig.urlLogout;
 
     function login(usuario) {
-
       let deferred = $q.defer();
-
       let headerAuth = montarHeader(usuario);
 
       $http({
@@ -20,22 +18,18 @@
         method: 'GET',
         headers: headerAuth
       }).then(
-
-
         function (response) {
-
-
-          $localStorage.usuarioLogado = response.data.dados;
+          $localStorage.usuarioLogado = { id:response.data.id,
+                                          nome: response.data.fullname,
+                                          email: response.data.email
+          };
           $localStorage.headerAuth = montarHeader(usuario)['Authorization'];
-
           $http.defaults.headers.common.Authorization = $localStorage.headerAuth;
-
           $rootScope.$broadcast('authLoginSuccess');
 
           if (urlPrivado) {
             $location.path(urlPrivado);
           }
-
           deferred.resolve(response);
         },
 
@@ -48,7 +42,6 @@
 
 
       function logout() {
-
         delete $localStorage.usuarioLogado;
         delete $localStorage.headerAuth;
         $http.defaults.headers.common.Authorization = undefined;
@@ -70,8 +63,9 @@
 
       function possuiPermissao(permissao) {
         return isAutenticado() &&
-        getUsuario().Permissoes.find((p) => p.Nome === permissao);
+        getUsuario().Permissoes.find((p) => p.authority === permissao);
       };
+
 
       function isAutenticadoPromise() {
 
