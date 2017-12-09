@@ -8,7 +8,9 @@
 
       restrict: 'E',
 
-      scope: {},
+      scope: {
+        c : '=cardAttr'
+      },
 
       templateUrl: 'components/card/card.html',
 
