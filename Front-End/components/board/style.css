@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Coming+Soon');
+
+
 /* T I T L E */
 
 .title-session {
@@ -55,8 +58,8 @@
 
 .pt-body {
 	padding: 0 10px 10px 10px; 
-	font-family: 'Gloria Hallelujah', cursive; 
-	font-size:15px; 
+	font-family: 'Coming Soon', cursive; 
+	font-size:16px; 
 }
 
 .pt-box {
@@ -81,28 +84,28 @@
 
 .pt-input {
 	background-color: transparent;
-  font-family: 'Gloria Hallelujah', cursive;
-  font-size: 15px;
+  font-family: 'Coming Soon', cursive;
+  font-size: 16px;
 	border: none;
 	color: var(--grayBlueDark);
 	margin: 15px;
 }
 
 .pt-input::-webkit-input-placeholder {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Coming Soon', cursive;
   font-size: 15px;
 }
 
 .pt-input:-ms-input-placeholder {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Coming Soon', cursive;
 }
 
 .pt-input:-moz-placeholder {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Coming Soon', cursive;
 }
 
 .pt-input::-moz-placeholder {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Coming Soon', cursive;
 }
 
 /* C O L O R S */
