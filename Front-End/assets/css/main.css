@@ -28,8 +28,12 @@ body {
   background-color: #1f253d;
 }
 
+.material-icons.md-dark { color: var(--grayBlueLight); }
+
 .container-base {
 	background-color:	#394264;
+  border-radius: 3px;
+  margin: 7px 0 7px 0;
 }
 
 /* B U T O N S */
@@ -103,5 +107,88 @@ body {
 	border-color: var(--green);
 }
 
+/* I T E N S */
+
+.item {
+  background-color: var(--grayBlueOk);
+  margin: 0 1px 0 1px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  /*color: var(--grayBlueLight);*/
+}
+
+.item-bottom {
+  border-top: solid 2px;
+}
+
+.col-item-start {
+  padding-right: 0;
+  border-bottom-left-radius: 3px;
+}
+
+.col-item-end {
+  padding-left: 0;
+  border-bottom-left-radius: 3px;
+}
+
+.col-item {
+  padding: 0;
+}
+
+.item-last {
+  margin-right: 0;
+  border-bottom-right-radius: 3px;
+}
+
+.item-pink {
+  border-color: var(--darkPink);
+}
+
+.item-green {
+  border-color: var(--green);
+}
+
+.item-blue {
+  border-color: var(--darkBlue);
+}
+
+.item-orange {
+  border-color: var(--orange);
+}
 
 
+/* C A R D S */
+
+.card-title {
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 10px 20px;  
+}
+
+.btn-new-card {
+  padding: 25px;
+  background-color: var(--grayBlueOk);
+  border-radius: 3px;
+  margin: 7px 0 7px 0;
+}
+
+.btn-new-card:hover {
+  background-color: var(--grayBlue);
+}
+
+/* U T I L S */
+
+.separator {
+  height: 100%;
+  border-top: 1px solid var(--grayBlue);
+  margin: 20px 0;  
+}
+
+.title-sm {
+  color: var(--grayBlueLight);
+  font-weight: normal;
+
+  font-size: 18px;
+  letter-spacing: 1px;
+}
