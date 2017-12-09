@@ -2,22 +2,17 @@
   'use strict';
 
   angular.module('stoneBoard')
-		.directive('cardDashBoard', function () {
+		.directive('postIt', function () {
 
 			return {
 
       restrict: 'E',
 
-      scope: {
-        c : '=cardAttr'
-      },
+      scope: {},
 
-      templateUrl: 'components/card/card.html',
+      templateUrl: 'components/postit/postit.html',
 
       controller: function ($scope) {
-
-
-
 
       }
 

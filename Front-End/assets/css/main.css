@@ -28,7 +28,13 @@ body {
   background-color: #1f253d;
 }
 
-.material-icons.md-dark { color: var(--grayBlueLight); }
+.material-icons.md-dark { color: var(--grayBlueDark); }
+.material-icons.md-light { color: var(--grayBlueLight); }
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
 
 .container-base {
 	background-color:	#394264;
@@ -191,4 +197,25 @@ body {
 
   font-size: 18px;
   letter-spacing: 1px;
+}
+
+/* S C R O L L */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+    background-color: var(--grayBlueLight); 
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--grayBlueOk); 
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--grayBlue); 
 }

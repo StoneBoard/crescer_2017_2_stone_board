@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResultGroupModel implements Serializable{
-    @NotNull(message = "erro.title.notnull")
-    @Size(max =128, message = "erro.title.size ")
+    @NotNull(message = "error.title.notnull")
+    @Size(max =128, message = "error.title.size ")
     private String title;
-    @NotNull(message ="erro.description.notnull")
-    @Size(max = 500, message = "erro.description.size")
+    @NotNull(message ="error.description.notnull")
+    @Size(max = 500, message = "error.description.size")
     private String description;
     private List<Long> id_cards;
     private long id_board;

@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardModel implements Serializable{
-    @NotNull(message = "erro.text.notnull")
-    @Size(max = 300, message = "erro.text.size")
+    @NotNull(message = "error.text.notnull")
+    @Size(max = 300, message = "error.text.size")
     private String text;
     private Long id_writer;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 /**
  *
  * @author Marcele Dorneles
@@ -18,8 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardModel implements Serializable{
-    @NotNull(message = "erro.nome.notnull")
-    @Size(max = 128, message = "erro.titulo.size")
+    @NotNull(message = "error.board.title.notnull")
+    @Size(max = 128,min = 1, message = "error.board.title.size")
     private String title;
   
     private LocalDateTime deadline;
