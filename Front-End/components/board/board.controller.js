@@ -9,7 +9,7 @@
   	$scope.rowStyle = {};
 
   	let idealWidth = 550; //px
-  	let numSession = 4;
+  	let numSession = 2;
   	let newWidth;
 
   	resizeRow();

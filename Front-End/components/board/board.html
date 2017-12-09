@@ -11,7 +11,7 @@
 <div class="board">
 	
 	<div id="row-sessions" ng-style="rowStyle">
-		<div class="row">	
+		<div class="row" style="width: 100%">	
 
 			<!-- inicio da session -->
 
@@ -28,7 +28,22 @@
 						</div>
 
 						<div class="row center-xs">
+
+							<div class="pt-box">
+
+								<div pink class="post-it pt-rotation-1">
+									<div class="row">
+										<div class="col-xs">		
+											<textarea class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
+											<button class="btn btn-sm pink-bg-btn">ENVIAR</button>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
 							<post-it></post-it>
+
 						</div>
 
 					</div>

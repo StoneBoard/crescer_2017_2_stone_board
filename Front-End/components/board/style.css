@@ -79,6 +79,32 @@
 	width: 100%;
 }
 
+.pt-input {
+	background-color: transparent;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 15px;
+	border: none;
+	color: var(--grayBlueDark);
+	margin: 15px;
+}
+
+.pt-input::-webkit-input-placeholder {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 15px;
+}
+
+.pt-input:-ms-input-placeholder {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.pt-input:-moz-placeholder {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.pt-input::-moz-placeholder {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
 /* C O L O R S */
 
 [pink] { background: #F5BDC7; }
