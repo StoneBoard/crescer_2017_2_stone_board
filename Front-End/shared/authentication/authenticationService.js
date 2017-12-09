@@ -108,7 +108,7 @@
           'Authorization': `Basic ${hash}`
         };
       };
-      
+
       return {
         login: login,
         logout: logout,
