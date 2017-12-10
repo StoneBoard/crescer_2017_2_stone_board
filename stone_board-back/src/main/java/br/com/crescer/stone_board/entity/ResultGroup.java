@@ -59,6 +59,6 @@ public class ResultGroup implements Serializable{
     
     @Basic(optional = false)
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_BOARD")
+    @JoinColumn(name = "ID_BOARD", nullable = false)
     private Board board;
 }

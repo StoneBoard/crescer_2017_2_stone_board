@@ -45,7 +45,7 @@ public class Vote implements Serializable{
     
     @ManyToOne(cascade = CascadeType.ALL)
     @Basic(optional = false)
-    @JoinColumn(name = "ID_PERSON")
+    @JoinColumn(name = "ID_PERSON", nullable = false)
     private Person person;
     
     @Basic(optional = false)

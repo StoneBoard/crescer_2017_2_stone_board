@@ -45,7 +45,7 @@ public class Note implements Serializable{
     
     @ManyToOne(cascade = CascadeType.ALL)
     @Basic(optional = false)
-    @JoinColumn(name = "ID_PERSON_WRITER")
+    @JoinColumn(name = "ID_PERSON_WRITER", nullable = false)
     private Person writer;
     
     @Basic(optional = false)
