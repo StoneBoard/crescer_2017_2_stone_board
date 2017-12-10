@@ -55,7 +55,7 @@ public class BoardService {
          return boardRepository.findOne(id);
     }
      
-     public Iterable<Board> findAllBoards() {
+     public List<Board> findAllBoards() {
          return boardRepository.findAll();
     }
 }
