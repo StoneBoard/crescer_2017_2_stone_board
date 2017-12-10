@@ -10,6 +10,7 @@ import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,16 +38,16 @@ public class BoardService {
                 
          if (!CollectionUtils.isEmpty(members)){
            List<Person> membersBoard = personRepository.findByIdIn(members);
-           board.getMembers().addAll(membersBoard);
+           board.setMembers(membersBoard);
          }      
          if (!CollectionUtils.isEmpty(boardModel.getSessions())){
              List<BoardSessionModel> sessions = boardModel.getSessions();
-             List<BoardSession> boardSessions = null;
-             for(BoardSessionModel boardSession : sessions){
-                 boardSessions.add(boardSessionRepository.save(BoardSessionModel.convertToBoardSession(boardSession)));
-             }
+             List<BoardSession> boardSessions = new ArrayList<>();
+             sessions.stream().forEach((session) -> {
+               boardSessions.add(boardSessionRepository.save(BoardSessionModel.convertToBoardSession(session)));
+             });
 
-            board.getSessions().addAll(boardSessions);
+            board.setSessions(boardSessions);
          }      
          
           LoggedPersonModel personLogedModel = personComponent.loggedPerson();
