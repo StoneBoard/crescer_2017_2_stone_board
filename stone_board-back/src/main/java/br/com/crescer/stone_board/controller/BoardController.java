@@ -31,11 +31,5 @@ public class BoardController {
     @GetMapping(path = "/findById/{id}")
     public ResponseEntity FindById(Long id){
        return ResponseEntity.ok(boardService.findById(id));
-    }
-    
-    @GetMapping(path = "/listMyBoards")
-    public ResponseEntity FindAll(){
-       return ResponseEntity.ok(boardService.findAllBoards());
-    }
-       
+    }       
 }

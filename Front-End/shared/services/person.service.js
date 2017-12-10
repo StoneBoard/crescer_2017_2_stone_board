@@ -2,7 +2,7 @@
 //   'use strict'
   angular.module('stoneBoard').factory('personService', function($http){
 
-  	let urlBase = 'http://localhost:9090/api/board';
+  	let urlBase = 'http://localhost:9090/api/person';
 
   	function listMyBoards(){
   		return response = $http.get( urlBase + "/listMyBoards");

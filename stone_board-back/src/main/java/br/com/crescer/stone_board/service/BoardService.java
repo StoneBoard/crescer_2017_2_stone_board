@@ -54,8 +54,4 @@ public class BoardService {
      public Board findById(Long id) {
          return boardRepository.findOne(id);
     }
-     
-     public List<Board> findAllBoards() {
-         return boardRepository.findAll();
-    }
 }
