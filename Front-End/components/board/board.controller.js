@@ -34,14 +34,14 @@
 
 	  	rowSession.css('width', newWidth);
   	}
-    
+
     displayBoard();
     function displayBoard(){
 
       boardService.findById($routeParams.idBoard).then(function (response) {
             $scope.board = response.data;
-
-            console.log($scope.board);
+            $scope.sessions = $scope.board.sessions
+            forEach()
         });
     }
 
