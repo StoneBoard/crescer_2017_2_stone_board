@@ -5,8 +5,12 @@
  */
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.service.PersonService;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +29,20 @@ public class PersonController {
     
     @GetMapping("/listMyBoards")
     public ResponseEntity getMyBoardsByUserId() {
-        return ResponseEntity.ok(personService.listMyBoards());
+        List<Board> boards = personService.listMyBoards();
+        List<BoardModel> boardsModel = boards.stream()
+                .map(BoardModel::convertToBoardModel)
+                .collect(Collectors.toList());
+    
+        //BoardModel newBoard = new BoardModel("xuxuxu", LocalDateTime.now(), true, null, null);
+    
+        return ResponseEntity.ok(boardsModel);
     }
     @GetMapping("/listConnectBoards")
-    public ResponseEntity getConnectBoardsByUserId() {
-        return ResponseEntity.ok(personService.listMyBoards());
+    public List<BoardModel> getConnectBoardsByUserId() {
+        List<Board> boards = personService.listConnectBoards();
+        return boards.stream()
+                .map(BoardModel::convertToBoardModel)
+                .collect(Collectors.toList());
     }
 }

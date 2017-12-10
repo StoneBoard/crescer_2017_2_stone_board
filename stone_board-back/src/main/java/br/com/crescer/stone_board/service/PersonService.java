@@ -30,15 +30,11 @@ public class PersonService {
         return personRepository.findByEmail(email);
     }
     
-    public List<Board> listMyBoards() {
-        LoggedPersonModel personLogedModel = personComponent.loggedPerson();
-        Person personLoged = personRepository.findOne(personLogedModel.getId());
-        return personRepository.findOne(personLoged.getId()).getMyBoards();
+    public List<Board> listMyBoards() {        
+        return personComponent.loggedPersonDetails().getMyBoards();
     }
     public List<Board> listConnectBoards() {
-        LoggedPersonModel personLogedModel = personComponent.loggedPerson();
-        Person personLoged = personRepository.findOne(personLogedModel.getId());
-        return personRepository.findOne(personLoged.getId()).getConnectBoards();
+        return personComponent.loggedPersonDetails().getConnectBoards();
     }
     
 }

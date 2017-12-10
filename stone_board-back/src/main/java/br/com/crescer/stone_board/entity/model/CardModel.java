@@ -6,9 +6,12 @@ import br.com.crescer.stone_board.entity.Person;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CardModel implements Serializable{
     @NotNull(message = "error.text.notnull")
     @Size(max = 300, message = "error.text.size")
@@ -27,6 +31,8 @@ public class CardModel implements Serializable{
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
     private Long id_session;
+    private List<VoteModel> votes;
+    private List<NoteModel> notes;
     
     public static Card convertToCard(CardModel cardModel, Person writer) {
        return Card.builder()
@@ -35,4 +41,20 @@ public class CardModel implements Serializable{
                .creationDate(cardModel.getCreationDate())
                .build();
    }
+    
+   public static CardModel convertToCardModel(Card card) {
+       return CardModel.builder()
+               .text(card.getText())
+               .id_writer(card.getWriter().getId())
+               .creationDate(card.getCreationDate())
+               .votes(card.getVotes()
+                        .stream()
+                        .map(VoteModel::convertToVoteModel)
+                        .collect(Collectors.toList()))
+               .notes(card.getNotes()
+                        .stream()
+                        .map(NoteModel::convertToNoteModel)
+                        .collect(Collectors.toList()))
+               .build();
+   } 
 }

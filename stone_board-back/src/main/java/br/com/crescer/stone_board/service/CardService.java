@@ -35,13 +35,11 @@ public class CardService {
      public List<Card> findAllBoards() {
          return cardRepository.findAll();
     }
-    public Card save(CardModel cardModel){
-         LoggedPersonModel personLogedModel = personComponent.loggedPerson();
-         Person personLoged = personRepository.findOne(personLogedModel.getId());
+    public void save(CardModel cardModel){
+         Person personLoged = personComponent.loggedPersonDetails();
          Card card = CardModel.convertToCard(cardModel, personLoged);
          BoardSession boardSession = boardSessionRepository.findOne(cardModel.getId_session());
-         boardSession.getCards().add(card);
+         boardSession.addCard(card);
          boardSessionRepository.save(boardSession);
-         return cardRepository.save(card);
      }
 }

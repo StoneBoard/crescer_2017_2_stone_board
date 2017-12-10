@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,17 +17,27 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class NoteModel implements Serializable{
     
+    private long id;
     private long id_writer;
     @NotNull(message = "error.text.notnull")
     @Size(max = 200, message = "error.text.icon.size")
     private String text;
     
-     public static Note convertToNote(NoteModel noteModel, Person writer) {
-       return Note.builder()
-               .writer(writer)
-               .text(noteModel.getText())
-               .build();
-   }
+    public static Note convertToNote(NoteModel noteModel, Person writer) {
+        return Note.builder()
+                .writer(writer)
+                .text(noteModel.getText())
+                .build();
+    }
+    
+    public static NoteModel convertToNoteModel(Note note) {
+        return NoteModel.builder()
+                .id(note.getId())
+                .id_writer(note.getWriter().getId())
+                .text(note.getText())
+                .build();
+    }
 }

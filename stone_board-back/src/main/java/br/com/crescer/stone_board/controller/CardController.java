@@ -28,8 +28,8 @@ public class CardController {
     private CardService cardService;
     
     @PostMapping
-    public ResponseEntity Save(@Validated @RequestBody CardModel cardModel){
-       return ResponseEntity.ok(cardService.save(cardModel));
+    public void Save(@Validated @RequestBody CardModel cardModel){
+        cardService.save(cardModel);
     }
     @GetMapping(path = "/findById/{id}")
     public ResponseEntity FindById(@PathVariable Long id){

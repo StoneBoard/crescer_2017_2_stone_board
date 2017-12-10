@@ -55,6 +55,10 @@ public class BoardSession implements Serializable{
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_SESSION", nullable = false)
     private List<Card> cards;
-    
+   
+    public void addCard(Card card) {
+        this.cards.add(card);
+    }
+            
     
 }
