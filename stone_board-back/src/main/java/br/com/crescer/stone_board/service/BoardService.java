@@ -50,7 +50,7 @@ public class BoardService {
             board.setSessions(boardSessions);
          }      
          
-          LoggedPersonModel personLogedModel = personComponent.loggedPerson();
+         LoggedPersonModel personLogedModel = personComponent.loggedPerson();
          Person personLoged = personRepository.findOne(personLogedModel.getId());
          personLoged.getMyBoards().add(board);
          
