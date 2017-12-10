@@ -1,4 +1,3 @@
-
 package br.com.crescer.stone_board.controller;
 
 import br.com.crescer.stone_board.entity.model.BoardModel;

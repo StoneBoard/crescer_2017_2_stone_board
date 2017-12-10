@@ -31,17 +31,26 @@ public class BoardServiceTest {
     public void setUp() {
         boardRepository.deleteAll();
     }
+<<<<<<< HEAD
 //;
 //    @Test
 //    public void testSave() {
 //        boardRepository.save(getBoard());
 //       
 //        Board result = boardService.findById(getBoard().getId());
+=======
+
+    @Test
+    public void testSave() {
+        boardRepository.save(getBoard());
+       
+        Board result = boardService.findById(getBoard().getId());
+>>>>>>> 9b24df25e0f83d0e6fa9c206734c491c5c68d08f
 //        assertEquals(getBoard().getDeadline(), result.getDeadline());
-//        assertEquals(getBoard().getTitle(), result.getTitle());
-//        assertEquals(getBoard().isActive(), result.isActive());
-//    }
-//    
+        assertEquals(getBoard().getTitle(), result.getTitle());
+        assertEquals(getBoard().isActive(), result.isActive());
+    }
+    
     
      @Test
     public void testFindByEmailWithNull() {
