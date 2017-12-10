@@ -9,7 +9,7 @@
       restrict: 'E',
 
       scope: {
-        c : '=cardAttr'
+        c : '=info'
       },
 
       templateUrl: 'components/card/card.html',

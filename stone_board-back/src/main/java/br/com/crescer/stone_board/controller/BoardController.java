@@ -33,7 +33,7 @@ public class BoardController {
        return ResponseEntity.ok(boardService.findById(id));
     }
     
-    @GetMapping(path = "/FindAll")
+    @GetMapping(path = "/listMyBoards")
     public ResponseEntity FindAll(){
        return ResponseEntity.ok(boardService.findAllBoards());
     }

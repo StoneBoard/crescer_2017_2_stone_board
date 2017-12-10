@@ -4,9 +4,9 @@
 	<div class="row">
 		<div class="col-xs">
 			<div class="box">
-				<p class="card-title">titulo do card aqui bem bonito</p>
+				<p class="card-title">{{c.title}}</p>
 			</div>
-		</div>						
+		</div>
 	</div>
 
 
@@ -16,7 +16,7 @@
 			<div class="item item-bottom item-orange">
 				<div class="row center-xs middle-xs">
 					<i class="material-icons md-dark">perm_identity</i>
-					<span>5</span>
+					<span>{{c.members.length}}</span>
 				</div>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 			<div class="item item-bottom item-green">
 				<div class="row center-xs middle-xs">
 					<i class="material-icons md-dark">event</i>
-					<span>12may</span>
+					<span>{{  c.deadline | date: 'dd/MMM'}}</span>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 			<div class="item item-bottom item-pink item-last">
 				<div class="row center-xs middle-xs">
 					<i class="material-icons md-dark">bookmark_border</i>
-					<span>10</span>
+					<span>{{c.sessions.length}}</span>
 				</div>
 			</div>
 		</div>

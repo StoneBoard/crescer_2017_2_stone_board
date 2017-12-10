@@ -16,12 +16,12 @@
 
   	// verifica se houve alguma mudança na largura da tela e recalcula largura do board
 		angular.element($window).bind('resize', resizeRow);
-  	
+
   	function resizeRow() {
 
   		let rowSession = angular.element(document.getElementById('row-sessions'));
   		rowSession.css('width', '100%');
-	  	
+
 	  	if (idealWidth > rowSession[0].clientWidth) {
 	  		newWidth = $window.innerWidth * numSession + 'px';
 	  	}
@@ -32,8 +32,11 @@
 	  		newWidth = '100%';
 	  	}
 
-	  	rowSession.css('width', newWidth);	  		
+	  	rowSession.css('width', newWidth);
   	}
+
+
+
 
   });
 

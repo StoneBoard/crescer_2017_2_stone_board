@@ -25,7 +25,7 @@
       .when('/board', {
         controller: 'controllerBoard',
         templateUrl: 'components/board/board.html'
-      }).otherwise('/login');
+      }).otherwise('/board');
 
   });
 
