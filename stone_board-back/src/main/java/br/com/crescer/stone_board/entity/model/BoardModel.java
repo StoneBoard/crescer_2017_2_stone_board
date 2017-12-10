@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardModel implements Serializable{
-    @NotNull(message = "error.board.title.notnull")
-    @Size(max = 128,min = 1, message = "error.board.title.size")
+    @NotNull(message = "error.title.notnull ")
+    @Size(max = 128,min = 1, message = "error.title.size ")
     private String title;
   
     private LocalDateTime deadline;

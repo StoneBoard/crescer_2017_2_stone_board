@@ -17,15 +17,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardSessionModel implements Serializable{
-    @NotNull(message = "error.title.notnull")
-    @Size(max = 128, message = "erro.titulo.size")
+    @NotNull(message = "error.title.notnull ")
+    @Size(min = 1, max = 128, message = "erro.titulo.size")
     private String title;
     @NotNull(message = "error.color.notnull")
     private int color;
     @NotNull(message = "error.icon.notnull")
     @Size(max = 512, message = "error.icon.size")
     private String icon;
-    private List<Long> id_cards;
     
     
      public static BoardSession convertToBoardSession(BoardSessionModel boardSessionModel) {
@@ -34,6 +33,6 @@ public class BoardSessionModel implements Serializable{
                .color(boardSessionModel.getColor())
                .icon(boardSessionModel.getIcon())
                .build();
-   }
+    }
     
 }
