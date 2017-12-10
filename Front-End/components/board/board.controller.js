@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope, $window) {
+  .controller('controllerBoard', function ($scope, $window, boardService, $routeParams) {
 
   	//console.log($window);
   	$scope.rowStyle = {};
@@ -34,6 +34,13 @@
 
 	  	rowSession.css('width', newWidth);
   	}
+
+    function displayBoard(){
+
+      boardService.findById($routeParams.idBoard).then(function (response) {
+            $scope.board = response.data;
+        });
+    }
 
 
 

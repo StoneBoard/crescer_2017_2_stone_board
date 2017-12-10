@@ -23,7 +23,6 @@ public class BoardModel implements Serializable{
     @NotNull(message = "error.title.notnull ")
     @Size(max = 128,min = 1, message = "error.title.size ")
     private String title;
-  
     private LocalDateTime deadline;
     private boolean active;
     private List<Long> id_members;
@@ -36,4 +35,8 @@ public class BoardModel implements Serializable{
                .active(boardModel.isActive())
                .build();
    }
+
+    public List<Long> getId_sessions() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
