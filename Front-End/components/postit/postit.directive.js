@@ -8,7 +8,9 @@
 
       restrict: 'E',
 
-      scope: { },
+      scope: { 
+        c : '=info'
+      },
 
       templateUrl: 'components/postit/postit.html',
 

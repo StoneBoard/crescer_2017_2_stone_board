@@ -28,8 +28,8 @@ public class BoardController {
        return ResponseEntity.ok(boardService.save(boardModel));
     }
     
-    @GetMapping("/findById/{id}")
-    public ResponseEntity FindById(@PathVariable("id") Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity FindById(@PathVariable Long id){
        return ResponseEntity.ok(boardService.findById(id));
     }       
 }

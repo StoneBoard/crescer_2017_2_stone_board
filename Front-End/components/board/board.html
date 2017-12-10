@@ -42,7 +42,9 @@
 
 							</div>
 
-							<post-it></post-it>
+							<div ng-repeat= card in sessions.cards>
+								<post-it info="card"></post-it>
+							</div>
 
 						</div>
 

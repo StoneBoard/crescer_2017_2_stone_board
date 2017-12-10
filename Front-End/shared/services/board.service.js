@@ -6,7 +6,7 @@
 
     function findById(id){
       debugger;
-      return $http.get(urlBase + '/findById/'  + id);
+      return $http.get('http://localhost:9090/api/board/' + id);
 
     }
     return {
