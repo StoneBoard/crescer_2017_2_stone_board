@@ -53,8 +53,7 @@ public class Card implements Serializable{
     private String text;
     
     @ManyToOne(cascade = CascadeType.ALL)
-    @Basic(optional = false)
-    @JoinColumn(name = "ID_PERSON_WRITER")
+    @JoinColumn(name = "ID_PERSON_WRITER", nullable = false)
     private Person writer;
     
     @Column(name = "CREATION_DATE")
@@ -64,15 +63,15 @@ public class Card implements Serializable{
     private LocalDateTime creationDate;
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_CARD")
+    @JoinColumn(name = "ID_CARD", nullable = false)
     private List<Vote> votes;
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_CARD")
+    @JoinColumn(name = "ID_CARD", nullable = false)
     private List<Note> notes;
     
     @ManyToOne
-    @JoinColumn(name = "ID_RESULT_GROUP", nullable = false)
+    @JoinColumn(name = "ID_RESULT_GROUP")
     private ResultGroup resultGroup;
     
 }

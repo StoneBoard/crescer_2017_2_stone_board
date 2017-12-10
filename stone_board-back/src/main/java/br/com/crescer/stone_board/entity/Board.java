@@ -73,7 +73,7 @@ public class Board implements Serializable{
     List<Person> members;
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_BOARD")
+    @JoinColumn(name = "ID_BOARD", nullable = false)
     private List<BoardSession> sessions;
     
    

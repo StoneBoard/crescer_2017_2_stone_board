@@ -61,7 +61,7 @@ public class Person implements Serializable{
     private String pass;
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PERSON")
+    @JoinColumn(name = "ID_PERSON", nullable = false)
     private List<Board> myBoards;
     
     @ManyToMany(cascade = CascadeType.ALL)
@@ -70,6 +70,6 @@ public class Person implements Serializable{
     private List<Board> connectBoards;          
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PERSON")
+    @JoinColumn(name = "ID_PERSON", nullable = false)
     private List<Notification> notifications;
 }

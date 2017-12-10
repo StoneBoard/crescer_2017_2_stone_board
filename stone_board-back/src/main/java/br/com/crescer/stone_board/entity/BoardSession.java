@@ -53,7 +53,7 @@ public class BoardSession implements Serializable{
     private String icon;
      
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_SESSION")
+    @JoinColumn(name = "ID_SESSION", nullable = false)
     private List<Card> cards;
     
     
