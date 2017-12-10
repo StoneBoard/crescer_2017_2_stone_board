@@ -9,6 +9,7 @@
     function listMyBoards(){
     	let promise = personService.listMyBoards();
         promise.then(function (response) {
+            console.log(response);
             $scope.myBoards = response.data;
             $scope.myBoards.deadline = $scope.myBoards.map(x => x.deadline = new Date(x.deadline));
             console.log($scope.myBoards);

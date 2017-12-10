@@ -1,7 +1,7 @@
 package br.com.crescer.stone_board.controller;
-import Utils.ControllerTestConfiguration;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
+import br.com.crescer.stone_board.utils.ConfigurationTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class LoginControllerTest extends ControllerTestConfiguration {
+public class LoginControllerTest extends ConfigurationTest {
 
     @Autowired
     private PersonRepository personRepository;

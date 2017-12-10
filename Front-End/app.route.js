@@ -22,7 +22,7 @@
         }*/
       })
 
-      .when('/board', {
+      .when('/board/:idBoard?', {
         controller: 'controllerBoard',
         templateUrl: 'components/board/board.html'
       })
@@ -33,7 +33,7 @@
         templateUrl: 'components/board/board.register.html'
       })
 
-      .otherwise('/board');
+      .otherwise('/dashboard');
 
   });
 

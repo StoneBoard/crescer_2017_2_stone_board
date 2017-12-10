@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope, $window, boardService, $routeParams) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService) {
 
   	//console.log($window);
   	$scope.rowStyle = {};
@@ -37,11 +37,13 @@
 
     displayBoard();
     function displayBoard(){
-
-      boardService.findById($routeParams.idBoard).then(function (response) {
+      debugger;
+      let promisse =  boardService.findById($routeParams.idBoard);
+      promisse.then(function (response) {
+        debugger;
             $scope.board = response.data;
-            $scope.sessions = $scope.board.sessions
-            forEach()
+            $scope.sessions = $scope.board.sessions;
+
         });
     }
 
