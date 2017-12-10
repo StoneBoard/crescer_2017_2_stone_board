@@ -43,7 +43,6 @@ public class StoneBoardWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/v2/api-docs",
                         "/configuration/ui",
-                        
                         "/swagger-resources/**",
                         "/configuration/**",
                         "/swagger-ui.html",
