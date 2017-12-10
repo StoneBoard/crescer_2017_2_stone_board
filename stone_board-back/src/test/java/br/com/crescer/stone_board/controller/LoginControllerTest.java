@@ -1,5 +1,5 @@
 package br.com.crescer.stone_board.controller;
-import Utils.ControllerTestConfiguration;
+import br.com.crescer.stone_board.Utils.ControllerTestConfiguration;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import org.junit.Before;

@@ -5,12 +5,12 @@
   	let urlBase = 'http://localhost:9090/api/board';
 
   	function findById(id){
-  		return response = $http.get( urlBase + "/findById/" + id);
+  		return $http.get( urlBase + "/findById/" + id);
   	}
 
   	return {
   		findById : findById
-  		
+
   	};
   })
 //})

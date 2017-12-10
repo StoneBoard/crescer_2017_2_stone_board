@@ -1,4 +1,4 @@
-package Utils;
+package br.com.crescer.stone_board.Utils;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
