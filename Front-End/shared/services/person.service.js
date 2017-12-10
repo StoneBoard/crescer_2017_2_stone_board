@@ -1,15 +1,17 @@
-// (function(){
-//   'use strict'
-  angular.module('stoneBoard').factory('personService', function($http){
+ (function(){
+   'use strict';
+  angular
+  .module('stoneBoard')
+  .factory('personService', function($http){
 
   	let urlBase = 'http://localhost:9090/api/person';
 
   	function listMyBoards(){
-  		return response = $http.get( urlBase + "/listMyBoards");
+  		return $http.get( urlBase + "/listMyBoards");
   	}
 
   	function listConnectBoards(){
-  		return response = $http.get(urlBase + '/listConnectBoards');
+  		return $http.get(urlBase + '/listConnectBoards');
   	}
 
   	return {
@@ -17,4 +19,4 @@
   		listConnectBoards : listConnectBoards
   	};
   })
-//})
+}());

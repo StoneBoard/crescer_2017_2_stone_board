@@ -31,7 +31,7 @@ public class BoardServiceTest {
     public void setUp() {
         boardRepository.deleteAll();
     }
-//
+//;
 //    @Test
 //    public void testSave() {
 //        boardRepository.save(getBoard());
