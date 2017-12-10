@@ -1,6 +1,7 @@
 package br.com.crescer.stone_board.entity.model;
 
 import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.BoardSession;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,7 +27,7 @@ public class BoardModel implements Serializable{
     private LocalDateTime deadline;
     private boolean active;
     private List<Long> id_members;
-    private List<Long> id_sessions;
+    private List<BoardSessionModel> sessions;
     
     public static Board convertToBoard(BoardModel boardModel) {
        return Board.builder()

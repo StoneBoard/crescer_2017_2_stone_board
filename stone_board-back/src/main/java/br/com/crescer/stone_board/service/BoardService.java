@@ -4,6 +4,7 @@ import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardModel;
+import br.com.crescer.stone_board.entity.model.BoardSessionModel;
 import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
@@ -33,18 +34,22 @@ public class BoardService {
          Board board = BoardModel.convertToBoard(boardModel);
    
          List<Long> members = boardModel.getId_members();
-         List<Long> sessions = boardModel.getId_sessions();
-         
+                
          if (!CollectionUtils.isEmpty(members)){
            List<Person> membersBoard = personRepository.findByIdIn(members);
            board.getMembers().addAll(membersBoard);
          }      
-         if (!CollectionUtils.isEmpty(sessions)){
-           List<BoardSession> sessionsBoard = boardSessionRepository.findByIdIn(sessions);
-           board.getSessions().addAll(sessionsBoard);
+         if (!CollectionUtils.isEmpty(boardModel.getSessions())){
+             List<BoardSessionModel> sessions = boardModel.getSessions();
+             List<BoardSession> boardSessions = null;
+             for(BoardSessionModel boardSession : sessions){
+                 boardSessions.add(boardSessionRepository.save(BoardSessionModel.convertToBoardSession(boardSession)));
+             }
+
+            board.getSessions().addAll(boardSessions);
          }      
          
-         LoggedPersonModel personLogedModel = personComponent.loggedPerson();
+          LoggedPersonModel personLogedModel = personComponent.loggedPerson();
          Person personLoged = personRepository.findOne(personLogedModel.getId());
          personLoged.getMyBoards().add(board);
          
@@ -53,5 +58,9 @@ public class BoardService {
      
      public Board findById(Long id) {
          return boardRepository.findOne(id);
+    }
+     
+     public List<Board> findAllBoards() {
+         return boardRepository.findAll();
     }
 }
