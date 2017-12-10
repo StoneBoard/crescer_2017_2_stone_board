@@ -25,7 +25,15 @@
       .when('/board', {
         controller: 'controllerBoard',
         templateUrl: 'components/board/board.html'
-      }).otherwise('/board');
+      })
+
+
+      .when('/board-register', {
+        controller: 'controllerBoardRegister',
+        templateUrl: 'components/board/board.register.html'
+      })
+
+      .otherwise('/board');
 
   });
 

@@ -65,6 +65,10 @@ body {
   font-size: 10px;	
 }
 
+.btn-stretch {
+  width: 100%;
+}
+
 .green-bg-btn {
   background-color: var(--green);
 }
@@ -191,12 +195,24 @@ body {
   margin: 20px 0;  
 }
 
+.title-lg {
+  color: white;
+  font-weight: normal;
+
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
 .title-sm {
-  color: var(--grayBlueLight);
+  color: white;
   font-weight: normal;
 
   font-size: 18px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+}
+
+.sub-title {
+  color: var(--grayBlueLight);
 }
 
 /* S C R O L L */
@@ -219,3 +235,67 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--grayBlue); 
 }
+
+
+/* F O R M */
+.form-box {
+  padding: 30px;
+  margin-top: 40px;
+  background-color: var(--grayBlue);
+}
+
+.form-box-input {
+  padding-bottom: 20px;
+}
+
+.form-box-input > label {
+  color: var(--grayBlueLight);
+  width: 100%;
+  margin-bottom: 7px;
+  word-wrap: break-word;
+  display: block;
+}
+
+.form-box-input > input[type=text] {
+  width: 100%; 
+}
+
+.form-box-input > input[type=date] {
+  width: 50%; 
+}
+
+.form-separator {
+  border-top: 1px solid var(--grayBlueOk);
+  margin: 5px 0;
+}
+
+.form-btn-group {
+  margin-top: 10px;
+}
+
+/* C O L O R  P A L L E T  */
+
+.color-pallet{
+  width: 60px;
+  height: 60px;
+  border: solid 4px var(--grayBlueOk);
+  border-radius: 100px;
+  margin: 10px;
+}
+
+.color-green {
+  background-color: var(--green);
+}
+
+.color-pink {
+  background-color: var(--pink);
+}
+
+.color-orange {
+  background-color: var(--orange);
+}
+
+.color-blue {
+  background-color: var(--blue);
+}
+
