@@ -29,11 +29,33 @@
 						</div>
 
 						<div class="form-box-input">
-							<label>Cor</label>							
-						  <input type="radio" name="cor" value="0">Laranja
-							<input type="radio" name="cor" value="1">Verde
-						  <input type="radio" name="cor" value="2">Rosa
-						  <input type="radio" name="cor" value="3">Azul
+							<label>Cor</label>						
+
+							<div class="row around-xs">
+
+								<input type="radio" id="r1" name="cor" value="0" class="radio-color-pallet" checked="checked" />
+	    					<label for="r1" style="background-color: var(--orange);">
+	    						<i class="material-icons">check</i>
+	    					</label>
+
+	    					<input type="radio" id="r2" name="cor" value="1" class="radio-color-pallet" />
+	    					<label for="r2" style="background-color: var(--blue);">
+	    						<i class="material-icons">check</i>
+	    					</label>
+
+	    					<input type="radio" id="r3" name="cor" value="2" class="radio-color-pallet" />
+	    					<label for="r3" style="background-color: var(--pink);">
+	    						<i class="material-icons">check</i>
+	    					</label>
+
+	    					<input type="radio" id="r4" name="cor" value="3" class="radio-color-pallet" />
+	    					<label for="r4" style="background-color: var(--green);">
+	    						<i class="material-icons">check</i>
+	    					</label>		
+
+							</div>
+
+
 					  </div>
 
 						<div class="row center-xs">
@@ -44,10 +66,10 @@
 
 						<div>
 							<div class="row middle-xs">
-								<div class="col-xs-2">
+								<div class="col-sm-2 col-xs-4">
 									<div class="color-pallet color-green"></div>
 								</div>
-								<div class="col-xs-10">
+								<div class="col-sm-10 col-xs-8">
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
 								</div>
 							</div>
@@ -55,14 +77,15 @@
 
 						<div>
 							<div class="row middle-xs">
-								<div class="col-xs-2">
+								<div class="col-sm-2 col-xs-4">
 									<div class="color-pallet color-pink"></div>
 								</div>
-								<div class="col-xs-10">
+								<div class="col-sm-10 col-xs-8">
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
 								</div>
 							</div>
 						</div>
+
 
 						<div class="form-btn-group">
 
