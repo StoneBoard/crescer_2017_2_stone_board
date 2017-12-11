@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CardModel implements Serializable{
+    private Long id;
     @NotNull(message = "error.text.notnull")
     @Size(max = 300, message = "error.text.size")
     private String text;
@@ -36,6 +37,7 @@ public class CardModel implements Serializable{
     
     public static Card convertToCard(CardModel cardModel, Person writer) {
        return Card.builder()
+               .id(cardModel.getId())
                .text(cardModel.getText())
                .writer(writer)
                .creationDate(LocalDateTime.now())
@@ -44,6 +46,7 @@ public class CardModel implements Serializable{
     
    public static CardModel convertToCardModel(Card card) {
        return CardModel.builder()
+               .id(card.getId())
                .text(card.getText())
                .id_writer(card.getWriter().getId())
                .creationDate(card.getCreationDate())
