@@ -18,6 +18,14 @@
     $scope.submitBoardForm = function(board){
       console.log(board);
       let promise = boardService.saveBoard(board).then();
+      console.log(promise);
+      redirecionar(promise);
+    }
+
+    function redirecionar(promise) {
+      promise.then(function () {
+        $location.path('/board');
+       })
     }
 
   });

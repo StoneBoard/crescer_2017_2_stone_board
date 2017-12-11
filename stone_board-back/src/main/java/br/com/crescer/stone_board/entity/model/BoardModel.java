@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BoardModel implements Serializable{
-    
+    private Long id;
     @NotNull(message = "error.title.notnull ")
     @Size(max = 128,min = 1, message = "error.title.size ")
     private String title;
@@ -43,6 +43,7 @@ public class BoardModel implements Serializable{
     
     public static BoardModel convertToBoardModel(Board board) {
         return BoardModel.builder()
+                .id(board.getId())
                 .title(board.getTitle())
                 .deadline(board.getDeadline())
                 .active(board.isActive())
