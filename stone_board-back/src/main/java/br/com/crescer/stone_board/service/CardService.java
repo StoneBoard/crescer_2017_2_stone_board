@@ -4,7 +4,6 @@ import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.CardModel;
-import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
@@ -42,4 +41,12 @@ public class CardService {
          boardSession.addCard(card);
          boardSessionRepository.save(boardSession);
      }
+    public void update(CardModel cardModel){
+        Card card  = cardRepository.findOne(cardModel.getId());
+        card.setText(cardModel.getText());
+        cardRepository.save(card);
+    }
+    public void delete(Long id){
+        cardRepository.delete(id);
+    }
 }

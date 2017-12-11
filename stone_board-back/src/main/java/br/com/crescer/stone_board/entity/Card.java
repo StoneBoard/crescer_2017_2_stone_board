@@ -52,7 +52,7 @@ public class Card implements Serializable{
     @Column(name = "TEXT", length=300)
     private String text;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_PERSON_WRITER", nullable = false)
     private Person writer;
     

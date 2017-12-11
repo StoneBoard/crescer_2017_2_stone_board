@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,$stomp,$log) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,postitService,$stomp,$log) {
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
@@ -47,10 +47,12 @@
         });
     }
 
+    $scope.submitCardForm = function(card, session_id){
+      card.id_session = session_id;
+      let promise = postitService.saveCard(card).then();
+    }
+
     
-
-
-
   });
 
 })();
