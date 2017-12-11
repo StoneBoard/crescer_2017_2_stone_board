@@ -37,7 +37,6 @@ public class BoardModel implements Serializable{
        return Board.builder()
                .title(boardModel.getTitle())
                .deadline(boardModel.getDeadline())
-               .active(true)
                .build();
    }
     
@@ -46,7 +45,6 @@ public class BoardModel implements Serializable{
                 .id(board.getId())
                 .title(board.getTitle())
                 .deadline(board.getDeadline())
-                .active(board.isActive())
                 .id_members(board.getMembers()
                             .stream()
                             .map(member -> member.getId())

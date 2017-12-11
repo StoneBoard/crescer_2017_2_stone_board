@@ -38,7 +38,7 @@ public class CardService {
          Person personLoged = personComponent.loggedPersonDetails();
          Card card = CardModel.convertToCard(cardModel, personLoged);
          BoardSession boardSession = boardSessionRepository.findOne(cardModel.getId_session());
-         boardSession.addCard(card);
+         boardSession.getCards().add(card);
          boardSessionRepository.save(boardSession);
      }
     public void update(CardModel cardModel){

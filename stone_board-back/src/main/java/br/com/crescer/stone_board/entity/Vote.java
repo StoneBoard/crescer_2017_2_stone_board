@@ -7,7 +7,6 @@ package br.com.crescer.stone_board.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +42,7 @@ public class Vote implements Serializable{
     @Basic(optional = false)
     private Long id;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @Basic(optional = false)
     @JoinColumn(name = "ID_PERSON", nullable = false)
     private Person person;

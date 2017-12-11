@@ -33,15 +33,9 @@ public class BoardService {
     @Autowired
     BoardSessionRepository boardSessionRepository;
 
-    public Long create(BoardModel boardModel) {
+    public Long save(BoardModel boardModel) {
         Board board = BoardModel.convertToBoard(boardModel);
-
-        /*List<Long> members = boardModel.getId_members();
-                
-         if (!CollectionUtils.isEmpty(members)){
-           List<Person> membersBoard = personRepository.findByIdIn(members);
-           board.setMembers(membersBoard);
-         }*/
+        
         if (!CollectionUtils.isEmpty(boardModel.getSessions())) {
             List<BoardSession> boardSessions = boardModel.getSessions()
                                                 .stream()

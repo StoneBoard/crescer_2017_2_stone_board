@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 public class VoteModel {
     private boolean positive;
     private Long id_person;
+    private Long id_card;
     
     public static VoteModel convertToVoteModel(Vote vote){
         return VoteModel.builder()
