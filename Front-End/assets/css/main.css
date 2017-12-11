@@ -261,7 +261,7 @@ a {
   display: block;
 }
 
-.form-box-input > input[type=text] {
+.form-box-input > input[type=text], input[type=password] {
   width: 100%; 
 }
 
