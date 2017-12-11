@@ -1,5 +1,5 @@
-// (function(){
-//   'use strict'
+ (function(){
+   'use strict'
   angular.module('stoneBoard').factory('boardService', function($http){
 
   	let urlBase = 'http://localhost:9090/api/board';
@@ -13,4 +13,4 @@
 
   	};
   })
-//})
+}())

@@ -47,15 +47,17 @@
         });
     }
 
+
+/////////////////////////////////////////
     $stomp.setDebug(function (args) {
      $log.debug(args)
    })
 
-   $stomp.connect('/endpoint', connectHeaders)
+   $stomp.connect('http://localhost:9090/api/app', connectHeaders)
 
      // frame = CONNECTED headers
      .then(function (frame) {
-       var subscription = $stomp.subscribe('/dest', function (payload, headers, res) {
+       var subscription = $stomp.subscribe('/loadBoardById' + $routeParams.idBoard, function (payload, headers, res) {
          $scope.payload = payload
        }, {
          'headers': ''
@@ -65,7 +67,7 @@
        subscription.unsubscribe()
 
        // Send message
-       $stomp.send('http://localhost:9090/api/board/loadBoardById'+$routeParams.idBoard, {
+       $stomp.send('/loadBoardById' + $routeParams.idBoard, {
          message: 'body'
        }, {
          priority: 9,
@@ -77,9 +79,6 @@
          $log.info('disconnected')
        })
      })
-
-
-
 
   });
 

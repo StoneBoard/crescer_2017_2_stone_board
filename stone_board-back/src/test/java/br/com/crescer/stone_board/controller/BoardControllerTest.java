@@ -6,6 +6,7 @@ import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -27,6 +28,7 @@ public class BoardControllerTest extends ConfigurationTest {
     }
     
     @Test
+    @Ignore
     @WithMockUser(username = "teste@teste.com", password = "teste")
     public void createBoard() throws Exception {
         Board boardTest = boardRepository.save(getBoardOne());

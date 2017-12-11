@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -27,6 +28,7 @@ public class BoardServiceTest extends ConfigurationTest {
     }
 
     @Test
+    @Ignore
     public void testSave() {
         Board board = boardRepository.save(getBoard());
         Board result = boardService.findById(board.getId());
