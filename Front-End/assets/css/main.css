@@ -304,3 +304,33 @@ a {
   background-color: var(--blue);
 }
 
+/* R A D I O  B U T T O N  C O L L O R */
+
+
+.radio-color-pallet {
+  display:none;
+}
+
+.radio-color-pallet + label{
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  border: solid 4px var(--grayBlue);
+  text-align: center;
+  color: transparent;
+  padding:14px;
+
+  display:inline-block;
+  cursor:pointer;
+  vertical-align:middle;
+
+}
+
+.radio-color-pallet:checked + label{
+  color: white;
+  border: solid 4px var(--grayBlueOk);
+}
+
+.radio-color-pallet:hover + label {
+  opacity: 0.8;
+}

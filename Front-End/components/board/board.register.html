@@ -5,18 +5,18 @@
 
 			<div class="row start-xs">
 				<div class="col-xs">
-					<form class="form-box">
+					<form class="form-box" name="boardForm" ng-submit="submitBoardForm(board)" novalidate>
 
 						<p class="title-sm">CADASTRO DE BOARD</p>
 						
 						<div class="form-box-input">
 							<label>Título</label>
-							<input type="text" class="input-form" name="" placeholder="">
+							<input type="text" class="input-form" ng-model="board.title" placeholder="">
 						</div>
 
 						<div class="form-box-input">
 							<label>Data Limite para postagens</label>
-							<input type="date" class="input-form" name="" placeholder="">
+							<input type="date" class="input-form" ng-model="board.deadline" placeholder="">
 						</div>
 
 						<div class="form-separator"></div>
@@ -25,41 +25,52 @@
 
 						<div class="form-box-input">
 							<label>Título</label>
-							<input type="text" class="input-form" name="" placeholder="">
+							<input type="text" class="input-form" ng-model="session.title" placeholder="">
 						</div>
 
 						<div class="form-box-input">
-							<label>Cor</label>							
-						  <input type="radio" name="cor" value="0">Laranja
-							<input type="radio" name="cor" value="1">Verde
-						  <input type="radio" name="cor" value="2">Rosa
-						  <input type="radio" name="cor" value="3">Azul
+							<label>Cor</label>						
+
+							<div class="row around-xs">
+
+								<input type="radio" id="r1" name="cor" value="0" ng-model="session.color" class="radio-color-pallet" checked="checked" />
+	    					<label for="r1" style="background-color: var(--orange);">
+	    						<i class="material-icons">check</i>
+	    					</label>
+
+	    					<input type="radio" id="r2" name="cor" value="1" ng-model="session.color" class="radio-color-pallet" />
+	    					<label for="r2" style="background-color: var(--blue);">
+	    						<i class="material-icons">check</i>
+	    					</label>
+
+	    					<input type="radio" id="r3" name="cor" value="2" ng-model="session.color" class="radio-color-pallet" />
+	    					<label for="r3" style="background-color: var(--pink);">
+	    						<i class="material-icons">check</i>
+	    					</label>
+
+	    					<input type="radio" id="r4" name="cor" value="3" ng-model="session.color" class="radio-color-pallet" />
+	    					<label for="r4" style="background-color: var(--green);">
+	    						<i class="material-icons">check</i>
+	    					</label>		
+
+							</div>
+
+
 					  </div>
 
 						<div class="row center-xs">
 							<div class="col-xs-12">
-				  			<button class="btn btn-sm green-bg-btn btn-stretch">+ ADICIONAR</button>
+				  			<button type="button" ng-click="submitSessionForm(session)" class="btn btn-sm green-bg-btn btn-stretch">+ ADICIONAR</button>
 							</div>
 						</div>
 
-						<div>
+						<div ng-repeat="session in board.sessions">
 							<div class="row middle-xs">
-								<div class="col-xs-2">
-									<div class="color-pallet color-green"></div>
+								<div class="col-sm-2 col-xs-4">
+									<div class="color-pallet color-{{colorPallet[session.color]}}"></div>
 								</div>
-								<div class="col-xs-10">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
-								</div>
-							</div>
-						</div>
-
-						<div>
-							<div class="row middle-xs">
-								<div class="col-xs-2">
-									<div class="color-pallet color-pink"></div>
-								</div>
-								<div class="col-xs-10">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+								<div class="col-sm-10 col-xs-8">
+									<p>{{session.title}}</p>
 								</div>
 							</div>
 						</div>

@@ -4,6 +4,8 @@ import br.com.crescer.stone_board.entity.BoardSession;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -24,6 +26,8 @@ public class BoardSessionModel implements Serializable{
     @Size(min = 1, max = 128, message = "erro.titulo.size")
     private String title;
     @NotNull(message = "error.color.notnull")
+    @Min(value = 0)
+    @Max(value = 3)
     private int color;
     @NotNull(message = "error.icon.notnull")
     @Size(max = 512, message = "error.icon.size")

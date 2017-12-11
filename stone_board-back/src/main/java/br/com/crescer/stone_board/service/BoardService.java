@@ -12,6 +12,7 @@ import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -22,46 +23,49 @@ import org.springframework.util.CollectionUtils;
  */
 @Service
 public class BoardService {
-     @Autowired
-     BoardRepository boardRepository;
-     @Autowired
-     PersonRepository personRepository;
-     @Autowired
-     PersonComponent personComponent;
-     @Autowired
-     BoardSessionRepository boardSessionRepository;
-     
-     public Board save(BoardModel boardModel){
-         Board board = BoardModel.convertToBoard(boardModel);
-   
-         List<Long> members = boardModel.getId_members();
+
+    @Autowired
+    BoardRepository boardRepository;
+    @Autowired
+    PersonRepository personRepository;
+    @Autowired
+    PersonComponent personComponent;
+    @Autowired
+    BoardSessionRepository boardSessionRepository;
+
+    public Long create(BoardModel boardModel) {
+        Board board = BoardModel.convertToBoard(boardModel);
+
+        /*List<Long> members = boardModel.getId_members();
                 
          if (!CollectionUtils.isEmpty(members)){
            List<Person> membersBoard = personRepository.findByIdIn(members);
            board.setMembers(membersBoard);
-         }      
-         if (!CollectionUtils.isEmpty(boardModel.getSessions())){
-             List<BoardSessionModel> sessions = boardModel.getSessions();
-             List<BoardSession> boardSessions = new ArrayList<>();
-             sessions.stream().forEach((session) -> {
-               boardSessions.add(boardSessionRepository.save(BoardSessionModel.convertToBoardSession(session)));
-             });
+         }*/
+        if (!CollectionUtils.isEmpty(boardModel.getSessions())) {
+            List<BoardSession> boardSessions = boardModel.getSessions()
+                                                .stream()
+                                                .map(BoardSessionModel::convertToBoardSession)
+                                                .collect(Collectors.toList());
 
             board.setSessions(boardSessions);
-         }      
-         
-         LoggedPersonModel personLogedModel = personComponent.loggedPerson();
-         Person personLoged = personRepository.findOne(personLogedModel.getId());
-         personLoged.getMyBoards().add(board);
-         
-         return boardRepository.save(board);
-     }
-     
-     public Board findById(Long id) {
-         return boardRepository.findOne(id);
+        }
+
+        Person personLoged = personComponent.loggedPersonDetails();
+        personLoged.getMyBoards().add(board);
+
+        personRepository.save(personLoged);
+        
+        return board.getId();
     }
-     
-     public List<Board> findAllBoards() {
-         return boardRepository.findAll();
+    
+    
+
+    public Board findById(Long id) {
+        return boardRepository.findOne(id);
+    }
+
+    public List<Board> findAllBoards() {
+        return boardRepository.findAll();
     }
 }
