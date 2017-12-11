@@ -2,7 +2,7 @@ package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
-import br.com.crescer.stone_board.utils.ConfigurationTest;
+import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

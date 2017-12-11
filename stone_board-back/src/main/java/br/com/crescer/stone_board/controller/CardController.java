@@ -5,10 +5,14 @@
  */
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.model.CardModel;
 import br.com.crescer.stone_board.service.CardService;
+import br.com.crescer.stone_board.webSocket.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,5 +38,13 @@ public class CardController {
     @GetMapping(path = "/findById/{id}")
     public ResponseEntity FindById(@PathVariable Long id){
        return ResponseEntity.ok(cardService.findById(id));
-    }   
+    }  
+    
+    @MessageMapping("loadCardById/{id}")
+    @SendTo("/card")
+    public Greeting greeting(@PathVariable Long id) throws Exception {
+        Thread.sleep(1000); 
+         Card card = cardService.findById(id);
+        return new Greeting(CardModel.convertToCardModel(card));
+    }
 }

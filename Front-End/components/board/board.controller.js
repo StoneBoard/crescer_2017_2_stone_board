@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,$stomp,$log) {
 
   	//console.log($window);
   	$scope.rowStyle = {};
@@ -46,6 +46,37 @@
 
         });
     }
+
+    $stomp.setDebug(function (args) {
+     $log.debug(args)
+   })
+
+   $stomp.connect('/endpoint', connectHeaders)
+
+     // frame = CONNECTED headers
+     .then(function (frame) {
+       var subscription = $stomp.subscribe('/dest', function (payload, headers, res) {
+         $scope.payload = payload
+       }, {
+         'headers': ''
+       })
+
+       // Unsubscribe
+       subscription.unsubscribe()
+
+       // Send message
+       $stomp.send('http://localhost:9090/api/board/loadBoardById'+$routeParams.idBoard, {
+         message: 'body'
+       }, {
+         priority: 9,
+         custom: 42 // Custom Headers
+       })
+
+       // Disconnect
+       $stomp.disconnect().then(function () {
+         $log.info('disconnected')
+       })
+     })
 
 
 

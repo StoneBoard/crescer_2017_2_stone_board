@@ -2,7 +2,7 @@ package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.repository.BoardRepository;
-import br.com.crescer.stone_board.utils.ConfigurationTest;
+import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;

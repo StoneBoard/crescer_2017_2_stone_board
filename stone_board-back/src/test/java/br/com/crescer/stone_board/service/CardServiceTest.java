@@ -6,18 +6,11 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
-import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
-import br.com.crescer.stone_board.entity.model.CardModel;
-import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.CardRepository;
 import java.time.LocalDateTime;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;

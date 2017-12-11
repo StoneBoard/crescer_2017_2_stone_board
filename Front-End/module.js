@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('stoneBoard', ['ngStorage','ngRoute']);
+    .module('stoneBoard', ['ngStorage','ngRoute','ngStomp']);
 
 
   angular

@@ -1,8 +1,9 @@
+package br.com.crescer.stone_board.controller;
+
 import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class BoardControllerTest extends ConfigurationTest {
     @WithMockUser(username = "teste@teste.com", password = "teste")
     public void createBoard() throws Exception {
         Board boardTest = boardRepository.save(getBoardOne());
-        mockMvc.perform(MockMvcRequestBuilders.get("/board/{id}", boardTest.getId()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/board/findById/{id}", boardTest.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(boardTest.getId()))
                 .andExpect(jsonPath("title").value(boardTest.getTitle()))
