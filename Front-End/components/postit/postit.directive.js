@@ -9,7 +9,8 @@
       restrict: 'E',
 
       scope: { 
-        c : '=info'
+        p : '=info',
+        color : '=color'
       },
 
       templateUrl: 'components/postit/postit.html',

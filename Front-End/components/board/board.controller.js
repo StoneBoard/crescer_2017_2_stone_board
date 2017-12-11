@@ -5,14 +5,12 @@
   .module('stoneBoard')
   .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,$stomp,$log) {
 
-  	//console.log($window);
+  	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
 
   	let idealWidth = 550; //px
-  	let numSession = 2;
+  	let numSession;
   	let newWidth;
-
-  	resizeRow();
 
   	// verifica se houve alguma mudança na largura da tela e recalcula largura do board
 		angular.element($window).bind('resize', resizeRow);
@@ -43,7 +41,8 @@
      
             $scope.board = response.data;
             $scope.sessions = $scope.board.sessions;
-            console.log($scope.sessions);
+            numSession = $scope.sessions.length;
+            resizeRow();
 
         });
     }
