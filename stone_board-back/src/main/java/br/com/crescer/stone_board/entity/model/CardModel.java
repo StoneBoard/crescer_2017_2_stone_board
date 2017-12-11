@@ -38,7 +38,7 @@ public class CardModel implements Serializable{
        return Card.builder()
                .text(cardModel.getText())
                .writer(writer)
-               .creationDate(cardModel.getCreationDate())
+               .creationDate(LocalDateTime.now())
                .build();
    }
     

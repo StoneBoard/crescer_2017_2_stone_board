@@ -35,7 +35,7 @@ public class CardController {
     public void Save(@Validated @RequestBody CardModel cardModel){
         cardService.save(cardModel);
     }
-    @GetMapping(path = "/findById/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity FindById(@PathVariable Long id){
        return ResponseEntity.ok(cardService.findById(id));
     }  

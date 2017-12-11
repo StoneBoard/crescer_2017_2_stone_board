@@ -34,8 +34,8 @@
 								<div class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
 									<div class="row">
 										<div class="col-xs">		
-											<textarea class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
-											<button class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
+											<textarea ng-model="card.text"class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
+											<button ng-click="submitCardForm(card, session.id)"class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
 										</div>
 									</div>
 								</div>
