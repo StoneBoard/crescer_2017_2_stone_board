@@ -46,15 +46,15 @@
 
         });
     }
+
     $scope.submitCardForm = function(card, session_id){
-      console.log(card);
       card.id_session = session_id;
       let promise = postitService.saveCard(card).then();
     }
 
-    
-
-
+    $scope.deleteCard = function(id_card){
+      let promise = postitService.deleteCard(id_card).then();
+    } 
 
   });
 

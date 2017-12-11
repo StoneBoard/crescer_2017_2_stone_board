@@ -8,8 +8,17 @@
 
       return $http.post(urlBase, card);
     }
+    function editCard(card){
+
+      return $http.put(urlBase, card);
+    }
+    function deleteCard(id){
+      return $http.delete(urlBase, id);
+    }
     return {
-      saveCard : saveCard
+      saveCard : saveCard,
+      editCard : editCard,
+      deleteCard : deleteCard
       
     };
   });
