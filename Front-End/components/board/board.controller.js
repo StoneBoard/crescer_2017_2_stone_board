@@ -52,10 +52,13 @@
       let promise = postitService.saveCard(card).then();
     }
 
+    $scope.editCard = function(card){
+      let promise = postitService.editCard(card).then();
+    }
     $scope.deleteCard = function(id_card){
       let promise = postitService.deleteCard(id_card).then();
     } 
-
+    
   });
 
 })();
