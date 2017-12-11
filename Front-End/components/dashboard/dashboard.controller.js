@@ -15,6 +15,7 @@
       socket = new SockJS('http://localhost:9090/api/websocket');
       stompClient = Stomp.over(socket);
 
+<<<<<<< HEAD
       stompClient.connect({}, function (frame) { });
 
       socket.onopen = function () {
@@ -45,5 +46,42 @@
     connect();
 
   };
+=======
+   //  $stomp.setDebug(function (args) {
+   //   $log.debug(args)
+   // })
 
+  //  $stomp
+  //    .connect('/endpoint', connectHeaders)
+
+  //    // frame = CONNECTED headers
+  //    .then(function (frame) {
+  //      var subscription = $stomp.subscribe('/dest', function (payload, headers, res,$stomp,$log) {
+  //        $scope.payload = payload
+  //      }, {
+  //        'headers': ''
+  //      })
+
+  //      // Unsubscribe
+  //      subscription.unsubscribe()
+
+  //      // Send message
+  //      $stomp.send('http://localhost:9090/api/person/loadMyBoardByIdPerson' {
+
+  //        message: 'body'
+  //      }, {
+  //        priority: 9,
+  //        custom: 42 // Custom Headers
+  //      })
+
+  //      // Disconnect
+  //      $stomp.disconnect().then(function () {
+  //        $log.info('disconnected')
+  //      })
+  //    })
+
+  // });
+>>>>>>> 6ed1a76c254478cfae7bafebcee5445cbefea7b2
+
+})
 })();

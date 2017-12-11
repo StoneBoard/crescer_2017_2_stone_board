@@ -36,7 +36,6 @@ public class BoardControllerTest extends ConfigurationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(boardTest.getId()))
                 .andExpect(jsonPath("title").value(boardTest.getTitle()))
-                .andExpect(jsonPath("active").value(boardTest.isActive()))
                 .andExpect(jsonPath("deadline").value(boardTest.getDeadline().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
     }
     
@@ -44,7 +43,6 @@ public class BoardControllerTest extends ConfigurationTest {
         return Board.builder()
                 .title("Teste")
                 .deadline(LocalDateTime.now())
-                .active(true)
                 .build();
     }
     

@@ -29,10 +29,10 @@ public class BoardController {
     
     @PostMapping
     public ResponseEntity Save(@Validated @RequestBody BoardModel boardModel){
-       return ResponseEntity.ok(boardService.create(boardModel));
+       return ResponseEntity.ok(boardService.save(boardModel));
     }
     
-    @GetMapping("/findById/{id}")
+    @GetMapping("/{id}")
     public BoardModel FindById(@PathVariable Long id){
         Board board = boardService.findById(id);
         return BoardModel.convertToBoardModel(board);

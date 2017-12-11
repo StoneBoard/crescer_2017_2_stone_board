@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoardRegister', function ($scope, $window) {
+  .controller('controllerBoardRegister', function ($scope, $window, boardService) {
 
   	$scope.board = { sessions: [] }
 
@@ -15,6 +15,12 @@
   		$scope.board.sessions.push(JSON.parse(JSON.stringify(session)));
   		delete $scope.session;
   	}
+    $scope.submitBoardForm = function(board){
+      console.log(board);
+      let promise = boardService.saveBoard(board).then();
+      console.log(promise);
+    
+    }
 
   });
 

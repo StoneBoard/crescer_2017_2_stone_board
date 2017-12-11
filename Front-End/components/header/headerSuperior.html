@@ -20,14 +20,14 @@
 
             <div class="btn btn-md">
               <div class="row middle-xs">
-                Olá fulano
+                Olá {{usuario.fullName}}
                 <i class="material-icons">keyboard_arrow_down</i>   
               </div>
             </div>
 
             <div class="dropdown-content">
-              <span class="dropdown-item">Hellooooo</span>
-              <span class="dropdown-item">Sair</span>
+              <span class="dropdown-item">Notificações</span>
+              <span class="dropdown-item" ng-click="logout()">Sair</span>
             </div>
           </div>
         </div>

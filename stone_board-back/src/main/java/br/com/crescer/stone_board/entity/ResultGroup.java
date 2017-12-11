@@ -54,11 +54,11 @@ public class ResultGroup implements Serializable{
     private String description;
     
     @Basic(optional = true)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "resultGroup")
+    @OneToMany(mappedBy = "resultGroup")
     private List<Card> cards;
     
     @Basic(optional = false)
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ID_BOARD", nullable = false)
     private Board board;
 }

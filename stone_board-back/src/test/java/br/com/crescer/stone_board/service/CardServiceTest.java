@@ -9,6 +9,7 @@ import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.CardRepository;
+import br.com.crescer.stone_board.repository.PersonRepository;
 import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,22 +27,25 @@ public class CardServiceTest extends ConfigurationTest {
 
     @Autowired
     CardRepository cardRepository;
+    @Autowired
+    PersonRepository personRepository;
 
     @Before
     public void setUp() {
         cardRepository.deleteAll();
     }
 
-//    @Test
-//    public void testSave() {
-//        Card card = cardRepository.save(getCardOne());
-//        Card result = cardService.findById(new Long(1));
-//
-//    //    assertEquals(card.getWriter(), result.getWriter());
-//        assertEquals(card.getText(), result.getText());
-//        assertEquals(card.getCreationDate(), result.getCreationDate());
-//    }
-//    ;
+    @Test
+    public void testSave() {
+        Person person = personRepository.save(getPersonOne());
+        Card card = cardRepository.save(getCardOne(person));
+        Card result = cardService.findById(new Long(1));
+
+        assertEquals(card.getWriter(), result.getWriter());
+        assertEquals(card.getText(), result.getText());
+        assertEquals(card.getCreationDate(), result.getCreationDate());
+    }
+    ;
     @Test
     public void testFindByIdWithNotExists() {
         assertNull(cardService.findById(200l));
@@ -56,12 +60,14 @@ public class CardServiceTest extends ConfigurationTest {
     }
 
     
-    private Card getCardOne() {
+    private Card getCardOne(Person person) {
         return Card.builder()
                .id(new Long(1))
                .text("Meu card")
+               .writer(person)
                .creationDate(LocalDateTime.now())
                .build();
+       
     }
     
 }

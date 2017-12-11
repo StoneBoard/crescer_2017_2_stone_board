@@ -3,16 +3,14 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,$stomp,$log) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,postitService,$stomp,$log) {
 
-  	//console.log($window);
+  	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
 
   	let idealWidth = 550; //px
-  	let numSession = 2;
+  	let numSession;
   	let newWidth;
-
-  	resizeRow();
 
   	// verifica se houve alguma mudança na largura da tela e recalcula largura do board
 		angular.element($window).bind('resize', resizeRow);
@@ -37,16 +35,19 @@
 
     displayBoard();
     function displayBoard(){
-      debugger;
+     
       let promisse =  boardService.findById($routeParams.idBoard);
       promisse.then(function (response) {
-        debugger;
+     
             $scope.board = response.data;
             $scope.sessions = $scope.board.sessions;
+            numSession = $scope.sessions.length;
+            resizeRow();
 
         });
     }
 
+<<<<<<< HEAD
 
 /////////////////////////////////////////
     $stomp.setDebug(function (args) {
@@ -80,6 +81,14 @@
        })
      })
 
+=======
+    $scope.submitCardForm = function(card, session_id){
+      card.id_session = session_id;
+      let promise = postitService.saveCard(card).then();
+    }
+
+    
+>>>>>>> 6ed1a76c254478cfae7bafebcee5445cbefea7b2
   });
 
 })();

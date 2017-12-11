@@ -60,10 +60,6 @@ public class Board implements Serializable{
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime deadline;
     
-    @Basic(optional = false)
-    @Column(name = "ACTIVE")
-    private boolean active;
-    
     @Basic(optional = true)
     @ManyToMany(mappedBy="connectBoards")
     List<Person> members;

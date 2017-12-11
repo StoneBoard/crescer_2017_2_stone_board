@@ -47,7 +47,7 @@ public class Notification implements Serializable{
     @Basic(optional = false)
     private Long id;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @Basic(optional = false)
     @JoinColumn(name = "ID_BOARD", nullable = false)
     private Board board;

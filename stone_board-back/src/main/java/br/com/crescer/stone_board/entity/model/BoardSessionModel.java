@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BoardSessionModel implements Serializable{
+    private Long id;
     @NotNull(message = "error.title.notnull ")
     @Size(min = 1, max = 128, message = "erro.titulo.size")
     private String title;
@@ -36,6 +37,7 @@ public class BoardSessionModel implements Serializable{
     
     public static BoardSession convertToBoardSession(BoardSessionModel boardSessionModel) {
        return BoardSession.builder()
+               .id(boardSessionModel.getId())
                .title(boardSessionModel.getTitle())
                .color(boardSessionModel.getColor())
                .icon(boardSessionModel.getIcon())
@@ -44,6 +46,7 @@ public class BoardSessionModel implements Serializable{
     
     public static BoardSessionModel convertToBoardSessionModel(BoardSession boardSession) {
         return BoardSessionModel.builder()
+                .id(boardSession.getId())
                 .title(boardSession.getTitle())
                 .color(boardSession.getColor())
                 .icon(boardSession.getIcon())

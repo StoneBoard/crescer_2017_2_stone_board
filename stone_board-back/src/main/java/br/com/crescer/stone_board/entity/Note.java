@@ -43,7 +43,7 @@ public class Note implements Serializable{
     @Basic(optional = false)
     private Long id;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @Basic(optional = false)
     @JoinColumn(name = "ID_PERSON_WRITER", nullable = false)
     private Person writer;

@@ -24,11 +24,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CardModel implements Serializable{
+    private Long id;
     @NotNull(message = "error.text.notnull")
     @Size(max = 300, message = "error.text.size")
     private String text;
     private Long id_writer;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+   // @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
     private Long id_session;
     private List<VoteModel> votes;
@@ -36,14 +37,16 @@ public class CardModel implements Serializable{
     
     public static Card convertToCard(CardModel cardModel, Person writer) {
        return Card.builder()
+               .id(cardModel.getId())
                .text(cardModel.getText())
                .writer(writer)
-               .creationDate(cardModel.getCreationDate())
+               .creationDate(LocalDateTime.now())
                .build();
    }
     
    public static CardModel convertToCardModel(Card card) {
        return CardModel.builder()
+               .id(card.getId())
                .text(card.getText())
                .id_writer(card.getWriter().getId())
                .creationDate(card.getCreationDate())

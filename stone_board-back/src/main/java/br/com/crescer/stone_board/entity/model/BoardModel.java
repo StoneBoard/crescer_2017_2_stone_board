@@ -23,11 +23,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BoardModel implements Serializable{
-    
+    private Long id;
     @NotNull(message = "error.title.notnull ")
     @Size(max = 128,min = 1, message = "error.title.size ")
     private String title;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+   // @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime deadline;
     private boolean active;
     private List<Long> id_members;
@@ -37,15 +37,14 @@ public class BoardModel implements Serializable{
        return Board.builder()
                .title(boardModel.getTitle())
                .deadline(boardModel.getDeadline())
-               .active(boardModel.isActive())
                .build();
    }
     
     public static BoardModel convertToBoardModel(Board board) {
         return BoardModel.builder()
+                .id(board.getId())
                 .title(board.getTitle())
                 .deadline(board.getDeadline())
-                .active(board.isActive())
                 .id_members(board.getMembers()
                             .stream()
                             .map(member -> member.getId())
