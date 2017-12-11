@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BoardModel implements Serializable{
+    
     @NotNull(message = "error.title.notnull ")
     @Size(max = 128,min = 1, message = "error.title.size ")
     private String title;

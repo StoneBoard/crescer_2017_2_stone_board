@@ -26,7 +26,7 @@ public class BoardController {
     
     @PostMapping
     public ResponseEntity Save(@Validated @RequestBody BoardModel boardModel){
-       return ResponseEntity.ok(boardService.save(boardModel));
+       return ResponseEntity.ok(boardService.create(boardModel));
     }
     
     @GetMapping("/{id}")
