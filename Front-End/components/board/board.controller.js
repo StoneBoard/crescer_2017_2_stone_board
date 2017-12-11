@@ -37,47 +37,18 @@
 
     displayBoard();
     function displayBoard(){
-      debugger;
+     
       let promisse =  boardService.findById($routeParams.idBoard);
       promisse.then(function (response) {
-        debugger;
+     
             $scope.board = response.data;
             $scope.sessions = $scope.board.sessions;
+            console.log($scope.sessions);
 
         });
     }
 
-    $stomp.setDebug(function (args) {
-     $log.debug(args)
-   })
-
-   $stomp.connect('/endpoint', connectHeaders)
-
-     // frame = CONNECTED headers
-     .then(function (frame) {
-       var subscription = $stomp.subscribe('/dest', function (payload, headers, res) {
-         $scope.payload = payload
-       }, {
-         'headers': ''
-       })
-
-       // Unsubscribe
-       subscription.unsubscribe()
-
-       // Send message
-       $stomp.send('http://localhost:9090/api/board/loadBoardById'+$routeParams.idBoard, {
-         message: 'body'
-       }, {
-         priority: 9,
-         custom: 42 // Custom Headers
-       })
-
-       // Disconnect
-       $stomp.disconnect().then(function () {
-         $log.info('disconnected')
-       })
-     })
-
+    
 
 
 

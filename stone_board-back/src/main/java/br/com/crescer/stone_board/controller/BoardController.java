@@ -32,7 +32,7 @@ public class BoardController {
        return ResponseEntity.ok(boardService.create(boardModel));
     }
     
-    @GetMapping("/findById/{id}")
+    @GetMapping("/{id}")
     public BoardModel FindById(@PathVariable Long id){
         Board board = boardService.findById(id);
         return BoardModel.convertToBoardModel(board);
