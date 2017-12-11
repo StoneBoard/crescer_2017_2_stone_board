@@ -27,9 +27,9 @@
           $http.defaults.headers.common.Authorization = $localStorage.headerAuth;
           $rootScope.$broadcast('authLoginSuccess');
 
-          if (urlPrivado) {
-            $location.path(urlPrivado);
-          }
+ 
+          $location.path('/dashboard');
+ 
           deferred.resolve(response);
         },
 

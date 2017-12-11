@@ -12,7 +12,7 @@
 
       urlLogin: '/login',
 
-      urlPrivado: '/privado',
+      urlPrivado: '/#!/dashboard',
 
       urlLogout: '/home'
   });

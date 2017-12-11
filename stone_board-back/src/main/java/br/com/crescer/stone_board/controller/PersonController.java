@@ -9,7 +9,6 @@ import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.service.PersonService;
 import br.com.crescer.stone_board.webSocket.Greeting;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;

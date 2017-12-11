@@ -33,7 +33,7 @@
         templateUrl: 'components/board/board.register.html'
       })
 
-      .otherwise('/dashboard');
+      .otherwise('/login');
 
   });
 
