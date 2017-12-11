@@ -5,8 +5,12 @@
  */
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.BoardSession;
+import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionModel;
 import br.com.crescer.stone_board.service.BoardSessionService;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,8 +36,9 @@ public class BoardSessionController {
         return ResponseEntity.ok(boardSessionService.save(boardSessionModel));
     }
     @GetMapping(path = "/findById/{id}")
-    public ResponseEntity FindById(Long id){
-       return ResponseEntity.ok(boardSessionService.findById(id));
+    public BoardSessionModel FindById(Long id){
+        BoardSession boardSession = boardSessionService.findById(id);
+        return BoardSessionModel.convertToBoardSessionModel(boardSession);
     }
     
     @GetMapping(path = "/findAll")

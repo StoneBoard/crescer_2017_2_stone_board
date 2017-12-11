@@ -1,5 +1,6 @@
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class BoardController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity FindById(@PathVariable Long id){
-       return ResponseEntity.ok(boardService.findById(id));
+    public BoardModel FindById(@PathVariable Long id){
+        Board board = boardService.findById(id);
+        return BoardModel.convertToBoardModel(board);
     }       
 }
