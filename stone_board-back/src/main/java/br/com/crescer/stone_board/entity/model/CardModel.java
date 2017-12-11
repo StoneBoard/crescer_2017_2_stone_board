@@ -28,7 +28,7 @@ public class CardModel implements Serializable{
     @Size(max = 300, message = "error.text.size")
     private String text;
     private Long id_writer;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+   // @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
     private Long id_session;
     private List<VoteModel> votes;
