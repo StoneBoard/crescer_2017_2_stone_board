@@ -28,6 +28,11 @@ body {
   background-color: #1f253d;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .material-icons.md-dark { color: var(--grayBlueDark); }
 .material-icons.md-light { color: var(--grayBlueLight); }
 
