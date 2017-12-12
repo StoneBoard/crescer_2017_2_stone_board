@@ -6,6 +6,7 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.Notification;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
 import br.com.crescer.stone_board.repository.PersonRepository;
@@ -35,6 +36,10 @@ public class PersonService {
     }
     public List<Board> listConnectBoards() {
         return personComponent.loggedPersonDetails().getConnectBoards();
+    }
+    
+     public List<Notification> listMyNotifications() {        
+        return personComponent.loggedPersonDetails().getNotifications();
     }
     
 }

@@ -5,7 +5,6 @@ import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
 import br.com.crescer.stone_board.service.PersonService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;

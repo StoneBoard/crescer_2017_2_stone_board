@@ -16,7 +16,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
         config.enableSimpleBroker("/stoneboard");
         config.setApplicationDestinationPrefixes("/app");
     }
-
+      
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
             registry.addEndpoint("/websocket");
