@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,postitService) {
+  .controller('controllerBoard', function ($scope, $interval,$routeParams, $window, boardService,postitService) {
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
@@ -33,10 +33,10 @@
 	  	rowSession.css('width', newWidth);
   	}
 
-    window.setInterval(displayBoard(), 3000);
+    $interval(displayBoard(), 3000);
 
     function displayBoard(){
-
+      console.log('entrou');
       let promisse =  boardService.findById($routeParams.idBoard);
       promisse.then(function (response) {
 
@@ -55,4 +55,4 @@
 
   });
 
-})();
+}());
