@@ -4,7 +4,7 @@
 		<div class="row end-xs" ng-if="isWriter">
 			<div class="col-xs">
 				<i class="material-icons md-dark" ng-if="!editMode" ng-click="changeMode(true)">mode_edit</i>
-				<i class="material-icons md-dark" ng-click="delete()">close</i>
+				<i class="material-icons md-dark" ng-click="deleteCard()">close</i>
 			</div>
 		</div>
 		<div class="row" ng-style="paddingCard">
@@ -25,16 +25,15 @@
 			</div>
 		</div>
 
-		<div class="row arund-xs" ng-if="!editMode
-		">
+		<div class="row arund-xs" ng-if="!editMode">
 			<div class="col-xs">
 				<div class="pt-icon">	
-					<i class="material-icons md-dark">keyboard_arrow_up</i>25
+					<i class="material-icons md-dark" ng-click="vote()">keyboard_arrow_up</i>25
 				</div>
 			</div>
 			<div class="col-xs">
 				<div class="pt-icon icon-selected {{color}}-selected">	
-					<i class="material-icons md-dark" style="color: white">keyboard_arrow_down</i>25
+					<i class="material-icons md-dark" ng-click="vote()" style="color: white">keyboard_arrow_down</i>25
 				</div>
 			</div>
 			<div class="col-xs">
