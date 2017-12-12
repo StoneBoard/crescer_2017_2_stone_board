@@ -33,11 +33,16 @@ public class BoardController {
     public ResponseEntity Save(@Validated @RequestBody BoardModel boardModel){
        return ResponseEntity.ok(boardService.save(boardModel));
     }
-    @PutMapping
+    @PutMapping("/addMember")
     public Long addMembers(@RequestBody BoardMemberModel boardMemberModel){
         return boardService.addMembers(boardMemberModel);
     }
     
+    @PutMapping
+    public BoardModel update(BoardModel boardModel){
+        return boardService.update(boardModel);
+    }
+ 
     @GetMapping("/{id}")
     public BoardModel FindById(@PathVariable Long id){
         Board board = boardService.findById(id);

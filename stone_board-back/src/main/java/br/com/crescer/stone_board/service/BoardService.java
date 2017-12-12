@@ -69,4 +69,12 @@ public class BoardService {
         personRepository.save(person);     
         return person.getId();
     }
+    
+    public BoardModel update(BoardModel boardModel){
+        Board board = boardRepository.findOne(boardModel.getId());   
+        board.setTitle(boardModel.getTitle());
+        board.setDeadline(boardModel.getDeadline());
+        return BoardModel.convertToBoardModel(board);
+        
+    }
 }
