@@ -22,7 +22,7 @@
         }*/
       })
 
-      .when('/board/:idBoard', {
+      .when('/board', {/*/:idBoard*/
         controller: 'controllerBoard',
         templateUrl: 'components/board/board.html'
       })
