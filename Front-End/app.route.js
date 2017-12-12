@@ -22,7 +22,7 @@
         }*/
       })
 
-      .when('/board/:idBoard?', {
+      .when('/board/:idBoard', {
         controller: 'controllerBoard',
         templateUrl: 'components/board/board.html'
       })
@@ -31,6 +31,11 @@
       .when('/board-register', {
         controller: 'controllerBoardRegister',
         templateUrl: 'components/board/board.register.html'
+      })
+
+      .when('/board/:idBoard/members', {
+        controller: 'controllerBoardMembers',
+        templateUrl: 'components/board/board.members.html'
       })
 
       .otherwise('/login');

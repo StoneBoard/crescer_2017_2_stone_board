@@ -28,9 +28,20 @@ body {
   background-color: #1f253d;
 }
 
-a {
+.card-link {
   text-decoration: none;
   color: white;
+}
+
+a {
+  display: block; 
+  margin: 15px 0; 
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: var(--grayBlueLight);
 }
 
 .material-icons.md-dark { color: var(--grayBlueDark); }
@@ -70,7 +81,7 @@ a {
   font-size: 10px;	
 }
 
-.btn-stretch {
+.stretch {
   width: 100%;
 }
 
