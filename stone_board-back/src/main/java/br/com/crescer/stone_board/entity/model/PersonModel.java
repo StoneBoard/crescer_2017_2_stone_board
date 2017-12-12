@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PersonModel implements Serializable{
+    private Long id;
     @NotNull(message = "error.fullName.notnull")
     @Size(max= 255, message = "error.fullName.size")
     private String fullName;
@@ -33,4 +36,11 @@ public class PersonModel implements Serializable{
                .pass(personModel.getPass())
                .build();
    }
+    public static PersonModel convertToPersonModel(Person person) {
+        return PersonModel.builder()
+                .id(person.getId())
+                .fullName(person.getFullName())
+                .email(person.getEmail())
+                .build();
+    }
 }

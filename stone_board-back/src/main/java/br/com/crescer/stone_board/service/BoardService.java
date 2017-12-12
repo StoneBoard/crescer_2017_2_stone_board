@@ -8,11 +8,13 @@ import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionModel;
 import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
 import br.com.crescer.stone_board.entity.model.NotificationModel;
+import br.com.crescer.stone_board.entity.model.PersonModel;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +64,17 @@ public class BoardService {
         return boardRepository.findAll();
     }
     
-    public Long addMembers(BoardMemberModel boardMemberModel){
+    public PersonModel addMembers(BoardMemberModel boardMemberModel){
         Person person = personRepository.findByEmail(boardMemberModel.getPerson().getEmail());
         Board board = boardRepository.findOne(boardMemberModel.getBoard().getId());
         person.getConnectBoards().add(board);
-        personRepository.save(person);     
-        return person.getId();
+        personRepository.save(person);  
+        return PersonModel.convertToPersonModel(person);
+    }
+    public BoardModel update(BoardModel boardModel){
+        Board board = boardRepository.findOne(boardModel.getId());   
+        board.setDeadline(boardModel.getDeadline());
+        return BoardModel.convertToBoardModel(board);
+        
     }
 }

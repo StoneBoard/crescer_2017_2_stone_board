@@ -4,6 +4,7 @@ import br.com.crescer.stone_board.webSocket.Greeting;
 import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.model.BoardMemberModel;
 import br.com.crescer.stone_board.entity.model.BoardModel;
+import br.com.crescer.stone_board.entity.model.PersonModel;
 import br.com.crescer.stone_board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +34,13 @@ public class BoardController {
     public ResponseEntity Save(@Validated @RequestBody BoardModel boardModel){
        return ResponseEntity.ok(boardService.save(boardModel));
     }
-    @PutMapping
-    public Long addMembers(@RequestBody BoardMemberModel boardMemberModel){
+    @PutMapping("/addMember")
+    public PersonModel addMembers(@RequestBody BoardMemberModel boardMemberModel){
         return boardService.addMembers(boardMemberModel);
+    }
+    @PutMapping
+    public BoardModel update(BoardModel boardModel){
+        return boardService.update(boardModel);
     }
     
     @GetMapping("/{id}")
