@@ -13,8 +13,10 @@ import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.VoteRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 /**
  *
@@ -33,14 +35,17 @@ public class VoteService {
     public void save(VoteModel voteModel){
         Person personLoged = personComponent.loggedPersonDetails();
         Card card = cardRepository.findOne(voteModel.getId_card());
-        
-        Vote vote = card.getVotes().stream()
+        Vote vote = null;
+        if(!CollectionUtils.isEmpty(card.getVotes())){
+              vote = card.getVotes().stream()
                                 .filter(v ->  Objects.equals(v.getPerson().getId(), personLoged.getId()))
                                 .findFirst()
                                 .get();
+        }
+       
         if(vote != null){
             if(vote.isPositive() == voteModel.isPositive()){
-                voteRepository.delete(vote);
+                card.getVotes().remove(vote);
             }
             else{
                  vote.setPositive(voteModel.isPositive());
