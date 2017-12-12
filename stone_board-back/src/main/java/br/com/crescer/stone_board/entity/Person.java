@@ -66,7 +66,7 @@ public class Person implements Serializable{
     
     @ManyToMany
     @JoinTable( name = "PERSON_BOARD", joinColumns = @JoinColumn(name = "ID_PERSON"),
-                                        inverseJoinColumns = @JoinColumn(name = "ID_BOARD") )
+                                        inverseJoinColumns = @JoinColumn(name = "ID_BOARD"))
     private List<Board> connectBoards;          
     
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)

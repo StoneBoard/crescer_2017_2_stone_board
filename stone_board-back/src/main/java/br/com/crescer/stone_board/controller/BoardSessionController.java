@@ -5,13 +5,10 @@
  */
 package br.com.crescer.stone_board.controller;
 
-import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.BoardSession;
-import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionModel;
 import br.com.crescer.stone_board.service.BoardSessionService;
 import br.com.crescer.stone_board.webSocket.Greeting;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;

@@ -2,6 +2,7 @@ package br.com.crescer.stone_board.entity.model;
 
 import br.com.crescer.stone_board.entity.BoardSession;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.constraints.Max;
@@ -21,7 +22,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BoardSessionModel implements Serializable{
+public class BoardSessionModel implements Serializable {
+
     private Long id;
     @NotNull(message = "error.title.notnull ")
     @Size(min = 1, max = 128, message = "erro.titulo.size")
@@ -34,27 +36,26 @@ public class BoardSessionModel implements Serializable{
     @Size(max = 512, message = "error.icon.size")
     private String icon;
     private List<CardModel> cards;
-    
+
     public static BoardSession convertToBoardSession(BoardSessionModel boardSessionModel) {
-       return BoardSession.builder()
-               .id(boardSessionModel.getId())
-               .title(boardSessionModel.getTitle())
-               .color(boardSessionModel.getColor())
-               .icon(boardSessionModel.getIcon())
-               .build();
+        return BoardSession.builder()
+                .id(boardSessionModel.getId())
+                .title(boardSessionModel.getTitle())
+                .color(boardSessionModel.getColor())
+                .icon(boardSessionModel.getIcon())
+                .build();
     }
-    
+
     public static BoardSessionModel convertToBoardSessionModel(BoardSession boardSession) {
         return BoardSessionModel.builder()
                 .id(boardSession.getId())
                 .title(boardSession.getTitle())
                 .color(boardSession.getColor())
                 .icon(boardSession.getIcon())
-                .cards(boardSession.getCards()
-                        .stream()
+                .cards(boardSession.getCards().stream()
                         .map(CardModel::convertToCardModel)
                         .collect(Collectors.toList()))
                 .build();
     }
-    
+
 }

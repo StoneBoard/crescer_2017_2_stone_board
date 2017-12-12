@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope, $interval,$routeParams, $window, boardService,postitService) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,postitService) {
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
@@ -33,10 +33,9 @@
 	  	rowSession.css('width', newWidth);
   	}
 
-    $interval(displayBoard(), 3000);
-
+    displayBoard();
     function displayBoard(){
-      console.log('entrou');
+
       let promisse =  boardService.findById($routeParams.idBoard);
       promisse.then(function (response) {
 
@@ -51,8 +50,44 @@
     $scope.submitCardForm = function(card, session_id){
       card.id_session = session_id;
       let promise = postitService.saveCard(card).then();
+		}
+		
+		var socket = null;
+    var stompClient = null;
+    var interval = null;
+
+    function connect() {
+      socket = new SockJS('http://localhost:9090/api/websocket');
+      stompClient = Stomp.over(socket);
+      stompClient.connect({}, function (frame) { });
+	
+      socket.onopen = function () {
+        stompClient.subscribe('/stoneboard/sendBoard', function (board) {
+ 				update(board);
+        });
+        stompClient.send("/app/board/" + $routeParams.idBoard, {});
+      };
+
+      clearInterval(interval);
+
+      socket.onclose = function () {
+        socket = null;
+        interval = setInterval(function () {
+          connect();
+        }, 2000);
+      };
+
     }
+
+    function update(board) {
+      $scope.$apply(function () {
+        $scope.board = angular.fromJson(board.body).content;
+        console.log($scope.board);
+      });
+    }
+
+    connect();
 
   });
 
-}());
+})();

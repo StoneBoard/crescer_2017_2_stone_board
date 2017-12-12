@@ -19,7 +19,7 @@
       console.log(board);
       let promise = boardService.saveBoard(board).then();
       console.log(promise);
-    
+
     }
 
   });

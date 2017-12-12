@@ -6,13 +6,11 @@ import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardMemberModel;
 import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionModel;
-import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
-import br.com.crescer.stone_board.entity.model.NotificationModel;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
