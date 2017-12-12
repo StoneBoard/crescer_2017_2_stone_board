@@ -39,7 +39,12 @@ public class VoteService {
                                 .findFirst()
                                 .get();
         if(vote != null){
-            vote.setPositive(voteModel.isPositive());
+            if(vote.isPositive() == voteModel.isPositive()){
+                voteRepository.delete(vote);
+            }
+            else{
+                 vote.setPositive(voteModel.isPositive());
+            }
         }
         else{
             card.getVotes().add(new Vote ( null,personLoged, voteModel.isPositive()));

@@ -17,6 +17,12 @@
 
       controller: function ($scope, authService,postitService, voteService) {
 
+        $scope.votoPositivo = p.vote.positive ? 'icon-selected' : '';
+        $scope.votoNegativo = !p.vote.positive ? 'icon-selected' : '';
+
+        $scope.vPositivo = p.vote.positive.filter(true);
+        $scope.vNegativo = p.vote.positive.filter(false);
+
         let usuario = authService.getUsuario();
         $scope.isWriter = usuario.id === $scope.p.id_writer;
         $scope.paddingCard = $scope.isWriter ? {} : {'padding-top': '20px'};
@@ -33,14 +39,14 @@
           let promise =  postitService.deleteCard($scope.p.id).then();
         }
 
-        $scope.update = function(vote) {
-          vote
+        $scope.update = function() {
+          
           let promise =  postitService.editCard($scope.p).then();
           $scope.changeMode(false);
         }
         $scope.vote = function() {
-          vote.id_card = $scope.p.id;
-          let promise =  voteService.saveVote(vote).then();
+          p.vote.id_card = p.id;
+          let promise =  voteService.saveVote(p.vote).then();
         }
 
         $scope.undo = function() {

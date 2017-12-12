@@ -6,16 +6,19 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Notification;
+import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.NotificationModel;
 import br.com.crescer.stone_board.repository.NotificationRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author willian
  */
+@Service
 public class NotificationService {
     
     @Autowired
@@ -25,6 +28,12 @@ public class NotificationService {
     @Autowired
     PersonComponent personComponent;
     
+    public void save(NotificationModel notificationModel){
+        Person person = personRepository.findByEmail(notificationModel.getPerson().getEmail());
+        Notification notification = NotificationModel.convertToNotification(notificationModel);
+        person.getNotifications().add(notification);
+        personRepository.save(person);
+    }
     
     
 }

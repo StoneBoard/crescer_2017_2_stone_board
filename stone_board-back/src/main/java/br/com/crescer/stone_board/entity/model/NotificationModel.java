@@ -31,13 +31,14 @@ public class NotificationModel implements Serializable{
     private LocalDateTime creationDate;
     private boolean checked;
     private BoardModel board;
+    private PersonModel person;
 
     
 
        public static Notification convertToNotification(NotificationModel notificationModel) {
        return Notification.builder()
                .id(notificationModel.getId())
-             //  .checked(notificationModel.checked())
+               .checked(false)
                .build();
    }
        ;
