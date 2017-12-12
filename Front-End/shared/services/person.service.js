@@ -13,10 +13,14 @@
   	function listConnectBoards(){
   		return $http.get(urlBase + '/listConnectBoards');
   	}
+    function findByEmail(email){
+      return $http.get('http://localhost:9090/api/person/' + email);
+    }
 
   	return {
   		listMyBoards : listMyBoards,
-  		listConnectBoards : listConnectBoards
+  		listConnectBoards : listConnectBoards,
+      findByEmail : findByEmail
   	};
   })
 }());

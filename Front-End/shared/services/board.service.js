@@ -13,9 +13,18 @@
 
       return $http.post(urlBase, board);
     }
+    function addMembers(boardMembers){
+      return $http.put('http://localhost:9090/api/board/addMember', boardMembers);
+    }
+    function update(board){
+      return $http.put(urlBase, board);
+    }
+
     return {
       saveBoard : saveBoard,
-      findById : findById
+      findById : findById,
+      addMembers : addMembers,
+      update : update
 
     };
   });

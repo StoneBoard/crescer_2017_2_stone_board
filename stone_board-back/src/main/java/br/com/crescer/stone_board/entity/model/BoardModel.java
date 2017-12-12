@@ -30,7 +30,7 @@ public class BoardModel implements Serializable{
    // @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime deadline;
     private boolean active;
-    private List<Long> id_members;
+    private List<PersonModel> members;
     private List<BoardSessionModel> sessions;
     
     public static Board convertToBoard(BoardModel boardModel) {
@@ -45,9 +45,9 @@ public class BoardModel implements Serializable{
                 .id(board.getId())
                 .title(board.getTitle())
                 .deadline(board.getDeadline())
-                .id_members(board.getMembers()
+                .members(board.getMembers()
                             .stream()
-                            .map(member -> member.getId())
+                            .map(PersonModel :: convertToPersonModel)
                             .collect(Collectors.toList()))
                 .sessions(board.getSessions()
                             .stream()

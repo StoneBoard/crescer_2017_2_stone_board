@@ -6,7 +6,9 @@
 package br.com.crescer.stone_board.controller;
 
 import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardModel;
+import br.com.crescer.stone_board.entity.model.PersonModel;
 import br.com.crescer.stone_board.service.PersonService;
 import br.com.crescer.stone_board.webSocket.Greeting;
 import java.util.List;
@@ -48,7 +50,11 @@ public class PersonController {
                 .map(BoardModel::convertToBoardModel)
                 .collect(Collectors.toList());
     }
-    
+    @GetMapping("/{email}")
+    public PersonModel FindByEmail(@PathVariable String email){
+        Person person = personService.findByEmail(email);
+        return PersonModel.convertToPersonModel(person);
+    }  
     @MessageMapping("/loadMyBoardsByIdPerson")
     @SendTo("/api/sendMyBoardsByIdPerson")
     public Greeting myBoardsgreeting() throws Exception {
