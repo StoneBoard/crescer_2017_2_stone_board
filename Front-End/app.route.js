@@ -33,9 +33,9 @@
         templateUrl: 'components/board/board.register.html'
       })
 
-      .when('/board/:idBoard/members', {
-        controller: 'controllerBoardMembers',
-        templateUrl: 'components/board/board.members.html'
+      .when('/board/:idBoard/edit', {
+        controller: 'controllerEditBoard',
+        templateUrl: 'components/board/board.edit.html'
       })
 
       .otherwise('/login');
