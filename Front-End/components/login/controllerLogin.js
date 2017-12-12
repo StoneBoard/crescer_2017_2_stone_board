@@ -12,7 +12,7 @@
         function (response) {},
         function (response) {
           console.log(response);
-          alert('Erro no Login!');
+          console.log('Erro no Login!');
         });
       };
 

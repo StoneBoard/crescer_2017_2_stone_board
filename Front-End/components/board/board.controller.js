@@ -49,7 +49,8 @@
 
     $scope.submitCardForm = function(card, session_id){
       card.id_session = session_id;
-      let promise = postitService.saveCard(card).then();
+			let promise = postitService.saveCard(card).then();
+			sendMessage();
 		}
 		
 		var socket = null;
@@ -65,7 +66,7 @@
         stompClient.subscribe('/stoneboard/sendBoard', function (board) {
  				update(board);
         });
-        stompClient.send("/app/board/" + $routeParams.idBoard, {});
+       sendMessage();
       };
 
       clearInterval(interval);
@@ -77,7 +78,11 @@
         }, 2000);
       };
 
-    }
+		}
+		
+		function sendMessage(){
+			stompClient.send("/app/board/" + $routeParams.idBoard, {});
+		}
 
     function update(board) {
       $scope.$apply(function () {

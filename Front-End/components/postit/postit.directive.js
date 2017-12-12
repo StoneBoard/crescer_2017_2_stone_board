@@ -9,6 +9,7 @@
       restrict: 'E',
 
       scope: { 
+        sendMessage: '&send',
         p : '=info',
         color : '=color'
       },
@@ -37,22 +38,25 @@
 
         $scope.delete = function(){
           let promise =  postitService.deleteCard($scope.p.id).then();
+          sendMessage();          
         }
 
         $scope.update = function() {
-          
           let promise =  postitService.editCard($scope.p).then();
           $scope.changeMode(false);
+          sendMessage();
         }
         $scope.vote = function() {
           p.vote.id_card = p.id;
           let promise =  voteService.saveVote(p.vote).then();
+          sendMessage();
         }
 
         $scope.undo = function() {
           console.log('undo');
           $scope.p.text = JSON.parse(JSON.stringify(oldText));
           $scope.changeMode(false);
+          sendMessage();
         }
 
       }

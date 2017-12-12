@@ -15,6 +15,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
@@ -27,6 +28,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -62,12 +65,14 @@ public class Card implements Serializable{
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime creationDate;
     
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CARD", nullable = false)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Vote> votes;
     
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CARD", nullable = false)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Note> notes;
     
     @ManyToOne

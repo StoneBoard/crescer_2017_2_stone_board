@@ -19,6 +19,7 @@
         $scope.logout = authService.logout;
         $scope.usuario = authService.getUsuario();
         console.log($scope.usuario);  
+        
         $rootScope.$on('authLoginSuccess', function () {
           atualizarUsuario();
         });

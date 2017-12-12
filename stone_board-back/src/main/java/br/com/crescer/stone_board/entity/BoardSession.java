@@ -18,6 +18,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -55,6 +57,7 @@ public class BoardSession implements Serializable{
      
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_SESSION", nullable = false)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Card> cards;
            
 }

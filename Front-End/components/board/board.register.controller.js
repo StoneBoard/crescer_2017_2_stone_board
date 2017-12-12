@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoardRegister', function ($scope, $window, boardService) {
+  .controller('controllerBoardRegister', function ($scope, $location, $window, boardService) {
 
   	$scope.board = { sessions: [] }
 
@@ -19,7 +19,7 @@
       console.log(board);
       let promise = boardService.saveBoard(board).then();
       console.log(promise);
-
+      $location.path('/#!/dashboard');
     }
 
   });
