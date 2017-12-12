@@ -1,11 +1,11 @@
-// (function(){
-//   'use strict'
+ (function(){
+   'use strict'
   angular.module('stoneBoard').factory('boardService', function($http){
 
-    let urlBase = 'http://localhost:9090/api/board'; 
+    let urlBase = 'http://localhost:9090/api/board';
 
     function findById(id){
-    
+
       return $http.get('http://localhost:9090/api/board/' + id);
 
     }
@@ -16,7 +16,7 @@
     return {
       saveBoard : saveBoard,
       findById : findById
-      
+
     };
   });
-//})
+}());

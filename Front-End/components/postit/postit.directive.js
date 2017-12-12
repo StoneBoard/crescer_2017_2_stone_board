@@ -15,7 +15,7 @@
 
       templateUrl: 'components/postit/postit.html',
 
-      controller: function ($scope, authService) {
+      controller: function ($scope, authService,postitService, voteService) {
 
         let usuario = authService.getUsuario();
         $scope.isWriter = usuario.id === $scope.p.id_writer;
@@ -30,12 +30,17 @@
         }
 
         $scope.delete = function(){
-          console.log('delete');
+          let promise =  postitService.deleteCard($scope.p.id).then();
         }
 
-        $scope.update = function() {
-          console.log('update');
+        $scope.update = function(vote) {
+          vote
+          let promise =  postitService.editCard($scope.p).then();
           $scope.changeMode(false);
+        }
+        $scope.vote = function() {
+          vote.id_card = $scope.p.id;
+          let promise =  voteService.saveVote(vote).then();
         }
 
         $scope.undo = function() {
