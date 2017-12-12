@@ -13,7 +13,7 @@
       return $http.put(urlBase, card);
     }
     function deleteCard(id){
-      return $http.delete(urlBase, id);
+      return $http.delete('http://localhost:9090/api/card/' + id);
     }
     return {
       saveCard : saveCard,

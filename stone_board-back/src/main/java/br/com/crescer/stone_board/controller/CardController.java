@@ -45,8 +45,8 @@ public class CardController {
     public void SavePut(@RequestBody CardModel cardModel){
       cardService.update(cardModel);
     }
-    @DeleteMapping
-    public void Delete(@RequestBody Long id){
+    @DeleteMapping(path = "/{id}")
+    public void Delete(@PathVariable Long id){
         cardService.delete(id);
     }
     @MessageMapping("loadCardById/{id}")
