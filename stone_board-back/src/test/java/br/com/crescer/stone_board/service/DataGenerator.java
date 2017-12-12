@@ -9,9 +9,6 @@ import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
-import br.com.crescer.stone_board.repository.BoardRepository;
-import br.com.crescer.stone_board.repository.BoardSessionRepository;
-import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +21,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 public class DataGenerator {
     
-    @Autowired
     private static PasswordEncoder encoder = new BCryptPasswordEncoder();
     
-    @Autowired
-    private static PersonRepository personRepository;
-    @Autowired
-    private static BoardRepository boardRepository;
-    @Autowired
-    private static BoardSessionRepository boardSessionRepository;
-    @Autowired
-    private static CardRepository cardRepository; 
-    
-    public static Person createPerson () {
+    public static Person createPerson () {        
+        
         Person person = Person.builder()
                 .fullName("Fulano da Silva")
                 .email("fulano@email.com")
                 .pass(encoder.encode("123456"))
                 .build();
-        
-        personRepository.save(person);
-        
+                
         return person;
     }
     
@@ -53,10 +39,7 @@ public class DataGenerator {
                 .title("Titulo do Board")
                 .deadline(LocalDateTime.now())
                 .build();
-        
-        Person person = createPerson();
-        person.getMyBoards().add(board);
-        
+               
         return board; 
     }
     
@@ -66,8 +49,6 @@ public class DataGenerator {
                 .color(1)
                 .icon("url.icon")
                 .build();
-        Board board = createBoard();
-        board.getSessions().add(boardSession);
         
         return boardSession;
     }
@@ -79,10 +60,7 @@ public class DataGenerator {
                 .writer(person)
                 .creationDate(LocalDateTime.now())
                 .build();
-        
-        BoardSession boardSession = createBoardSesssion();
-        boardSession.getCards().add(card);
-        
+                
         return card;
     }
 }

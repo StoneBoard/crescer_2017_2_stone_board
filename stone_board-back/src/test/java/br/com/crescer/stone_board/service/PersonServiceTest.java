@@ -27,33 +27,25 @@ public class PersonServiceTest extends ConfigurationTest {
 
     @Test
     public void testFindByEmail() {
-        Person person = personRepository.save(getPersonOne());
-
-        Person result = personService.findByEmail(getPersonOne().getEmail());
+        Person person = DataGenerator.createPerson();
+        personRepository.save(person);
+        
+        Person result = personService.findByEmail(person.getEmail());
 
         assertEquals(person.getId(), result.getId());
         assertEquals(person.getFullName(), result.getFullName());
         assertEquals(person.getEmail(), result.getEmail());
         assertEquals(person.getPass(), result.getPass());
-
+        
+        personRepository.delete(person.getId());
     }
 
     @Test
     public void testFindByEmailWithNull() {
-        personRepository.save(getPersonOne());
+        personRepository.save(DataGenerator.createPerson());
 
         Person result = personService.findByEmail("julia@teste.com");
 
         assertNull(result);
-
     }
-
-    private Person getPersonOne() {
-        return Person.builder()
-                .fullName("Willian Teste")
-                .email("willian@teste.com")
-                .pass("teste")
-                .build();
-    }
-
 }

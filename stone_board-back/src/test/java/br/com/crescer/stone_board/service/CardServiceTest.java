@@ -6,8 +6,11 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
+import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
+import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import java.time.LocalDateTime;
@@ -23,12 +26,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CardServiceTest extends ConfigurationTest {
 
     @Autowired
-     CardService cardService;
+    CardService cardService;
 
     @Autowired
     CardRepository cardRepository;
     @Autowired
+    BoardSessionRepository boardSessionRepository;
+    @Autowired
     PersonRepository personRepository;
+    
 
     @Before
     public void setUp() {
@@ -37,8 +43,11 @@ public class CardServiceTest extends ConfigurationTest {
 
     @Test
     public void testSave() {
-        Person person = personRepository.save(getPersonOne());
-        Card card = cardRepository.save(getCardOne(person));
+        Card card = DataGenerator.createCard();
+        BoardSession boardSession = newBoardSession();
+        boardSession.getCards().add(card);
+        boardSessionRepository.save(boardSession);
+        
         Card result = cardService.findById(new Long(1));
 
         assertEquals(card.getWriter(), result.getWriter());
@@ -50,25 +59,17 @@ public class CardServiceTest extends ConfigurationTest {
     public void testFindByIdWithNotExists() {
         assertNull(cardService.findById(200l));
     }
-  
-     private Person getPersonOne() {
-        return Person.builder()
-                .fullName("Willian Teste")
-                .email("willian@teste.com")
-                .pass("teste")
-                .build();
-    }
-
     
-    private Card getCardOne(Person person) {
-        return Card.builder()
-               .id(new Long(1))
-               .text("Meu card")
-               .writer(person)
-               .creationDate(LocalDateTime.now())
-               .build();
-       
+    private BoardSession newBoardSession() {
+        Person person = DataGenerator.createPerson();
+        Board board = DataGenerator.createBoard();
+        BoardSession boardSession = DataGenerator.createBoardSesssion();
+        board.getSessions().add(boardSession);
+        
+        personRepository.save(person);
+        
+        return boardSession;
     }
-    
+ 
 }
 

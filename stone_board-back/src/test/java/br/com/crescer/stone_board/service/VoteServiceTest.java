@@ -29,17 +29,5 @@ public class VoteServiceTest extends ConfigurationTest{
     @Autowired
     VoteRepository voteRepository;
  
-     private Person getPersonOne() {
-        return Person.builder()
-                .fullName("Willian Teste")
-                .email("willian@teste.com")
-                .pass("teste")
-                .build();
-    }
-    private Vote getVoteOne(Person person){
-        return Vote.builder()
-                .positive(true)
-                .person(person)
-                .build();
-    } 
+    
 }
