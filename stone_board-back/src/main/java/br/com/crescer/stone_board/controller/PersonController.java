@@ -49,21 +49,21 @@ public class PersonController {
                 .collect(Collectors.toList());
     }
     
-    @MessageMapping("loadMyBoardsByIdPerson/{id}")
-    @SendTo("/person")
-    public Greeting myBoardsgreeting(@PathVariable Long id) throws Exception {
+    @MessageMapping("/loadMyBoardsByIdPerson")
+    @SendTo("/api/sendMyBoardsByIdPerson")
+    public Greeting myBoardsgreeting() throws Exception {
         Thread.sleep(1000); 
-          List<Board> boards = personService.listMyBoards();
-        List<BoardModel> boardsModel = boards.stream()
-                .map(BoardModel::convertToBoardModel)
-                .collect(Collectors.toList());
+//        List<Board> boards = personService.listMyBoards();
+//        List<BoardModel> boardsModel = boards.stream()
+//                .map(BoardModel::convertToBoardModel)
+//                .collect(Collectors.toList());
     
-        return new Greeting(ResponseEntity.ok(boardsModel));
+        return new Greeting("teste");
     }
     
     
-    @MessageMapping("loadMyBoardByIdPerson/{id}")
-    @SendTo("/person")
+    @MessageMapping("/loadConectedBoardByIdPerson")
+    @SendTo("/api/sendConectedBoardByIdPerson")
     public Greeting connectBoardsGretting(@PathVariable Long id) throws Exception {
         Thread.sleep(1000); 
         List<Board> boards = personService.listConnectBoards();

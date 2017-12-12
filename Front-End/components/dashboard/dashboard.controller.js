@@ -1,32 +1,52 @@
-(function(){
+(function () {
   'use strict'
 
   angular
-  .module('stoneBoard')
-  .controller('controllerDashboard', function ($scope, $filter,personService) {
+    .module('stoneBoard')
+    .controller('controllerDashboard', dashboardController);
 
-  	listMyBoards();
-    function listMyBoards(){
-    	let promise = personService.listMyBoards();
-        promise.then(function (response) {
-            console.log(response);
-            $scope.myBoards = response.data;
-            $scope.myBoards.deadline = $scope.myBoards.map(x => x.deadline = new Date(x.deadline));
-            console.log($scope.myBoards);
+  function dashboardController($scope) {
+
+    var socket = null;
+    var stompClient = null;
+    var interval = null;
+
+    function connect() {
+      socket = new SockJS('http://localhost:9090/api/websocket');
+      stompClient = Stomp.over(socket);
+
+<<<<<<< HEAD
+      stompClient.connect({}, function (frame) { });
+
+      socket.onopen = function () {
+        stompClient.subscribe('/stoneboard/sendPerson', function (person) {
+          update(person);
         });
+        stompClient.send("/app/person", {});
+      };
+
+      clearInterval(interval);
+
+      socket.onclose = function () {
+        socket = null;
+        interval = setInterval(function () {
+          connect();
+        }, 2000);
+      };
+
     }
 
-    listConnectBoards();
-    function listConnectBoards(){
-      let promise = personService.listConnectBoards();
-        promise.then(function (response) {
-            $scope.connectBoards = response.data;
-            $scope.connectBoards.deadline = $scope.connectBoards.map(x => x.deadline = new Date(x.deadline));
-            console.log($scope.connectBoards);
-        });
+    function update(person) {
+      $scope.$apply(function () {
+        $scope.person = angular.fromJson(person.body).content;
+        console.log($scope.person);
+      });
     }
 
+    connect();
 
+  };
+=======
    //  $stomp.setDebug(function (args) {
    //   $log.debug(args)
    // })
@@ -61,6 +81,7 @@
   //    })
 
   // });
+>>>>>>> 6ed1a76c254478cfae7bafebcee5445cbefea7b2
 
 })
 })();

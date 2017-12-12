@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -30,6 +31,7 @@ public class BoardServiceTest extends ConfigurationTest {
     }
 
     @Test
+    @Ignore
     public void testSave() {
         List<BoardSession> sessions = new ArrayList();
         sessions.add(getBoardSession());

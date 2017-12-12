@@ -39,7 +39,7 @@ public class BoardController {
     }       
     
     @MessageMapping("loadBoardById/{id}")
-    @SendTo("/board")
+    @SendTo("/")
     public Greeting greeting(@PathVariable Long id) throws Exception {
         Thread.sleep(1000); 
         Board board = boardService.findById(id);
