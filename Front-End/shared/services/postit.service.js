@@ -1,8 +1,8 @@
-// (function(){
-//   'use strict'
+ (function(){
+   'use strict'
   angular.module('stoneBoard').factory('postitService', function($http){
 
-    let urlBase = 'http://localhost:9090/api/card'; 
+    let urlBase = 'http://localhost:9090/api/card';
 
     function saveCard(card){
 
@@ -19,7 +19,7 @@
       saveCard : saveCard,
       editCard : editCard,
       deleteCard : deleteCard
-      
+
     };
   });
-//})
+}());
