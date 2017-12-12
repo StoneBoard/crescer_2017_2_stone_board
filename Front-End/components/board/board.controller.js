@@ -33,7 +33,8 @@
 	  	rowSession.css('width', newWidth);
   	}
 
-    displayBoard();
+    window.setInterval(displayBoard(), 3000);
+
     function displayBoard(){
 
       let promisse =  boardService.findById($routeParams.idBoard);
