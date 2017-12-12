@@ -27,12 +27,12 @@
 							<div class="col-xs">
 								<div class="form-box-input">
 									<label>Data Limite para postagens</label>
-									<input type="date" class="input-form" ng-model="board.deadline" placeholder="">
+									<input type="date" class="input-form" ng-model="board.deadline" ng-readonly="!active">
 								</div>
 							</div>
 							<div class="col-xs">
 								<label class="container-check">Ativo
-								  <input type="checkbox" ng-checked="teste">
+								  <input type="checkbox" ng-checked="checked" ng-click="changeStatus()" ng-model="active">
 								  <span class="checkmark"></span>
 								</label>
 								

@@ -7,15 +7,19 @@
 
 		$scope.idBoard = $routeParams.idBoard
 
-		displayMembers();
-  		function displayMembers(){
-      		let promisse =  boardService.findById(idBoard);
+		displayBoard();
+  		function displayBoard(){
+      
+      		let promisse =  boardService.findById($scope.idBoard);
       		promisse.then(function (response) {
 
 	         	$scope.board = response.data;
+	         	$scope.board.deadline = new Date($scope.board.deadline.slice(0,3).join());
+	         	$scope.checked = $scope.board.deadline > new Date();
 	         	$scope.members = $scope.board.members;
       		 });
       	}
+
       	$scope.addMembers = function(_id_person){
 	  		let newMember = {
 	  			id_board: $scope.id_board,
@@ -30,11 +34,17 @@
 	       	  $scope.persons  = response.data;
 	        }); 	
   		}
-  	
-  	
-    }
 
-		
+        $scope.changeStatus = function () {
+            $scope.board.deadline = $scope.active ? null : new Date();
+        }
+
+  		$scope.submitBoardForm = function(board){
+	  		let promisse = boardService.update(board).then();
+	      		
+  		}
+  	
+  	
   });
 
 })();
