@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerEditBoard', function($scope, $routeParams){
+  .controller('controllerEditBoard', function($scope, $routeParams, boardService, personService){
 
 		$scope.idBoard = $routeParams.idBoard
 
