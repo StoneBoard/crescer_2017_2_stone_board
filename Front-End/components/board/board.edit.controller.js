@@ -12,7 +12,6 @@
       
       		let promisse =  boardService.findById($scope.idBoard);
       		promisse.then(function (response) {
-
 	         	$scope.board = response.data;
 	         	$scope.board.deadline = new Date($scope.board.deadline.slice(0,3).join());
 	         	$scope.checked = $scope.board.deadline > new Date();
@@ -43,7 +42,6 @@
 
   		$scope.submitBoardForm = function(board){
 	  		let promisse = boardService.update(board).then();
-	      		
   		}
   	
     });

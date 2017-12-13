@@ -12,6 +12,7 @@ import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,12 @@ public class BoardService {
     @Autowired
     BoardRepository boardRepository;
     @Autowired
+    PersonService personService;
+    @Autowired
     PersonRepository personRepository;
     @Autowired
     PersonComponent personComponent;
+    
     @Autowired
     BoardSessionRepository boardSessionRepository;
 
@@ -75,4 +79,11 @@ public class BoardService {
         return BoardModel.convertToBoardModel(board);
         
     }
+    
+    public boolean userAuthenticadedBoard(Long id){
+        Board board = findById(id);
+        List<Board> myBoards = personService.listMyBoards();
+       return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personComponent.loggedPersonDetails().getId()));
+    }
+    
 }

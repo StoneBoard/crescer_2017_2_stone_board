@@ -5,6 +5,7 @@ import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.service.BoardService;
 import br.com.crescer.stone_board.service.PersonService;
+import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import br.com.crescer.stone_board.webSocket.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,14 @@ public class WebSocketController {
     }
     
     @MessageMapping("/board/{id}")
-    @SendTo("/stoneboard/sendBoard")
+    @SendTo("/stoneboard/sendBoard") 
     public Greeting boardUpdate(@DestinationVariable Long id) throws Exception {
         Thread.sleep(1000);
         Board board = boardService.findById(id);
-        return new Greeting(BoardModel.convertToBoardModel(board));
+    //    if(boardService.userAuthenticadedBoard(id))
+            return new Greeting(BoardModel.convertToBoardModel(board));
+    //    else
+    //        throw new BadRequestException("Não Autorizado");
+       
     }
 }
