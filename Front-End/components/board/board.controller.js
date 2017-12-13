@@ -51,7 +51,7 @@
         function (response) {
           $scope.deadline = response.data.deadline;
           $scope.deadline = new Date($scope.deadline.slice(0,3).join());
-          boardBlock($scope.deadline);
+          boardStatus($scope.deadline);
         },
         function (response) {
           socket = null;
@@ -104,12 +104,8 @@
 
     connect();
 
-    function boardBlock(date){
-      $scope.editMode = true;
-      if(date < new Date()){
-      $scope.editMode = false;
-      }
-
+    function boardStatus(date) {
+      $scope.boardStatus = date > new Date();
     }
 
   });

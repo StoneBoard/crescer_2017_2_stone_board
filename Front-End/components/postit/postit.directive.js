@@ -8,18 +8,19 @@
 
       restrict: 'E',
 
-      scope: { 
+      scope: {
         sendMessage : '=send',
         p : '=info',
-        color : '=color'
-        
+        color : '=color',
+        boardStatus : '=boardStatus'
+
       },
 
       templateUrl: 'components/postit/postit.html',
 
-      controller: function ($scope, authService,postitService, voteService) {
+      controller: function ($scope, authService,postitService,toastr, voteService) {
         let usuario = authService.getUsuario();
-
+        console.log($scope.boardStatus);
         $scope.vPositivo = $scope.p.votes.filter(v => v.positive);
         $scope.vNegativo = $scope.p.votes.filter(v => !v.positive);
 
@@ -28,7 +29,7 @@
 
         $scope.isWriter = usuario.id === $scope.p.id_writer;
         $scope.paddingCard = $scope.isWriter ? {} : {'padding-top': '20px'};
-        
+
         $scope.editMode = false;
         let oldText = "";
 
@@ -43,7 +44,7 @@
         }
 
         $scope.update = function() {
-          
+
           let promise =  postitService.editCard($scope.p).then();
           $scope.changeMode(false);
           $scope.sendMessage();

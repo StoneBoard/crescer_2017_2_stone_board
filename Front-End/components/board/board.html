@@ -47,7 +47,7 @@
 
 							<div class="pt-box">
 
-								<div ng-if = "editMode" class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
+								<div ng-if = "boardStatus" class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
 									<div class="row">
 										<div class="col-xs">
 											<textarea ng-model="card.text" maxlength="300" class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
@@ -58,7 +58,7 @@
 
 							</div>
 							<div ng-repeat= "card in session.cards">
-								<post-it info="card" color="colorPallet[session.color]" send="sendMessage"></post-it>
+								<post-it info="card" color="colorPallet[session.color]" send="sendMessage" board-status="boardStatus"></post-it>
 							</div>
 
 						</div>

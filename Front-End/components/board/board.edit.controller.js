@@ -3,20 +3,20 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerEditBoard', function($scope, $routeParams, boardService, personService){
+  .controller('controllerEditBoard', function($scope,toastr, $routeParams, boardService, personService){
 
 		$scope.idBoard = $routeParams.idBoard
 
 		displayBoard();
   		function displayBoard(){
-      
+
       		let promisse =  boardService.findById($scope.idBoard);
       		promisse.then(function (response) {
 	         	$scope.board = response.data;
 	         	$scope.board.deadline = new Date($scope.board.deadline.slice(0,3).join());
 	         	$scope.checked = $scope.board.deadline > new Date();
 	         	$scope.members = $scope.board.members;
-	         	
+
       		 });
       	}
 
@@ -29,7 +29,7 @@
 	  			function(){
 	            	toastr.success('Usuário adicionado com sucesso!')
 	  				displayBoard();
-	          	}, response => messageError(response.data)         	
+	          	}, response => messageError(response.data)
 	  		);
 	  	}
 
@@ -52,13 +52,13 @@
 	          	}, response => messageError(response.data)
 	        );
   		}
-  		
+
   		function messageError(data){
   			data.errors.forEach(error =>{
 	        	toastr.error(error.defaultMessage)
 	        });
   		}
-  	
+
     });
 
 })();
