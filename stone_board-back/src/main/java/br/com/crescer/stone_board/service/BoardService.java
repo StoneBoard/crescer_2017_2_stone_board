@@ -1,19 +1,18 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Board;
-import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardMemberModel;
 import br.com.crescer.stone_board.entity.model.BoardModel;
-import br.com.crescer.stone_board.entity.model.BoardSessionModel;
+import br.com.crescer.stone_board.entity.model.BoardRegisterModel;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
+import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -33,29 +32,25 @@ public class BoardService {
     PersonRepository personRepository;
     @Autowired
     PersonComponent personComponent;
-    
+
     @Autowired
     BoardSessionRepository boardSessionRepository;
 
-    public Long save(BoardModel boardModel) {
-        Board board = BoardModel.convertToBoard(boardModel);
-        
-        if (!CollectionUtils.isEmpty(boardModel.getSessions())) {
-            List<BoardSession> boardSessions = boardModel.getSessions()
-                                                .stream()
-                                                .map(BoardSessionModel::convertToBoardSession)
-                                                .collect(Collectors.toList());
+    public Long save(BoardRegisterModel boardRegister) {
+        Board board = BoardRegisterModel.convertToBoard(boardRegister);
 
-            board.setSessions(boardSessions);
+        if (CollectionUtils.isEmpty(boardRegister.getSessions())) {
+            throw new BadRequestException("O Board deve possuir ao menos uma Sessão");
         }
 
         Person personLoged = personComponent.loggedPersonDetails();
         personLoged.getMyBoards().add(board);
 
         personRepository.save(personLoged);
-        
+
         return board.getId();
     }
+
     public Board findById(Long id) {
         return boardRepository.findOne(id);
     }
@@ -63,28 +58,32 @@ public class BoardService {
     public List<Board> findAllBoards() {
         return boardRepository.findAll();
     }
-    
-    public void addMembers(BoardMemberModel boardMemberModel){
+
+    public void addMembers(BoardMemberModel boardMemberModel) {
         Person person = personRepository.findOne(boardMemberModel.getId_person());
         Board board = boardRepository.findOne(boardMemberModel.getId_board());
         person.getConnectBoards().add(board);
-        personRepository.save(person);     
+        personRepository.save(person);
     }
-    
-    public BoardModel update(BoardModel boardModel){
-        Board board = boardRepository.findOne(boardModel.getId());   
-        board.setTitle(boardModel.getTitle());
-        board.setDeadline(boardModel.getDeadline());
+
+    public BoardModel update(BoardRegisterModel boardRegister) {
+        Board board = boardRepository.findOne(boardRegister.getId());
+        board.setTitle(boardRegister.getTitle());
+        board.setDeadline(boardRegister.getDeadline());
         boardRepository.save(board);
         return BoardModel.convertToBoardModel(board);
-        
+
     }
-    
-    public boolean userAuthenticadedBoard(Long id){
+
+    public boolean userAuthenticadedBoard(Long id) {
         Board board = findById(id);
+<<<<<<< HEAD
         Person personLoged = personComponent.loggedPersonDetails();
         return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personLoged.getId()))
             || personLoged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(),id));     
+=======
+        return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personComponent.loggedPersonDetails().getId()));
+>>>>>>> faf194df766a6c4ca90a7a1b123c097ec58578e1
     }
-    
+
 }
