@@ -58,6 +58,7 @@ a:hover {
   margin: 7px 0 7px 0;
 }
 
+
 /* B U T O N S */
 
 .btn {
@@ -107,6 +108,14 @@ a:hover {
 .blue-bg-btn:hover {
   background-color: var(--darkBlue)
 }
+.orange-bg-btn {
+  background-color: var(--orange);
+}
+.orange-bg-btn:hover {
+  background-color: var(--darkOrange)
+}
+
+
 
 .inactive-bg-btn {
   background-color: var(--grayBlueOk)
@@ -229,6 +238,10 @@ a:hover {
 
 .sub-title {
   color: var(--grayBlueLight);
+}
+
+.marker{
+  color: var(--green);
 }
 
 /* S C R O L L */

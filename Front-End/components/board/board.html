@@ -1,10 +1,16 @@
 <nav-bar-header></nav-bar-header>
 <link rel="stylesheet" type="text/css" href="components/board/style.css">
 
-<div class="row start-xs">
+<div class="row middle-xs start-xs">
+	<div class="col-sm-1 col-xs-2">
+		<a class="btn btn-sm green-bg-btn" ng-href="/#!/board/{{board.id}}/edit">
+			<i class="material-icons">mode_edit</i>
+		</a>
+	</div>
 	<div class="col-xs">
 		<p class="title-sm">{{board.title}}</p>
 	</div>
+
 </div>
 
 <div class="row middle-xs">
