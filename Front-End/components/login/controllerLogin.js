@@ -3,16 +3,17 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerLogin', function ($scope, authService, $location) {
+  .controller('controllerLogin', function ($scope, authService, $location, toastr) {
 
     $scope.login = function (usuario) {
 
       authService.login(usuario)
       .then(
         function (response) {},
+
         function (response) {
           console.log(response);
-          console.log('Erro no Login!');
+           toastr.error('Usuario ou senha inválidos!');
         });
       };
 

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket']);
+    .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket','toastr']);
 
 
   angular
