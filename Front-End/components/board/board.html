@@ -12,7 +12,7 @@
 		<div class="container-base">
 
 				<span style="letter-spacing: 1px; padding: 5px; color: white">
-					Ativo - Data de inativação:  {{board.deadline | date: 'dd/MMM/yyyy'}}</span>
+					{{boardStatus}} - Data de inativação:  {{deadline | date: 'dd/MMMM/yyyy'}}</span>
 
 		</div>
 	</div>
@@ -41,11 +41,11 @@
 
 							<div class="pt-box">
 
-								<div class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
+								<div ng-if = "editMode" class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
 									<div class="row">
 										<div class="col-xs">
 											<textarea ng-model="card.text" maxlength="300" class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
-											<button ng-click="submitCardForm(card, session.id)"class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
+											<button ng-click="submitCardForm(card, session.id)" class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
 										</div>
 									</div>
 								</div>

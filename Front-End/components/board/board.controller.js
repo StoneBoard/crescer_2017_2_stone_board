@@ -48,7 +48,11 @@
     validateAuthorization();
       function validateAuthorization(){
       let promise =  boardService.findById($routeParams.idBoard).then(
-        function (response) {},
+        function (response) {
+          $scope.deadline = response.data.deadline;
+          $scope.deadline = new Date($scope.deadline.slice(0,3).join());
+          boardBlock($scope.deadline);
+        },
         function (response) {
           socket = null;
           $location.path('/dashboard');
@@ -87,7 +91,7 @@
     }
 
     function update(board) {
-      $scope.$apply(function () { 
+      $scope.$apply(function () {
         $scope.board = angular.fromJson(board.body).content;
         $scope.sessions = $scope.board.sessions;
         if (!resized) {
@@ -100,7 +104,14 @@
 
     connect();
 
- 
+    function boardBlock(date){
+      $scope.editMode = true;
+      if(date < new Date()){
+      $scope.editMode = false;
+      }
+
+    }
+
   });
 
 })();
