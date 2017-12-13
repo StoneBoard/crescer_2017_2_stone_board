@@ -24,8 +24,10 @@
       let promise = personService.listConnectBoards();
         promise.then(function (response) {
             $scope.connectBoards = response.data;
-            //$scope.connectBoards.deadline = $scope.connectBoards.map(x => x.deadline = new Date(x.deadline));
-            console.log($scope.connectBoards);
+            $scope.connectBoards.forEach(
+              x =>
+              { x.deadline = new Date(x.deadline.slice(0,3).join())
+              });
         });
     }
 

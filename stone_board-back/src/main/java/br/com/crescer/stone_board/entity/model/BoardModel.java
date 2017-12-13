@@ -28,7 +28,6 @@ public class BoardModel implements Serializable {
     @NotNull(message = "error.title.notnull ")
     @Size(max = 128, min = 1, message = "error.title.size ")
     private String title;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime deadline;
     private List<Long> id_members;
     private List<BoardSessionModel> sessions;

@@ -52,7 +52,7 @@
       socket.onopen = function () {
         stompClient.subscribe('/stoneboard/sendBoard', function (board) {
           console.log('na resposta')
-          console.log(board)
+          console.log(board.body)
  				update(board);
         });
        sendMessage();
@@ -70,7 +70,6 @@
 		}
 
 		function sendMessage(){
-      console.log('sendMessage HERE')
 			stompClient.send("/app/board/" + $routeParams.idBoard, {});
 		}
 

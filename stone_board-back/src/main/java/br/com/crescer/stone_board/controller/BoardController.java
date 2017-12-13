@@ -3,7 +3,6 @@ package br.com.crescer.stone_board.controller;
 import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.model.BoardMemberModel;
 import br.com.crescer.stone_board.entity.model.BoardModel;
-import br.com.crescer.stone_board.entity.model.RegisterBoardModel;
 import br.com.crescer.stone_board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +27,8 @@ public class BoardController {
     private BoardService boardService;
     
     @PostMapping
-    public ResponseEntity Save(@Validated @RequestBody RegisterBoardModel registerBoardModel){
-       return ResponseEntity.ok(boardService.save(registerBoardModel));
+    public ResponseEntity Save(@Validated @RequestBody BoardModel boardModel){
+       return ResponseEntity.ok(boardService.save(boardModel));
     }
     @PutMapping("/addMember")
     public Long addMembers(@RequestBody BoardMemberModel boardMemberModel){

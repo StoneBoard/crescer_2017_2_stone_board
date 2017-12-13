@@ -6,7 +6,6 @@ import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardMemberModel;
 import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionModel;
-import br.com.crescer.stone_board.entity.model.RegisterBoardModel;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
@@ -34,11 +33,11 @@ public class BoardService {
     @Autowired
     BoardSessionRepository boardSessionRepository;
 
-    public Long save(RegisterBoardModel registerBoardModel) {
-        Board board = RegisterBoardModel.convertToBoard(registerBoardModel);
+    public Long save(BoardModel boardModel) {
+        Board board = BoardModel.convertToBoard(boardModel);
         
-        if (!CollectionUtils.isEmpty(registerBoardModel.getSessions())) {
-            List<BoardSession> boardSessions = registerBoardModel.getSessions()
+        if (!CollectionUtils.isEmpty(boardModel.getSessions())) {
+            List<BoardSession> boardSessions = boardModel.getSessions()
                                                 .stream()
                                                 .map(BoardSessionModel::convertToBoardSession)
                                                 .collect(Collectors.toList());
