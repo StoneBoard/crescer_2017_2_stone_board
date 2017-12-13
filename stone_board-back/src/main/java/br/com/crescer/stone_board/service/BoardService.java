@@ -1,18 +1,17 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Board;
-import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.BoardMemberModel;
 import br.com.crescer.stone_board.entity.model.BoardModel;
-import br.com.crescer.stone_board.entity.model.BoardSessionModel;
+import br.com.crescer.stone_board.entity.model.BoardRegisterModel;
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
+import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -33,17 +32,11 @@ public class BoardService {
     @Autowired
     BoardSessionRepository boardSessionRepository;
 
-    public Long save(BoardModel boardModel) {
-        Board board = BoardModel.convertToBoard(boardModel);
+    public Long save(BoardRegisterModel boardRegister) {
+        Board board = BoardRegisterModel.convertToBoard(boardRegister);
         
-        if (!CollectionUtils.isEmpty(boardModel.getSessions())) {
-            List<BoardSession> boardSessions = boardModel.getSessions()
-                                                .stream()
-                                                .map(BoardSessionModel::convertToBoardSession)
-                                                .collect(Collectors.toList());
-
-            board.setSessions(boardSessions);
-        }
+        if (CollectionUtils.isEmpty(boardRegister.getSessions()))
+            throw new BadRequestException("O Board deve possuir ao menos uma Sessão");
 
         Person personLoged = personComponent.loggedPersonDetails();
         personLoged.getMyBoards().add(board);
@@ -67,10 +60,10 @@ public class BoardService {
         personRepository.save(person);     
     }
     
-    public BoardModel update(BoardModel boardModel){
-        Board board = boardRepository.findOne(boardModel.getId());   
-        board.setTitle(boardModel.getTitle());
-        board.setDeadline(boardModel.getDeadline());
+    public BoardModel update(BoardRegisterModel boardRegister){                
+        Board board = boardRepository.findOne(boardRegister.getId());   
+        board.setTitle(boardRegister.getTitle());
+        board.setDeadline(boardRegister.getDeadline());
         boardRepository.save(board);
         return BoardModel.convertToBoardModel(board);
         

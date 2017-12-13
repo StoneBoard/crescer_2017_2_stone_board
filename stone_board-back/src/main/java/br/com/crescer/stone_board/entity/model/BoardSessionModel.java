@@ -25,15 +25,8 @@ import lombok.NoArgsConstructor;
 public class BoardSessionModel implements Serializable {
 
     private Long id;
-    @NotNull(message = "error.title.notnull ")
-    @Size(min = 1, max = 128, message = "erro.titulo.size")
     private String title;
-    @NotNull(message = "error.color.notnull")
-    @Min(value = 0)
-    @Max(value = 3)
     private int color;
-    @NotNull(message = "error.icon.notnull")
-    @Size(max = 512, message = "error.icon.size")
     private String icon;
     private List<CardModel> cards;
 

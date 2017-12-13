@@ -26,7 +26,10 @@
 	  			id_board: $scope.idBoard,
 	  			id_person: _id_person
 	  		}
-	  		let promisse = boardService.addMembers(newMember).then();
+	  		let promisse = boardService.addMembers(newMember).then(
+	  			() => {
+	  				displayBoard();
+	  			});
 	  	}
 
 	  	$scope.findPersonByEmail = function(email){

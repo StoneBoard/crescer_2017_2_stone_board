@@ -25,19 +25,10 @@ import lombok.NoArgsConstructor;
 public class BoardModel implements Serializable {
 
     private Long id;
-    @NotNull(message = "error.title.notnull ")
-    @Size(max = 128, min = 1, message = "error.title.size ")
     private String title;
     private LocalDateTime deadline;
     private List<PersonModel> members;
     private List<BoardSessionModel> sessions;
-
-    public static Board convertToBoard(BoardModel boardModel) {
-        return Board.builder()
-                .title(boardModel.getTitle())
-                .deadline(boardModel.getDeadline())
-                .build();
-    }
 
     public static BoardModel convertToBoardModel(Board board) {
         return BoardModel.builder()
