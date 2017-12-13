@@ -22,6 +22,7 @@
 
   	function resizeRow() {
 
+
   		let rowSession = angular.element(document.getElementById('row-sessions'));
   		rowSession.css('width', '100%');
 
@@ -49,6 +50,7 @@
       let promise =  boardService.findById($routeParams.idBoard).then(
         function (response) {},
         function (response) {
+          socket = null;
           $location.path('/dashboard');
         });
     }
@@ -57,7 +59,7 @@
       socket = new SockJS('http://localhost:9090/api/websocket');
       stompClient = Stomp.over(socket);
       stompClient.connect({}, function (frame) { });
-
+      stompClient.debug = null;
       socket.onopen = function () {
         stompClient.subscribe('/stoneboard/sendBoard', function (board) {
  				update(board);
@@ -91,6 +93,7 @@
 
     connect();
 
+ 
   });
 
 })();

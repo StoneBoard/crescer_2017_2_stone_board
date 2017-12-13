@@ -14,28 +14,43 @@
 
       .when('/dashboard', {
         controller: 'controllerDashboard',
-        templateUrl: 'components/dashboard/dashboard.html'/*,
+        templateUrl: 'components/dashboard/dashboard.html',
         resolve: {
           autenticado: function (authService) {
             return authService.isAutenticadoPromise();
           }
-        }*/
+        }
       })
 
       .when('/board/:idBoard', {
         controller: 'controllerBoard',
-        templateUrl: 'components/board/board.html'
+        templateUrl: 'components/board/board.html',
+        resolve: {
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
       })
 
 
       .when('/board-register', {
         controller: 'controllerBoardRegister',
-        templateUrl: 'components/board/board.register.html'
+        templateUrl: 'components/board/board.register.html',
+        resolve: {
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
       })
 
       .when('/board/:idBoard/edit', {
         controller: 'controllerEditBoard',
-        templateUrl: 'components/board/board.edit.html'
+        templateUrl: 'components/board/board.edit.html',
+        resolve: {
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
       })
 
       .otherwise('/login');
