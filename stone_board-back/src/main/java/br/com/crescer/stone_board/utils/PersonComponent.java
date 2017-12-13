@@ -15,7 +15,7 @@ public class PersonComponent {
 
     @Autowired
     PersonService personService;
-    
+
     public LoggedPersonModel loggedPerson() {
         return Optional
                 .ofNullable(loggedPersonDetails())
@@ -38,7 +38,5 @@ public class PersonComponent {
                 .map(User.class::cast)
                 .orElse(null);
     }
-    
-    
-    
+
 }

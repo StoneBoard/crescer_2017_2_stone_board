@@ -8,7 +8,7 @@
 		</div>
 		<div class="row" ng-style="paddingCard">
 			<div class="col-xs">
-				<textarea class="pt-input" ng-if="editMode" ng-model="p.text" rows="5" cols="18"></textarea>
+				<textarea maxlength="300" class="pt-input" ng-if="editMode" ng-model="p.text" rows="5" cols="18"></textarea>
 				<div class="pt-body" ng-model="p.text" ng-if="!editMode">{{p.text}}</div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 
 		<div class="row arund-xs" ng-if="!editMode">
 			<div class="col-xs {{votoPositivo}}">
-				<div class="pt-icon {{color}}-selected"">	
+				<div class="pt-icon {{color}}-selected">	
 					<i class="material-icons md-dark" ng-click="vote(true)">keyboard_arrow_up</i>
 					<span>{{vPositivo.length}}</span>
 				</div>

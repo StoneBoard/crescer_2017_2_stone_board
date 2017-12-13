@@ -34,7 +34,7 @@ public class PersonController {
         List<BoardModel> boardsModel = boards.stream()
                 .map(BoardModel::convertToBoardModel)
                 .collect(Collectors.toList());
-        
+
         return ResponseEntity.ok(boardsModel);
     }
     @GetMapping("/listConnectBoards")
