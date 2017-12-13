@@ -13,10 +13,18 @@
   	function listConnectBoards(){
   		return $http.get(urlBase + '/listConnectBoards');
   	}
+    function findByEmail(email){
+      console.log("entrou service")
+      debugger;
+      let result = $http.get(urlBase, email);
+      debugger;
+      return result;
+    }
 
   	return {
   		listMyBoards : listMyBoards,
-  		listConnectBoards : listConnectBoards
+  		listConnectBoards : listConnectBoards,
+      findByEmail : findByEmail
   	};
   })
 }());

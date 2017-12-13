@@ -29,9 +29,11 @@
 	  	}
 
 	  	$scope.findPersonByEmail = function(email){
+	  		console.log(email);
 	  		let promisse =  personService.findByEmail(email);
 	      	promisse.then(function (response) {
 	       	  $scope.persons  = response.data;
+	       	  console.log(response);
 	        });
   		}
 

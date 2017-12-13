@@ -9,8 +9,13 @@
     function listMyBoards(){
       let promise = personService.listMyBoards();
         promise.then(function (response) {
-            console.log(response);
             $scope.myBoards = response.data;
+            $scope.myBoards.forEach(
+              x =>
+              { x.deadline = new Date(x.deadline.slice(0,3).join())
+              });
+
+            console.log($scope.myBoards);
         });
     }
 
