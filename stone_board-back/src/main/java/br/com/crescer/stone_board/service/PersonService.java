@@ -9,6 +9,7 @@ import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.Notification;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.LoggedPersonModel;
+import br.com.crescer.stone_board.entity.model.PersonModel;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;

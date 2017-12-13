@@ -69,7 +69,7 @@
 			<div class="row start-xs">
 
 				<div class="col-xs-12">
-					<form novalidate name="formLogin" ng-submit="login(usuario)">
+					<form novalidate name="formLogin" >
 						<p class="title-lg">Buscar Pessoas</p>
 		            
 		        <div class="form-box-input">
@@ -79,7 +79,7 @@
 			          	<input type="text" class="input-form stretch" ng-model="usuario.email" placeholder="exemplo@email.com">
 		          	</div>
 			          <div class="col-xs">
-		        			<button type="submit" ng-click="findPersonByEmail(usuario.email)" class="btn btn-md green-bg-btn stretch">BUSCAR</button>
+		        			<button type="submit"  ng-click="findPersonByEmail(usuario.email)" class="btn btn-md green-bg-btn stretch">BUSCAR</button>
 			          </div>
 		          </div>
 		        </div>
