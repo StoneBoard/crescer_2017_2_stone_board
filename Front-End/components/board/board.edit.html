@@ -8,7 +8,7 @@
 					<form class="form-box" name="boardForm" ng-submit="submitBoardForm(board)" novalidate>
 
 						<div class="col-xs-12">
-							<a ng-href="/#!/board/{{idBoard}}">
+							<a class="link-text" ng-href="/#!/board/{{idBoard}}">
 								<div class="row middle-xs">
 									<i class="material-icons">chevron_left</i>
 									Voltar ao Board
@@ -19,7 +19,7 @@
 						<p class="title-lg">Configurações do Board</p>
 						
 						<div class="form-box-input">
-							<label>Título (obrigatório)</label>
+							<label>Título<span class="marker">*</span></label>
 							<input name="titulo" type="text" class="input-form" ng-model="board.title" placeholder="" maxlength="128" required>
 							<div ng-if="boardForm.titulo.$touched" class="box-erro" role="alert">
 								<div ng-if="boardForm.titulo.$error.required">Campo obrigatório.</div>
@@ -30,7 +30,7 @@
 						<div class="row middle-xs">
 							<div class="col-xs">
 								<div class="form-box-input">
-									<label>Data Limite para postagens (obrigatório)</label>
+									<label>Data Limite para postagens <span class="marker">*</span></label>
 									<input name="date" type="date" class="input-form" ng-model="board.deadline" ng-readonly="!active" required>
 									<div ng-if="boardForm.date.$touched" class="box-erro" role="alert">
 							            <div ng-if="boardForm.date.$error.required">Campo obrigatório.</div>
@@ -55,7 +55,7 @@
 									<button class="btn btn-md inactive-bg-btn">CANCELAR</button>
 								</div>
 								<div class="col-sm col-xs-6">
-									<button type="submit" ng-disabled="boardForm.$invalid"class="btn btn-md green-bg-btn">SALVAR</button>
+									<button type="submit" class="btn btn-md green-bg-btn">SALVAR</button>
 								</div>
 							</div>
 

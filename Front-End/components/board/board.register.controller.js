@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoardRegister', function ($scope, $location, $window, boardService) {
+  .controller('controllerBoardRegister', function ($scope, $location, $window, boardService, toastr) {
 
   	$scope.board = { sessions: [] }
 
@@ -17,9 +17,17 @@
   	}
     $scope.submitBoardForm = function(board){
       console.log(board);
-      let promise = boardService.saveBoard(board).then();
+      let promise = boardService.saveBoard(board).then(
+          function(){
+            toastr.success('Board cadastrado com sucesso!');
+            $location.path('/dashboard');
+          }, function(response){
+            response.data.errors.forEach(error =>{
+              toastr.error(error.defaultMessage)
+            });
+              console.log(response);
+          });
       console.log(promise);
-      $location.path('/#!/dashboard');
     }
 
   });

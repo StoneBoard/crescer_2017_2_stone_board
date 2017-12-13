@@ -34,8 +34,7 @@ body {
 }
 
 a {
-  display: block; 
-  margin: 15px 0; 
+  display: block;  
   text-decoration: none;
   color: white;
 }
@@ -57,6 +56,7 @@ a:hover {
   border-radius: 3px;
   margin: 7px 0 7px 0;
 }
+
 
 /* B U T O N S */
 
@@ -107,6 +107,14 @@ a:hover {
 .blue-bg-btn:hover {
   background-color: var(--darkBlue)
 }
+.orange-bg-btn {
+  background-color: var(--orange);
+}
+.orange-bg-btn:hover {
+  background-color: var(--darkOrange);
+}
+
+
 
 .inactive-bg-btn {
   background-color: var(--grayBlueOk)
@@ -229,6 +237,14 @@ a:hover {
 
 .sub-title {
   color: var(--grayBlueLight);
+}
+
+.marker{
+  color: var(--green);
+}
+
+.link-text{
+  margin: 15px 0;
 }
 
 /* S C R O L L */

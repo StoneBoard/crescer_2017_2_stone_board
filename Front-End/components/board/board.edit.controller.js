@@ -25,7 +25,12 @@
 	  			id_board: $scope.idBoard,
 	  			id_person: _id_person
 	  		}
-	  		let promisse = boardService.addMembers(newMember).then();
+	  		boardService.addMembers(newMember).then(
+	  			function(){
+	            	toastr.success('Usuário adicionado com sucesso!')
+	  				displayBoard();
+	          	}, response => messageError(response.data)         	
+	  		);
 	  	}
 
 	  	$scope.findPersonByEmail = function(email){
@@ -41,7 +46,17 @@
 
   		$scope.submitBoardForm = function(board){
   			console.log("Entrou update");
-	  		let promisse = boardService.update(board).then();
+	  		boardService.update(board).then(
+	  			function(){
+	            	toastr.success('Board editado com sucesso!')
+	          	}, response => messageError(response.data)
+	        );
+  		}
+  		
+  		function messageError(data){
+  			data.errors.forEach(error =>{
+	        	toastr.error(error.defaultMessage)
+	        });
   		}
   	
     });
