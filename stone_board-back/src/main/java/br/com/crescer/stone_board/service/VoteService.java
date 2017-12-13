@@ -10,10 +10,9 @@ import br.com.crescer.stone_board.entity.Vote;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.VoteModel;
 import br.com.crescer.stone_board.repository.CardRepository;
+import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.repository.VoteRepository;
-import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -30,30 +29,36 @@ public class VoteService {
     @Autowired
     CardRepository cardRepository;
     @Autowired
-    PersonComponent personComponent;
+    PersonRepository personRepository;
     
-    public void save(VoteModel voteModel){
-        Person personLoged = personComponent.loggedPersonDetails();
+     public void save(VoteModel voteModel) {
+        Person person = personRepository.getOne(voteModel.getId_person());
         Card card = cardRepository.findOne(voteModel.getId_card());
-        Vote vote = null;
-        if(!CollectionUtils.isEmpty(card.getVotes())){
-              vote = card.getVotes().stream()
-                                .filter(v ->  Objects.equals(v.getPerson().getId(), personLoged.getId()))
-                                .findFirst()
-                                .get();
-        }
-       
-        if(vote != null){
-            if(vote.isPositive() == voteModel.isPositive()){
-                card.getVotes().remove(vote);
+
+        Vote vote = Vote.builder()
+                .person(person)
+                .positive(voteModel.isPositive())
+                .build();
+
+        if (CollectionUtils.isEmpty(card.getVotes())) {
+            card.getVotes().add(vote);
+        } else {
+            Vote votePerson = card.getVotes()
+                    .stream()
+                    .filter(x -> Objects.equals(x.getPerson().getId(), person.getId()))
+                    .findAny()
+                    .orElse(null);
+
+            if (votePerson == null) {
+                card.getVotes().add(vote);
+            } else if (votePerson.isPositive() == vote.isPositive()) {
+                card.getVotes().remove(votePerson);
+            } else {
+                votePerson.setPositive(vote.isPositive());
+                voteRepository.save(votePerson);
             }
-            else{
-                 vote.setPositive(voteModel.isPositive());
-            }
         }
-        else{
-            card.getVotes().add(new Vote ( null,personLoged, voteModel.isPositive()));
-        }
+
         cardRepository.save(card);
     }
     

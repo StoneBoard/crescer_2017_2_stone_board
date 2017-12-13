@@ -2,7 +2,7 @@
    'use strict'
   angular.module('stoneBoard').factory('voteService', function($http){
 
-    let urlBase = 'http://localhost:9090/api/vote';
+    let urlBase = 'http://10.99.30.75:9090/api/vote';
 
     function saveVote(vote){
 

@@ -4,7 +4,7 @@
   .module('stoneBoard')
   .factory('personService', function($http){
 
-  	let urlBase = 'http://localhost:9090/api/person';
+  	let urlBase = 'http://10.99.30.75:9090/api/person';
 
   	function listMyBoards(){
   		return $http.get( urlBase + "/listMyBoards");

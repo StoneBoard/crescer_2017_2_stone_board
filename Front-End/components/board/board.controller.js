@@ -60,7 +60,7 @@
     }
 
     function connect() {
-      socket = new SockJS('http://localhost:9090/api/websocket');
+      socket = new SockJS('http://10.99.30.75:9090/api/websocket');
       stompClient = Stomp.over(socket);
       stompClient.connect({}, function (frame) { });
       stompClient.debug = null;

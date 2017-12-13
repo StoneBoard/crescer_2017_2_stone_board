@@ -38,22 +38,15 @@ public class CardController {
         cardService.save(cardModel);
     }
     @GetMapping(path = "/{id}")
-    public ResponseEntity FindById(@PathVariable Long id){
+    public ResponseEntity findById(@PathVariable Long id){
        return ResponseEntity.ok(cardService.findById(id));
     }  
     @PutMapping
-    public void SavePut(@RequestBody CardModel cardModel){
+    public void savePut(@RequestBody CardModel cardModel){
       cardService.update(cardModel);
     }
     @DeleteMapping(path = "/{id}")
-    public void Delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id){
         cardService.delete(id);
-    }
-    @MessageMapping("loadCardById/{id}")
-    @SendTo("/card")
-    public Greeting greeting(@PathVariable Long id) throws Exception {
-        Thread.sleep(1000); 
-         Card card = cardService.findById(id);
-        return new Greeting(CardModel.convertToCardModel(card));
     }
 }

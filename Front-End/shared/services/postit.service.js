@@ -2,7 +2,7 @@
    'use strict'
   angular.module('stoneBoard').factory('postitService', function($http){
 
-    let urlBase = 'http://localhost:9090/api/card';
+    let urlBase = 'http://10.99.30.75:9090/api/card';
 
     function saveCard(card){
 
@@ -13,7 +13,7 @@
       return $http.put(urlBase, card);
     }
     function deleteCard(id){
-      return $http.delete('http://localhost:9090/api/card/' + id);
+      return $http.delete('http://10.99.30.75:9090/api/card/' + id);
     }
     return {
       saveCard : saveCard,
