@@ -19,17 +19,14 @@
         headers: headerAuth
       }).then(
         function (response) {
-          $localStorage.usuarioLogado = { id:response.data.id,
-                                          nome: response.data.fullname,
-                                          email: response.data.email
-          };
+          $localStorage.usuarioLogado = response.data;
           $localStorage.headerAuth = montarHeader(usuario)['Authorization'];
           $http.defaults.headers.common.Authorization = $localStorage.headerAuth;
           $rootScope.$broadcast('authLoginSuccess');
 
- 
+
           $location.path('/dashboard');
- 
+
           deferred.resolve(response);
         },
 

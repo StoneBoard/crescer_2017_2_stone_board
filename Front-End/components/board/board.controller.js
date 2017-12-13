@@ -8,7 +8,6 @@
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
     $scope.sendMessage = sendMessage;
-    $scope.meuNumeroTest = 1;
 
   	let idealWidth = 550; //px
   	let numSession;
@@ -35,26 +34,12 @@
 	  	rowSession.css('width', newWidth);
   	}
 
- /*   displayBoard();
-    function displayBoard(){
-
-      let promisse =  boardService.findById($routeParams.idBoard);
-      promisse.then(function (response) {
-
-            $scope.board = response.data;
-            $scope.sessions = $scope.board.sessions;
-            numSession = $scope.sessions.length;
-            resizeRow();
-
-        });
-    } */
-
     $scope.submitCardForm = function(card, session_id){
       card.id_session = session_id;
 			let promise = postitService.saveCard(card).then();
 			sendMessage();
 		}
-		
+
 		var socket = null;
     var stompClient = null;
     var interval = null;
@@ -63,7 +48,7 @@
       socket = new SockJS('http://localhost:9090/api/websocket');
       stompClient = Stomp.over(socket);
       stompClient.connect({}, function (frame) { });
-	
+
       socket.onopen = function () {
         stompClient.subscribe('/stoneboard/sendBoard', function (board) {
           console.log('na resposta')
@@ -83,15 +68,14 @@
       };
 
 		}
-		
+
 		function sendMessage(){
       console.log('sendMessage HERE')
 			stompClient.send("/app/board/" + $routeParams.idBoard, {});
 		}
 
     function update(board) {
-      $scope.$apply(function () {
-        $scope.meuNumeroTest++; 
+      $scope.$apply(function () { 
         $scope.board = angular.fromJson(board.body).content;
         $scope.sessions = $scope.board.sessions;
         numSession = $scope.sessions.length;

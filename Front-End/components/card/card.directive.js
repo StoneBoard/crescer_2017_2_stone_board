@@ -12,17 +12,7 @@
         c : '=info'
       },
 
-      templateUrl: 'components/card/card.html',
-
-      controller: function ($scope) {
-
-
-
-
-      }
-
+      templateUrl: 'components/card/card.html'
     }
-
 	});
-
 })();

@@ -1,5 +1,4 @@
 <nav-bar-header></nav-bar-header>
-{{meuNumeroTest}}
 <link rel="stylesheet" type="text/css" href="components/board/style.css">
 
 <div class="row start-xs">
@@ -11,25 +10,25 @@
 <div class="row middle-xs">
 	<div class="col-xs">
 		<div class="container-base">
-				
+
 				<span style="letter-spacing: 1px; padding: 5px; color: white">
-					Ativo - Data de inativação: 11 de maio de 2017</span>
-	
+					Ativo - Data de inativação: {{board.deadline | date: 'dd/MM/yyyy HH:ss'}}</span>
+
 		</div>
 	</div>
 </div>
 
 <div class="board">
-	
+
 	<div id="row-sessions" ng-style="rowStyle">
-		<div class="row" style="width: 100%">	
+		<div class="row" style="width: 100%">
 
 			<!-- inicio da session -->
 
 			<div class="col-xs" ng-repeat="session in sessions">
 				<div class="box">
 					<div class="container-base">
-						
+
 						<div class="row">
 							<div class="col-xs">
 								<div class="title-session {{colorPallet[session.color]}}-title">
@@ -44,15 +43,14 @@
 
 								<div class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
 									<div class="row">
-										<div class="col-xs">		
-											<textarea ng-model="card.text"class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
+										<div class="col-xs">
+											<textarea ng-model="card.text" maxlength="300" class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
 											<button ng-click="submitCardForm(card, session.id)"class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
 										</div>
 									</div>
 								</div>
 
 							</div>
-							{{sendMessage}}
 							<div ng-repeat= "card in session.cards">
 								<post-it info="card" color="colorPallet[session.color]" send="sendMessage"></post-it>
 							</div>

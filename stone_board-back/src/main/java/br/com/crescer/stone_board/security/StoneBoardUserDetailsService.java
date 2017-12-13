@@ -29,25 +29,12 @@ public class StoneBoardUserDetailsService implements UserDetailsService {
 
     PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public static class CustomUserDetails extends User {
-
-        @Getter
-        @Setter
-        private String fullName;
-
-        public CustomUserDetails(Person person, Collection<? extends GrantedAuthority> authorities) {
-            super(person.getEmail(), person.getPass(), authorities);
-            this.fullName = person.getFullName();
-
-        }
-    }
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         final Person person = personService.findByEmail(email);
         return Optional
-                .ofNullable(new User(person.getEmail(), encoder.encode("1234"), new ArrayList<>()))
-                //   .ofNullable(new CustomUserDetails(person, new ArrayList<>()))
+                //.ofNullable(new User(person.getEmail(), encoder.encode("1234"), new ArrayList<>()))
+                .ofNullable(new User(person.getEmail(), person.getPass(), new ArrayList<>()))
                 .orElse(null);
     }
 }

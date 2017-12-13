@@ -7,8 +7,6 @@ import br.com.crescer.stone_board.service.BoardService;
 import br.com.crescer.stone_board.service.PersonService;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import br.com.crescer.stone_board.webSocket.Greeting;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -41,6 +39,7 @@ public class WebSocketController {
     @MessageMapping("/board/{id}")
     @SendTo("/stoneboard/sendBoard")
     public Greeting boardUpdate(@DestinationVariable Long id) throws Exception {
+        Thread.sleep(1000);
         Board board = boardService.findById(id);
         return new Greeting(BoardModel.convertToBoardModel(board));
     }

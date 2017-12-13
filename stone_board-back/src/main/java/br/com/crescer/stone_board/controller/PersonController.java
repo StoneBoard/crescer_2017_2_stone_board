@@ -37,8 +37,6 @@ public class PersonController {
                 .map(BoardModel::convertToBoardModel)
                 .collect(Collectors.toList());
     
-        //BoardModel newBoard = new BoardModel("xuxuxu", LocalDateTime.now(), true, null, null);
-    
         return ResponseEntity.ok(boardsModel);
     }
     @GetMapping("/listConnectBoards")
