@@ -20,14 +20,21 @@
 						
 						<div class="form-box-input">
 							<label>Título (obrigatório)</label>
-							<input type="text" class="input-form" ng-model="board.title" placeholder="" requered>
+							<input name="titulo" type="text" class="input-form" ng-model="board.title" placeholder="" maxlength="128" required>
+							<div ng-if="boardForm.titulo.$touched" class="box-erro" role="alert">
+								<div ng-if="boardForm.titulo.$error.required">Campo obrigatório.</div>
+								<div ng-if="boardForm.titulo.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
+        					</div>
 						</div>
 
 						<div class="row middle-xs">
 							<div class="col-xs">
 								<div class="form-box-input">
 									<label>Data Limite para postagens (obrigatório)</label>
-									<input type="date" class="input-form" ng-model="board.deadline" ng-readonly="!active" requered>
+									<input name="date" type="date" class="input-form" ng-model="board.deadline" ng-readonly="!active" required>
+									<div ng-if="boardForm.date.$touched" class="box-erro" role="alert">
+							            <div ng-if="boardForm.date.$error.required">Campo obrigatório.</div>
+        							</div>
 								</div>
 							</div>
 							<div class="col-xs">
@@ -48,7 +55,7 @@
 									<button class="btn btn-md inactive-bg-btn">CANCELAR</button>
 								</div>
 								<div class="col-sm col-xs-6">
-									<button type="submit" class="btn btn-md green-bg-btn">SALVAR</button>
+									<button type="submit" ng-disabled="boardForm.$invalid"class="btn btn-md green-bg-btn">SALVAR</button>
 								</div>
 							</div>
 
@@ -59,8 +66,6 @@
 				
 				</div>
 			</div>
-
-
 	</div>
 
 	<div class="col-sm-12 col-md-6 col-xs-12">

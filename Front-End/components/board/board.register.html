@@ -11,12 +11,19 @@
 						
 						<div class="form-box-input">
 							<label>Título</label>
-							<input type="text" class="input-form" ng-model="board.title" placeholder="">
+							<input name="titulo" type="text" maxlength="128" class="input-form" ng-model="board.title" placeholder="" required>
+							<div ng-if="boardForm.titulo.$touched" class="box-erro" role="alert">
+								<div ng-if="boardForm.titulo.$error.required">Campo obrigatório.</div>
+								<div ng-if="boardForm.titulo.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
+        					</div>
 						</div>
 
 						<div class="form-box-input">
 							<label>Data Limite para postagens</label>
-							<input type="date" class="input-form" ng-model="board.deadline" placeholder="">
+							<input name="date" type="date" class="input-form" ng-model="board.deadline" placeholder="" required>
+							<div ng-if="boardForm.date.$touched" class="box-erro" role="alert">
+								<div ng-if="boardForm.date.$error.required">Campo obrigatório.</div>
+        					</div>
 						</div>
 
 						<div class="form-separator"></div>
@@ -25,7 +32,11 @@
 
 						<div class="form-box-input">
 							<label>Título</label>
-							<input type="text" class="input-form" ng-model="session.title" placeholder="">
+							<input name="tituloSession" type="text" maxlength="128" class="input-form" ng-model="session.title" placeholder="" required>
+							<div ng-if="boardForm.tituloSession.$touched" class="box-erro" role="alert">
+								<div ng-if="boardForm.tituloSession.$error.required">Campo obrigatório.</div>
+								<div ng-if="boardForm.tituloSession.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
+        					</div>
 						</div>
 
 						<div class="form-box-input">
@@ -82,7 +93,7 @@
 									<button class="btn btn-md inactive-bg-btn">CANCELAR</button>
 								</div>
 								<div class="col-sm col-xs-6">
-									<button type="submit" class="btn btn-md green-bg-btn">SALVAR</button>
+									<button type="submit" ng-disabled="boardForm.$invalid" class="btn btn-md green-bg-btn">SALVAR</button>
 								</div>
 							</div>
 
