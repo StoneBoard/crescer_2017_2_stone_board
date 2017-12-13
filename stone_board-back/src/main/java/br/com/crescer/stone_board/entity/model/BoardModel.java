@@ -29,7 +29,7 @@ public class BoardModel implements Serializable {
     @Size(max = 128, min = 1, message = "error.title.size ")
     private String title;
     private LocalDateTime deadline;
-    private List<Long> id_members;
+    private List<PersonModel> members;
     private List<BoardSessionModel> sessions;
 
     public static Board convertToBoard(BoardModel boardModel) {
@@ -44,8 +44,8 @@ public class BoardModel implements Serializable {
                 .id(board.getId())
                 .title(board.getTitle())
                 .deadline(board.getDeadline())
-                .id_members(board.getMembers().stream()
-                        .map(x -> x.getId()).collect(Collectors.toList()))
+                .members(board.getMembers().stream()
+                        .map(PersonModel :: convertToPersonModel).collect(Collectors.toList()))
                 .sessions(board.getSessions().stream()
                         .map(BoardSessionModel::convertToBoardSessionModel)
                         .collect(Collectors.toList()))

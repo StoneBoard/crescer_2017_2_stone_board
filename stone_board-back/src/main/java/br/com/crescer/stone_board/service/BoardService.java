@@ -60,18 +60,18 @@ public class BoardService {
         return boardRepository.findAll();
     }
     
-    public Long addMembers(BoardMemberModel boardMemberModel){
-        Person person = personRepository.findByEmail(boardMemberModel.getPerson().getEmail());
-        Board board = boardRepository.findOne(boardMemberModel.getBoard().getId());
+    public void addMembers(BoardMemberModel boardMemberModel){
+        Person person = personRepository.findOne(boardMemberModel.getId_person());
+        Board board = boardRepository.findOne(boardMemberModel.getId_board());
         person.getConnectBoards().add(board);
         personRepository.save(person);     
-        return person.getId();
     }
     
     public BoardModel update(BoardModel boardModel){
         Board board = boardRepository.findOne(boardModel.getId());   
         board.setTitle(boardModel.getTitle());
         board.setDeadline(boardModel.getDeadline());
+        boardRepository.save(board);
         return BoardModel.convertToBoardModel(board);
         
     }

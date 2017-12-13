@@ -31,12 +31,12 @@ public class BoardController {
        return ResponseEntity.ok(boardService.save(boardModel));
     }
     @PutMapping("/addMember")
-    public Long addMembers(@RequestBody BoardMemberModel boardMemberModel){
-        return boardService.addMembers(boardMemberModel);
+    public void addMembers(@RequestBody BoardMemberModel boardMemberModel){
+         boardService.addMembers(boardMemberModel);
     }
     
     @PutMapping
-    public BoardModel update(BoardModel boardModel){
+    public BoardModel update(@Validated @RequestBody BoardModel boardModel){
         return boardService.update(boardModel);
     }
  

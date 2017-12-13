@@ -13,6 +13,7 @@ import br.com.crescer.stone_board.entity.model.PersonModel;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,11 @@ public class PersonService {
      public List<Notification> listMyNotifications() {        
         return personComponent.loggedPersonDetails().getNotifications();
     }
-    
+    public List<PersonModel> findPersonsByEmail(String email){
+        return personRepository.findByEmailContainingIgnoreCase(email)
+                .stream()
+                .map(PersonModel :: convertToPersonModel)
+                .collect(Collectors.toList());
+    }
+     
 }

@@ -17,23 +17,22 @@
 	         	$scope.board.deadline = new Date($scope.board.deadline.slice(0,3).join());
 	         	$scope.checked = $scope.board.deadline > new Date();
 	         	$scope.members = $scope.board.members;
+	         	
       		 });
       	}
 
       	$scope.addMembers = function(_id_person){
 	  		let newMember = {
-	  			id_board: $scope.id_board,
+	  			id_board: $scope.idBoard,
 	  			id_person: _id_person
 	  		}
 	  		let promisse = boardService.addMembers(newMember).then();
 	  	}
 
 	  	$scope.findPersonByEmail = function(email){
-	  		console.log(email);
 	  		let promisse =  personService.findByEmail(email);
 	      	promisse.then(function (response) {
-	       	  $scope.persons  = response.data;
-	       	  console.log(response);
+	       	  $scope.persons  = response.data.filter(p => $scope.members.filter(m => m.id === p.id).length === 0);
 	        });
   		}
 
@@ -42,6 +41,7 @@
         }
 
   		$scope.submitBoardForm = function(board){
+  			console.log("Entrou update");
 	  		let promisse = boardService.update(board).then();
 	      		
   		}

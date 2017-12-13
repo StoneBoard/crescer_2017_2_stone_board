@@ -20,6 +20,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BoardMemberModel implements Serializable{
-    private BoardModel board;
-    private PersonModel person;
+    private Long id_board;
+    private Long id_person;
 }
