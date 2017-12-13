@@ -10,7 +10,6 @@
 
     }
     function saveBoard(board){
-
       return $http.post(urlBase, board);
     }
     function addMembers(boardMembers){
