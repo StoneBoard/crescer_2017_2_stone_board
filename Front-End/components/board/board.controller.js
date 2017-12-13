@@ -12,9 +12,10 @@
   	let idealWidth = 550; //px
   	let numSession;
     let newWidth;
-    var socket = null;
-    var stompClient = null;
-    var interval = null;
+    let resized = false;
+    let socket = null;
+    let stompClient = null;
+    let interval = null;
 
 
   	// verifica se houve alguma mudança na largura da tela e recalcula largura do board
@@ -41,8 +42,7 @@
 
     $scope.submitCardForm = function(card, session_id){
       card.id_session = session_id;
-			let promise = postitService.saveCard(card).then();
-			sendMessage();
+			sendMessageCard(card);
 		}
 
     validateAuthorization();
@@ -82,12 +82,19 @@
 			stompClient.send("/app/board/" + $routeParams.idBoard, {});
 		}
 
+    function sendMessageCard(card){
+      stompClient.send("/app/card/new/" + $routeParams.idBoard + "/1", {}, JSON.stringify(card));
+    }
+
     function update(board) {
       $scope.$apply(function () { 
         $scope.board = angular.fromJson(board.body).content;
         $scope.sessions = $scope.board.sessions;
-        numSession = $scope.sessions.length;
-        resizeRow();
+        if (!resized) {
+          numSession = $scope.sessions.length;
+          resizeRow();
+          resized = true;
+        }
       });
     }
 

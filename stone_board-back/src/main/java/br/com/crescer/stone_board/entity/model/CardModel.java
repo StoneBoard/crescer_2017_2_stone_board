@@ -25,12 +25,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CardModel implements Serializable{
     private Long id;
-    @NotNull(message = "error.text.notnull")
-    @Size(max = 300, message = "error.text.size")
+    @NotNull(message = "O texto não pode ser nulo")
+    @Size(max = 300, min = 1, message = "O texto não pode ultrapassar 300 caracteres.")
     private String text;
     private Long id_writer;
    // @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
+    @NotNull (message = "Id da Session não pode ser nulo")
     private Long id_session;
     private List<VoteModel> votes;
     private List<NoteModel> notes;
