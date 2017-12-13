@@ -42,10 +42,6 @@ public class WebSocketController {
     public Greeting boardUpdate(@DestinationVariable Long id) throws Exception {
         Thread.sleep(1000);
         Board board = boardService.findById(id);
-    //    if(boardService.userAuthenticadedBoard(id))
-            return new Greeting(BoardModel.convertToBoardModel(board));
-    //    else
-    //        throw new BadRequestException("Não Autorizado");
-       
+        return new Greeting(BoardModel.convertToBoardModel(board));
     }
 }

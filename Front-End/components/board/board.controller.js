@@ -3,15 +3,19 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window, boardService,postitService) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window,authService,$location, boardService,postitService) {
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
     $scope.sendMessage = sendMessage;
-
+    $scope.usuario = authService.getUsuario();
   	let idealWidth = 550; //px
   	let numSession;
-  	let newWidth;
+    let newWidth;
+    var socket = null;
+    var stompClient = null;
+    var interval = null;
+
 
   	// verifica se houve alguma mudança na largura da tela e recalcula largura do board
 		angular.element($window).bind('resize', resizeRow);
@@ -40,9 +44,14 @@
 			sendMessage();
 		}
 
-		var socket = null;
-    var stompClient = null;
-    var interval = null;
+    validateAuthorization();
+      function validateAuthorization(){
+      let promise =  boardService.findById($routeParams.idBoard).then(
+        function (response) {},
+        function (response) {
+          $location.path('/dashboard');
+        });
+    }
 
     function connect() {
       socket = new SockJS('http://localhost:9090/api/websocket');
@@ -51,8 +60,6 @@
 
       socket.onopen = function () {
         stompClient.subscribe('/stoneboard/sendBoard', function (board) {
-          console.log('na resposta')
-          console.log(board.body)
  				update(board);
         });
        sendMessage();

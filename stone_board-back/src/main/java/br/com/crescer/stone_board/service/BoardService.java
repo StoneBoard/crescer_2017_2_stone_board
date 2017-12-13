@@ -82,8 +82,9 @@ public class BoardService {
     
     public boolean userAuthenticadedBoard(Long id){
         Board board = findById(id);
-        List<Board> myBoards = personService.listMyBoards();
-       return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personComponent.loggedPersonDetails().getId()));
+        Person personLoged = personComponent.loggedPersonDetails();
+        return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personLoged.getId()))
+            || personLoged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(),id));     
     }
     
 }

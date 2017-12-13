@@ -44,10 +44,10 @@ public class BoardController {
     @GetMapping("/{id}")
     public BoardModel findById(@PathVariable Long id) throws Exception {
         Board board = boardService.findById(id);
-      // if(boardService.userAuthenticadedBoard(id))
-        return BoardModel.convertToBoardModel(board);
-      //else
-      //   throw new BadRequestException("Não Autorizado");
+        if(boardService.userAuthenticadedBoard(id))
+            return BoardModel.convertToBoardModel(board);
+        else
+            throw new BadRequestException("Não Autorizado");
                 
     }    
   
