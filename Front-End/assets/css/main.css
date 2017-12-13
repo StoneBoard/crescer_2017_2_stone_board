@@ -34,8 +34,7 @@ body {
 }
 
 a {
-  display: block; 
-  margin: 15px 0; 
+  display: block;  
   text-decoration: none;
   color: white;
 }
@@ -242,6 +241,10 @@ a:hover {
 
 .marker{
   color: var(--green);
+}
+
+.link-text{
+  margin: 15px 0;
 }
 
 /* S C R O L L */
