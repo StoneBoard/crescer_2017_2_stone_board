@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
@@ -25,6 +26,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -60,16 +63,19 @@ public class Person implements Serializable{
     @Column(name = "PASS", length=128)
     private String pass;
     
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PERSON", nullable = false)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Board> myBoards;
-    
-    @ManyToMany
-    @JoinTable( name = "PERSON_BOARD", joinColumns = @JoinColumn(name = "ID_PERSON"),
-                                        inverseJoinColumns = @JoinColumn(name = "ID_BOARD"))
-    private List<Board> connectBoards;          
-    
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "PERSON_BOARD", joinColumns = @JoinColumn(name = "ID_PERSON"),
+            inverseJoinColumns = @JoinColumn(name = "ID_BOARD"))
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Board> connectBoards;
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PERSON", nullable = false)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Notification> notifications;
 }

@@ -1,5 +1,6 @@
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.VoteModel;
 import br.com.crescer.stone_board.service.VoteService;
 import br.com.crescer.stone_board.utils.PersonComponent;
@@ -26,6 +27,7 @@ public class VoteController {
     @PostMapping
     public void save(@Validated @RequestBody VoteModel voteModel){
        voteModel.setId_person(personComponent.loggedPersonDetails().getId());
-       voteService.save(voteModel);
+       Person person = personComponent.loggedPersonDetails();
+       voteService.save(voteModel, person);
     }
 }

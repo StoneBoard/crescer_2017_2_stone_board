@@ -7,6 +7,7 @@ import br.com.crescer.stone_board.entity.model.CardModel;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
+import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,29 +37,27 @@ public class CardService {
         return cardRepository.findAll();
     }
 
-    public void save(CardModel cardModel) {
-        Person personLoged = personComponent.loggedPersonDetails();
-        Card card = CardModel.convertToCard(cardModel, personLoged);
-        BoardSession boardSession = boardSessionRepository.findOne(cardModel.getId_session());
-        boardSession.getCards().add(card);
-        boardSessionRepository.save(boardSession);
-    }
-    
-    public void save(CardModel cardModel, Long idUsuario) {
-        Person person = personRepository.findOne(idUsuario);
+    public void save(CardModel cardModel, Person person) {
         Card card = CardModel.convertToCard(cardModel, person);
         BoardSession boardSession = boardSessionRepository.findOne(cardModel.getId_session());
         boardSession.getCards().add(card);
         boardSessionRepository.save(boardSession);
     }
 
-    public void update(CardModel cardModel) {
+    public void update(CardModel cardModel, Long personId) {
         Card card = cardRepository.findOne(cardModel.getId());
+        if (card.getWriter().getId() != personId)
+            throw new BadRequestException("Apenas o usuário que criou o post it pode realizar esta ação.");
+        
         card.setText(cardModel.getText());
         cardRepository.save(card);
     }
 
-    public void delete(Long id) {
-        cardRepository.delete(id);
+    public void delete(Long id, Long personId) {
+        Card card = cardRepository.findOne(id);
+        if (card.getWriter().getId() != personId)
+            throw new BadRequestException("Apenas o usuário que criou o post it pode realizar esta ação.");
+        
+        cardRepository.delete(card);
     }
 }

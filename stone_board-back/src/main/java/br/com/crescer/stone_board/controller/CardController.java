@@ -6,8 +6,10 @@
 package br.com.crescer.stone_board.controller;
 
 import br.com.crescer.stone_board.entity.Card;
+import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.CardModel;
 import br.com.crescer.stone_board.service.CardService;
+import br.com.crescer.stone_board.utils.PersonComponent;
 import br.com.crescer.stone_board.webSocket.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +35,13 @@ public class CardController {
     @Autowired
     private CardService cardService;
     
+    @Autowired
+    private PersonComponent personComponent;
+    
     @PostMapping
     public void Save(@Validated @RequestBody CardModel cardModel){
-        cardService.save(cardModel);
+        Person person = personComponent.loggedPersonDetails();
+        cardService.save(cardModel, person);
     }
     @GetMapping(path = "/{id}")
     public ResponseEntity findById(@PathVariable Long id){
@@ -43,10 +49,12 @@ public class CardController {
     }  
     @PutMapping
     public void savePut(@RequestBody CardModel cardModel){
-      cardService.update(cardModel);
+      Person person = personComponent.loggedPersonDetails();
+      cardService.update(cardModel, person.getId());
     }
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id){
-        cardService.delete(id);
+        Person person = personComponent.loggedPersonDetails();
+        cardService.delete(id, person.getId());
     }
 }

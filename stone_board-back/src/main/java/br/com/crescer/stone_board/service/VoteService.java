@@ -12,6 +12,7 @@ import br.com.crescer.stone_board.entity.model.VoteModel;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.repository.VoteRepository;
+import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,10 @@ public class VoteService {
     CardRepository cardRepository;
     @Autowired
     PersonRepository personRepository;
+    @Autowired
+    PersonComponent personComponent;
     
-     public void save(VoteModel voteModel) {
-        Person person = personRepository.getOne(voteModel.getId_person());
+     public void save(VoteModel voteModel, Person person) {        
         Card card = cardRepository.findOne(voteModel.getId_card());
 
         Vote vote = Vote.builder()

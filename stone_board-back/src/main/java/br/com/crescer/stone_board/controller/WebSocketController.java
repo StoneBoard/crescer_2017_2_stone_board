@@ -9,7 +9,6 @@ import br.com.crescer.stone_board.service.BoardService;
 import br.com.crescer.stone_board.service.CardService;
 import br.com.crescer.stone_board.service.PersonService;
 import br.com.crescer.stone_board.service.VoteService;
-import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import br.com.crescer.stone_board.webSocket.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +50,6 @@ public class WebSocketController {
     @MessageMapping("/board/{id}")
     @SendTo("/stoneboard/sendBoard") 
     public Greeting boardUpdate(@DestinationVariable Long id) throws Exception {
-        Thread.sleep(1000);
         Board board = boardService.findById(id);
         return new Greeting(BoardModel.convertToBoardModel(board));
     }
@@ -63,40 +61,40 @@ public class WebSocketController {
             @DestinationVariable Long idPerson,
             @Validated CardModel cardModel) throws Exception {
         
-        cardService.save(cardModel, idPerson);
+        Person person = personComponent.loggedPersonDetails();
+        cardService.save(cardModel, person);
         return new Greeting(findBoardModel(idBoard));
     }
     
-    @MessageMapping("/card/edit/{idBoard}/{idPerson}")
+    @MessageMapping("/card/edit/{idBoard}")
     @SendTo("/stoneboard/sendBoard")
     public Greeting editCard(
-            @DestinationVariable Long idBoard, 
-            @DestinationVariable Long idPerson,
+            @DestinationVariable Long idBoard,
             @Validated CardModel cardModel) throws Exception {
         
-        cardService.update(cardModel);
+        Person person = personComponent.loggedPersonDetails();
+        cardService.update(cardModel, person.getId());
         return new Greeting(findBoardModel(idBoard));
     }
     
-    @MessageMapping("/card/delete/{idBoard}/{idPerson}/{idCard}")
+    @MessageMapping("/card/delete/{idBoard}/{idCard}")
     @SendTo("/stoneboard/sendBoard")
     public Greeting deleteCard(
             @DestinationVariable Long idBoard, 
-            @DestinationVariable Long idPerson,
             @DestinationVariable Long idCard) throws Exception {
-        
-        cardService.delete(idCard);
+        Person person = personComponent.loggedPersonDetails();
+        cardService.delete(idCard, person.getId());
         return new Greeting(findBoardModel(idBoard));
     }
     
-    @MessageMapping("/vote/{idBoard}/{idPerson}")
+    @MessageMapping("/vote/{idBoard}")
     @SendTo("/stoneboard/sendBoard")
     public Greeting vote(
             @DestinationVariable Long idBoard, 
-            @DestinationVariable Long idPerson,
             VoteModel voteModel) throws Exception {
         
-        voteService.save(voteModel);
+        Person person = personComponent.loggedPersonDetails();
+        voteService.save(voteModel, person);
         return new Greeting(findBoardModel(idBoard));
     }
     
