@@ -5,8 +5,6 @@
   .module('stoneBoard')
   .controller('controllerResultGroup', function ($scope, $window) {
 
-  	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
-
   	let idealWidth = 550; //px
   	let numSession = 2;
     let newWidth;

@@ -17,11 +17,10 @@
 
       templateUrl: 'components/postit/postit.html',
 
-      controller: function ($scope, authService,postitService,toastr, voteService) {
+      controller: function ($scope, authService, postitService, toastr, voteService, utils) {
 
         console.log($scope.postIt)
-        let colorPallet = ['orange', 'blue', 'pink', 'green'];
-        $scope.color = colorPallet[$scope.postIt.color];
+        $scope.color = utils.colorPallet[$scope.postIt.color];
 
         let usuario = authService.getUsuario();
 

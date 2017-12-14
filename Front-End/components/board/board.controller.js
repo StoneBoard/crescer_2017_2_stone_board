@@ -3,9 +3,9 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window,authService,$location, boardService,postitService, personService) {
+  .controller('controllerBoard', function ($scope, $routeParams, $window, authService, $location, boardService, postitService, personService, utils) {
 
-  	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
+  	$scope.colorPallet = utils.colorPallet;
   	$scope.rowStyle = {};
     $scope.usuario = authService.getUsuario();
 

@@ -4,6 +4,12 @@
   angular
     .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket','toastr']);
 
+  angular
+    .module('stoneBoard').constant('utils', {
+
+      colorPallet: ['orange', 'blue', 'pink', 'green']
+      
+  });
 
   angular
     .module('stoneBoard').constant('authConfig', {
