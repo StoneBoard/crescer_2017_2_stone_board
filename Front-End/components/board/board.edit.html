@@ -31,7 +31,7 @@
 								<div class="form-box-input">
 									<label>Data Limite para postagens <span class="marker">*</span></label>
 									<input name="date" type="date" class="input-form" ng-model="board.deadline" ng-readonly="!active" min={{today}} required>
-									<div ng-if="boardForm.date.$touched" class="box-erro" role="alert">
+									<div ng-if="boardForm.date.$touched && active" class="box-erro" role="alert">
 							      <div ng-if="boardForm.date.$error.required">Campo obrigatório.</div>
 							      <div ng-if="boardForm.date.$error.min">Por favor, informe uma data maior que hoje.</div>
         					</div>
