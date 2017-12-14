@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="components/postit/styles.css">
+
 <div class="pt-box">
 		<div class="post-it pt-rotation-1 bg-{{color}}">
 
@@ -10,8 +12,8 @@
 		</div>
 		<div class="row" ng-style="paddingCard">
 			<div class="col-xs">
-				<textarea maxlength="300" class="pt-input" ng-if="editMode" ng-model="p.text" rows="5" cols="18"></textarea>
-				<div class="pt-body" ng-model="p.text" ng-if="!editMode">	{{p.text}}</div>
+				<textarea maxlength="300" class="pt-input" ng-if="editMode" ng-model="postIt.text" rows="5" cols="18"></textarea>
+				<div class="pt-body" ng-model="postIt.text" ng-if="!editMode">	{{postIt.text}}</div>
 			</div>
 		</div>
 		<div class="post-it-separator" ng-if="boardStatus">	</div>
