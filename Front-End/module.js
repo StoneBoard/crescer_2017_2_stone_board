@@ -2,13 +2,13 @@
   'use strict';
 
   angular
-    .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket','toastr']);
+    .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket','toastr','angularModalService']);
 
   angular
     .module('stoneBoard').constant('utils', {
 
       colorPallet: ['orange', 'blue', 'pink', 'green']
-      
+
   });
 
   angular
