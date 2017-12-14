@@ -25,13 +25,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CardModel implements Serializable{
     private Long id;
-    @NotNull(message = "O texto não pode ser nulo")
+    @NotNull(message = "O texto não pode ser nulo.")
     @Size(max = 300, min = 1, message = "O texto não pode ultrapassar 300 caracteres.")
     private String text;
     private Long id_writer;
    // @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
-    @NotNull (message = "Id da Session não pode ser nulo")
+    @NotNull(message = "Cor deve ser informada.")
+    private int color;
+    @NotNull (message = "Id da Session não pode ser nulo.")
     private Long id_session;
     private List<VoteModel> votes;
     private List<NoteModel> notes;
@@ -42,6 +44,7 @@ public class CardModel implements Serializable{
                .text(cardModel.getText())
                .writer(writer)
                .creationDate(LocalDateTime.now())
+               .color(cardModel.getColor())
                .build();
    }
     
@@ -51,6 +54,7 @@ public class CardModel implements Serializable{
                .text(card.getText())
                .id_writer(card.getWriter().getId())
                .creationDate(card.getCreationDate())
+               .color(card.getColor())
                .id_session(idSession)
                .votes(card.getVotes()
                         .stream()

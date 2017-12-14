@@ -65,6 +65,10 @@ public class Card implements Serializable{
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime creationDate;
     
+    @Basic(optional = false)
+    @Column(name = "COLOR")
+    private int color;
+    
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CARD", nullable = false)
     @Fetch(FetchMode.SUBSELECT)

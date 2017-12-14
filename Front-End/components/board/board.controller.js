@@ -44,8 +44,9 @@
 	  	rowSession.css('width', newWidth);
   	}
 
-    $scope.submitCardForm = function(card, session_id){
-      card.id_session = session_id;
+    $scope.submitCardForm = function(card, session){
+      card.id_session = session.id;
+      card.color = session.color;
 			sendNewCard(card);
 		}
 
