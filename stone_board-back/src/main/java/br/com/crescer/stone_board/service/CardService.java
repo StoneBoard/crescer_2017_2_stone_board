@@ -62,6 +62,5 @@ public class CardService {
         BoardSession session = boardSessionRepository.findOne(idSession);
         session.getCards().removeIf( c -> Objects.equals(c.getId(), idCard) );
         boardSessionRepository.save(session);
-        //cardRepository.delete(card);
     }
 }

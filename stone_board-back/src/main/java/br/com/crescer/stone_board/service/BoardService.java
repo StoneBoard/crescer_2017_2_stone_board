@@ -10,6 +10,7 @@ import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class BoardService {
     BoardSessionRepository boardSessionRepository;
 
     public Long save(BoardRegisterModel boardRegister) {
+        if (!boardRegister.getDeadline().isAfter(LocalDateTime.now()))
+            throw new BadRequestException("A Data deve ser maior que o dia atual");
+        
         Board board = BoardRegisterModel.convertToBoard(boardRegister);
 
         if (CollectionUtils.isEmpty(boardRegister.getSessions())) {
@@ -67,6 +71,11 @@ public class BoardService {
 
     public BoardModel update(BoardRegisterModel boardRegister) {
         Board board = boardRepository.findOne(boardRegister.getId());
+        
+        if (!boardRegister.getDeadline().equals(board.getDeadline()) && 
+                !boardRegister.getDeadline().isAfter(LocalDateTime.now()))
+            throw new BadRequestException("A Data deve ser maior que o dia atual");
+        
         board.setTitle(boardRegister.getTitle());
         board.setDeadline(boardRegister.getDeadline());
         boardRepository.save(board);

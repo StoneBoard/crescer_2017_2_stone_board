@@ -29,7 +29,7 @@ public class BoardRegisterModel {
     @NotNull(message = "O Título não pode ser nulo")
     @Size(max = 128, min = 1, message = "O título não pode ter mais de 128 caracteres")
     private String title;
-    @NotNull(message = "A Data limite não pode ser nula")
+    @NotNull(message = "Data inválida")
     private LocalDateTime deadline;
     @NotNull(message = "O Board deve possuir ao menos uma sessão")
     @Valid
