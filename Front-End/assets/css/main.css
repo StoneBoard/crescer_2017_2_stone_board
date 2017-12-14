@@ -43,6 +43,11 @@ a:hover {
   color: var(--grayBlueLight);
 }
 
+textarea {
+  width: 100%;
+  resize: vertical; 
+}
+
 .material-icons.md-dark { color: var(--grayBlueDark); }
 .material-icons.md-light { color: var(--grayBlueLight); }
 
