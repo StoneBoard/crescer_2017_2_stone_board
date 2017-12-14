@@ -60,7 +60,14 @@ public class BoardService {
 
     public void addMembers(BoardMemberModel boardMemberModel) {
         Person person = personRepository.findOne(boardMemberModel.getId_person());
+        Person personLoged = personComponent.loggedPersonDetails();
+        if(personLoged.getId() ==  person.getId()){
+            throw new BadRequestException("Usuário não pode ser adicionado");
+        }
         Board board = boardRepository.findOne(boardMemberModel.getId_board());
+        if(person.getConnectBoards().stream().anyMatch(b -> b.getId() == board.getId())){
+            throw new BadRequestException("Usuário não pode ser adicionado");
+        }
         person.getConnectBoards().add(board);
         personRepository.save(person);
     }

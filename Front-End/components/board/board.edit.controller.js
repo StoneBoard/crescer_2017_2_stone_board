@@ -3,9 +3,10 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerEditBoard', function($scope,toastr, $routeParams, boardService, personService){
+  .controller('controllerEditBoard', function($scope, toastr, $routeParams, authService, boardService, personService){
 
 		$scope.idBoard = $routeParams.idBoard
+		$scope.userLoged = authService.getUsuario();
 
 		$scope.today = new Date();
 
@@ -31,6 +32,7 @@
 	  			function(){
 	            	toastr.success('Usuário adicionado com sucesso!')
 	  				displayBoard();
+	  			
 	          	}, response => messageError(response.data)
 	  		);
 	  	}
@@ -39,6 +41,7 @@
 	  		let promisse =  personService.findByEmail(email);
 	      	promisse.then(function (response) {
 	       	  $scope.persons  = response.data.filter(p => $scope.members.filter(m => m.id === p.id).length === 0);
+	       	  remove($scope.persons, $scope.persons.find(p => p.id === $scope.userLoged.id));
 	        });
   		}
 
@@ -55,10 +58,19 @@
 	        );
   		}
 
+  		function remove(array, element) {
+  			 const index = array.indexOf(element);
+   			if (index !== -1)
+       		array.splice(index, 1);
+		}
+
   		function messageError(data){
-  			data.errors.forEach(error =>{
-	        	toastr.error(error.defaultMessage)
-	        });
+  			if (typeof(data.errors) === 'undefined')
+	        	toastr.error(data.message);
+  			else	
+	  			data.errors.forEach(error =>{
+		        	toastr.error(error.defaultMessage)
+		        });
   		}
 
     });

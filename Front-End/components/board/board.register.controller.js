@@ -24,10 +24,12 @@
             toastr.success('Board cadastrado com sucesso!');
             $location.path('/dashboard');
           }, function(response){
+            if (typeof(response.data.errors) === 'undefined')
+              toastr.error(response.data.message)
+            else 
             response.data.errors.forEach(error =>{
               toastr.error(error.defaultMessage)
             });
-              console.log(response);
           });
       console.log(promise);
     }
