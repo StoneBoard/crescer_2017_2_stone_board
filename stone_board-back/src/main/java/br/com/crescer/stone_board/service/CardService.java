@@ -10,6 +10,7 @@ import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,11 +54,14 @@ public class CardService {
         cardRepository.save(card);
     }
 
-    public void delete(Long id, Long personId) {
-        Card card = cardRepository.findOne(id);
+    public void delete(Long idCard, Long idSession, Long personId) {
+        Card card = cardRepository.findOne(idCard);
         if (card.getWriter().getId() != personId)
             throw new BadRequestException("Apenas o usuário que criou o post it pode realizar esta ação.");
         
-        cardRepository.delete(card);
+        BoardSession session = boardSessionRepository.findOne(idSession);
+        session.getCards().removeIf( c -> Objects.equals(c.getId(), idCard) );
+        boardSessionRepository.save(session);
+        //cardRepository.delete(card);
     }
 }

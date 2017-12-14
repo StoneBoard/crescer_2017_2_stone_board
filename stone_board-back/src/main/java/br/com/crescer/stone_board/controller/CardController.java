@@ -55,6 +55,6 @@ public class CardController {
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id){
         Person person = personComponent.loggedPersonDetails();
-        cardService.delete(id, person.getId());
+      //  cardService.delete(id, person.getId());
     }
 }

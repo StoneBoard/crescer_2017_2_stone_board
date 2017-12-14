@@ -77,13 +77,13 @@ public class WebSocketController {
         return new Greeting(findBoardModel(idBoard));
     }
     
-    @MessageMapping("/card/delete/{idBoard}/{idCard}")
+    @MessageMapping("/card/delete/{idBoard}")
     @SendTo("/stoneboard/sendBoard")
     public Greeting deleteCard(
             @DestinationVariable Long idBoard, 
-            @DestinationVariable Long idCard) throws Exception {
+            CardModel cardModel) throws Exception {
         Person person = personComponent.loggedPersonDetails();
-        cardService.delete(idCard, person.getId());
+        cardService.delete(cardModel.getId(), cardModel.getId_session(), person.getId());
         return new Greeting(findBoardModel(idBoard));
     }
     

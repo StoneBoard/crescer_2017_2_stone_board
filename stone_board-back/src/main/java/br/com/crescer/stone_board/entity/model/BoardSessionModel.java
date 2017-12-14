@@ -46,7 +46,7 @@ public class BoardSessionModel implements Serializable {
                 .color(boardSession.getColor())
                 .icon(boardSession.getIcon())
                 .cards(boardSession.getCards().stream()
-                        .map(CardModel::convertToCardModel)
+                        .map(c -> CardModel.convertToCardModel(c, boardSession.getId()))
                         .collect(Collectors.toList()))
                 .build();
     }

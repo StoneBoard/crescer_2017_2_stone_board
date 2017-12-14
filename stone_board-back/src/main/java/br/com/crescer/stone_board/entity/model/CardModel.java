@@ -45,12 +45,13 @@ public class CardModel implements Serializable{
                .build();
    }
     
-   public static CardModel convertToCardModel(Card card) {
+   public static CardModel convertToCardModel(Card card, Long idSession) {
        return CardModel.builder()
                .id(card.getId())
                .text(card.getText())
                .id_writer(card.getWriter().getId())
                .creationDate(card.getCreationDate())
+               .id_session(idSession)
                .votes(card.getVotes()
                         .stream()
                         .map(VoteModel::convertToVoteModel)

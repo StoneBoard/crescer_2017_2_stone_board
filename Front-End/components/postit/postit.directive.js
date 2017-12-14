@@ -39,7 +39,7 @@
         }
 
         $scope.deleteCard = function(){
-          $scope.cardMessages.deleteCard($scope.p.id);
+          $scope.cardMessages.deleteCard($scope.p);
         }
 
         $scope.update = function() {

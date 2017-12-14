@@ -118,8 +118,8 @@
       sendMessage('/card/edit/' + $routeParams.idBoard, card);
     }
 
-    function deleteCard(idCard){
-      sendMessage('/card/delete/' + $routeParams.idBoard + '/' + idCard);
+    function deleteCard(card){
+      sendMessage('/card/delete/' + $routeParams.idBoard, card);
     }
 
     function vote(vote) {
