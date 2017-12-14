@@ -16,6 +16,8 @@ import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,16 +32,15 @@ public class PersonService {
     @Autowired
     PersonComponent personComponent;
     
-    public Person findByEmail(String email){
-        return personRepository.findByEmail(email);
-    }
+    private static PasswordEncoder encoder = new BCryptPasswordEncoder();
     
-    public Person createnewPerson(String email){
+    public Person findByEmail(String email){
         return personRepository.findByEmail(email);
     }
     
     public Person createAcount(PersonModel personModel){
          Person person = PersonModel.convertToPerson(personModel);
+         person.setPass(encoder.encode(person.getPass()));
          return personRepository.save(person);
     }
         

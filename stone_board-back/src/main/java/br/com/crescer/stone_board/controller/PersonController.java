@@ -31,7 +31,7 @@ public class PersonController {
     @Autowired
     private PersonService personService;
     
-    @PostMapping
+    @PostMapping("/addPerson")
     public ResponseEntity addPerson(@Validated @RequestBody PersonModel personModel) {
         return ResponseEntity.ok(personService.createAcount(personModel));
     }

@@ -46,7 +46,8 @@ public class StoneBoardWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-resources/**",
                         "/configuration/**",
                         "/swagger-ui.html",
-                        "/webjars/**");
+                        "/webjars/**",
+                        "/person/addPerson");
     }
 
     @Bean
