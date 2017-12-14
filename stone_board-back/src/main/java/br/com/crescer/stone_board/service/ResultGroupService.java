@@ -49,7 +49,14 @@ public class ResultGroupService {
                 .collect(Collectors.toList());
         return resultsModel;
     }
-
+    
+    public List<ResultGroupModel> findByBoardId(Long idBoard){
+        return resultGroupRepository.findByBoardId(idBoard)
+                .stream()
+                .map(ResultGroupModel :: convertToResultGroupModel)
+                .collect(Collectors.toList());
+    }
+    
     public void save(ResultGroupRegisterModel resultGroupRegisterModel) {
         Board board = boardRepository.findOne(resultGroupRegisterModel.getId_board());
         ResultGroup resultGroup = ResultGroupRegisterModel.convertToResultGroup(resultGroupRegisterModel, board);
@@ -59,8 +66,10 @@ public class ResultGroupService {
     public void addCard(Long idResultGroup, Long idCard) {
         Card card = cardRepository.findOne(idCard);
         ResultGroup resultGroup = resultGroupRepository.findOne(idResultGroup);
-        resultGroup.getCards().add(card);
-        resultGroupRepository.save(resultGroup);
+        card.setResultGroup(resultGroup);
+      //  resultGroup.getCards().add(card);
+         cardRepository.save(card);
+       // resultGroupRepository.save(resultGroup);
     }
 
     public void update(ResultGroupRegisterModel resultGroupRegisterModel) {

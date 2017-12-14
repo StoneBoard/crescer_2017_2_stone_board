@@ -24,23 +24,23 @@
 
 			<!-- inicio da session -->
 
-			<div class="col-xs" >
+			<div class="col-xs" ng-repeat="resultGroup in resultGroups">
 				<div class="box">
 					<div id="group-body" class="container-base">
 
 						<div class="row">
 							<div class="col-xs">
 								<div id="title-group" class="title-session">
-									{{session.title}} TITULO AQUI
+									{{resultGroup.title}} 
 								</div>
 							</div>
 						</div>
 
-					<!--
-						<div> 
+					
+						<div ng-repeat="card in resultGroup.cards"> 
 							<post-it info="card" board-status="boardStatus"></post-it>
 						</div>
-					-->	
+					
 					</div>
 				</div>
 			</div>

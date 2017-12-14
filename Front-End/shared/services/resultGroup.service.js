@@ -8,6 +8,10 @@
       return $http.get(urlBase + '/' + id);
     }
 
+    function findBoard(idBoard){
+      return $http.get(urlBase + '/findBoard/' + idBoard);
+    }
+
     function saveResultGroup(resultGroup){
       return $http.post(urlBase, resultGroup);
     }
@@ -26,6 +30,7 @@
 
     return{
       findById : findById,
+      findBoard : findBoard,
       saveResultGroup : saveResultGroup,
       updateResultGroup : updateResultGroup,
       deleteResultGroup : deleteResultGroup,
