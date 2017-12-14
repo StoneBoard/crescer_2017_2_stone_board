@@ -53,6 +53,16 @@
         }
       })
 
+      .when('/board/:idBoard/result-group', {
+        controller: 'controllerResultGroup',
+        templateUrl: 'components/ResultGroup/result.group.html',
+        resolve: {
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
+      })
+
       .otherwise('/login');
 
   });
