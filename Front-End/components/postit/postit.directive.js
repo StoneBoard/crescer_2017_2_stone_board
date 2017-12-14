@@ -12,14 +12,13 @@
         sendMessage : '=send',
         postIt : '=info',
         boardStatus : '=boardStatus',
-        cardMessages : '=cardMessages'
+        cardMessages : '=cardMessages',
+        myResultGroup : '=myResultGroup'
       },
 
       templateUrl: 'components/postit/postit.html',
 
-      controller: function ($scope, authService, postitService, toastr,ModalService, voteService, utils) {
-
-        console.log($scope.postIt)
+      controller: function ($scope, authService, postitService, toastr,resultGroupService,ModalService, voteService, utils) {
         $scope.color = utils.colorPallet[$scope.postIt.color];
 
         let usuario = authService.getUsuario();
@@ -58,6 +57,7 @@
           $scope.postIt.text = JSON.parse(JSON.stringify(oldText));
           $scope.changeMode(false);
         }
+
         ///////////////// Modal///////////////
         $scope.showCustom = showCustom;
 
@@ -67,7 +67,9 @@
             controller: "controllerModalNote",
             bodyClass: "custom-modal-open",
             inputs: {
-              postIt : $scope.postIt.id
+              idPostIt : $scope.postIt.id,
+              myResultGroup : $scope.myResultGroup,
+
             }
           });
         };
