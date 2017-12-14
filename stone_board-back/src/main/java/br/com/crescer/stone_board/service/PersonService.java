@@ -6,8 +6,10 @@
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Notification;
 import br.com.crescer.stone_board.entity.Person;
+import br.com.crescer.stone_board.entity.model.BoardSessionModel;
 import br.com.crescer.stone_board.entity.model.PersonModel;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.PersonComponent;
@@ -32,6 +34,15 @@ public class PersonService {
         return personRepository.findByEmail(email);
     }
     
+    public Person createnewPerson(String email){
+        return personRepository.findByEmail(email);
+    }
+    
+    public Person createAcount(PersonModel personModel){
+         Person person = PersonModel.convertToPerson(personModel);
+         return personRepository.save(person);
+    }
+        
     public List<Board> listMyBoards() {        
         return personComponent.loggedPersonDetails().getMyBoards();
     }
