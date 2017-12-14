@@ -12,8 +12,8 @@
         sendMessage : '=send',
         p : '=info',
         color : '=color',
-        boardStatus : '=boardStatus'
-
+        boardStatus : '=boardStatus',
+        cardMessages : '=cardMessages'
       },
 
       templateUrl: 'components/postit/postit.html',
@@ -39,22 +39,18 @@
         }
 
         $scope.deleteCard = function(){
-          let promise =  postitService.deleteCard($scope.p.id).then();
-          $scope.sendMessage();
+          $scope.cardMessages.deleteCard($scope.p.id);
         }
 
         $scope.update = function() {
-
-          let promise =  postitService.editCard($scope.p).then();
-          $scope.changeMode(false);
-          $scope.sendMessage();
+          console.log('update')
+          console.log($scope.p)
+          postitService.editCard($scope.p).then();
+          $scope.editMode = false;
         }
         $scope.vote = function(_positive) {
           let newVote = {positive: _positive, id_person: usuario.id,  id_card: $scope.p.id,}
-          let promise =  voteService.saveVote(newVote).then();
-          console.log('votando')
-          console.log($scope.sendMessage)
-          $scope.sendMessage();
+          $scope.cardMessages.vote(newVote);
         }
 
         $scope.undo = function() {

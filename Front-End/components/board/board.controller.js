@@ -7,8 +7,7 @@
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
-    $scope.sendMessage = sendMessage;
-    $scope.user = authService.getUsuario();
+    $scope.usuario = authService.getUsuario();
   	let idealWidth = 550; //px
   	let numSession;
     let newWidth;
@@ -22,7 +21,6 @@
 		angular.element($window).bind('resize', resizeRow);
 
   	function resizeRow() {
-
 
   		let rowSession = angular.element(document.getElementById('row-sessions'));
   		rowSession.css('width', '100%');
@@ -42,8 +40,12 @@
 
     $scope.submitCardForm = function(card, session_id){
       card.id_session = session_id;
-			sendMessageCard(card);
+			sendNewCard(card);
 		}
+
+    function boardStatus(date) {
+      $scope.boardStatus = date > new Date();
+    }
 
     validateAuthorization();
       function validateAuthorization(){
@@ -59,6 +61,8 @@
         });
     }
 
+    /* websocket */
+
     function connect() {
       socket = new SockJS('http://localhost:9090/api/websocket');
       stompClient = Stomp.over(socket);
@@ -68,7 +72,7 @@
         stompClient.subscribe('/stoneboard/sendBoard', function (board) {
  				update(board);
         });
-       sendMessage();
+        startMessage();
       };
 
       clearInterval(interval);
@@ -81,14 +85,6 @@
       };
 
 		}
-
-		function sendMessage(){
-			stompClient.send("/app/board/" + $routeParams.idBoard, {});
-		}
-
-    function sendMessageCard(card){
-      stompClient.send("/app/card/new/" + $routeParams.idBoard + "/"+   $scope.user.id, {}, JSON.stringify(card));
-    }
 
     function update(board) {
       $scope.$apply(function () {
@@ -104,8 +100,36 @@
 
     connect();
 
-    function boardStatus(date) {
-      $scope.boardStatus = date > new Date();
+		/* envio de mensagens para a controller do websocket */
+
+    function sendMessage(url, obj){
+      stompClient.send('/app' + url, {}, JSON.stringify(obj));
+    }
+
+    function startMessage(){
+      sendMessage("/board/" + $routeParams.idBoard);
+    }
+
+    function sendNewCard(card){
+      sendMessage('/card/new/' + $routeParams.idBoard + '/' + $scope.usuario.id, card);
+    }
+
+    function updateCard(card){
+      sendMessage('/card/edit/' + $routeParams.idBoard, card);
+    }
+
+    function deleteCard(idCard){
+      sendMessage('/card/delete/' + $routeParams.idBoard + '/' + idCard);
+    }
+
+    function vote(vote) {
+      sendMessage('/vote/' + $routeParams.idBoard, vote);
+    }
+
+    $scope.cardMessages = {
+      updateCard : updateCard,
+      deleteCard : deleteCard,
+      vote : vote
     }
 
   });
