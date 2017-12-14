@@ -5,6 +5,8 @@
  */
 package br.com.crescer.stone_board.service;
 
+import br.com.crescer.stone_board.entity.model.ResultGroupModel;
+import br.com.crescer.stone_board.repository.ResultGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +18,9 @@ import org.springframework.stereotype.Service;
 public class ResultGroupService {
     @Autowired
     ResultGroupRepository resultGroupRepository;
+    
+    public void save(ResultGroupModel resultGroupModel){
+        
+    } 
+    
 }
