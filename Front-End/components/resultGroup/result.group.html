@@ -1,1 +1,72 @@
+<link rel="stylesheet" type="text/css" href="components/resultGroup/styles.css">
+
 <nav-bar-header></nav-bar-header>
+
+<div class="row middle-xs">
+	<div class="col-xs start-xs" ng-if="isAdmin">	
+		<p class="title-lg"><a class="btn btn-sm inactive-bg-btn" ng-href="/#!/board/{{board.id}}/edit"><i class="material-icons">settings</i></a> {{board.title}}</p>
+	</div>
+
+	<div class="col-xs">
+		<a class="link-text" ng-href="/#!/board/{{idBoard}}">
+			<div class="row end-xs middle-xs">
+				Acessar Grupo de Resultado
+				<i class="material-icons">chevron_right</i> 
+			</div>
+		</a>
+	</div>
+
+</div>
+	
+<div class="board">
+	<div id="row-sessions" ng-style="rowStyle">
+		<div class="row" style="width: 100%">
+
+			<!-- inicio da session -->
+
+			<div class="col-xs" >
+				<div class="box">
+					<div id="group-body" class="container-base">
+
+						<div class="row">
+							<div class="col-xs">
+								<div id="title-group" class="title-session">
+									{{session.title}} TITULO AQUI
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<!-- fim da session -->
+
+			<!-- inicio da session -->
+
+			<div class="col-xs" >
+				<div class="box">
+					<div id="group-body" class="container-base">
+
+						<div class="row">
+							<div class="col-xs">
+								<div id="title-group" class="title-session">
+									{{session.title}} TITULO AQUI
+								</div>
+							</div>
+						</div>
+
+						<div> 
+							<post-it info="cardTest" send="sendMessage" board-status="boardStatus" card-messages="cardMessages"></post-it>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- fim da session -->
+
+		</div>
+	</div>
+
+</div>

@@ -63,6 +63,16 @@
         }
       })
 
+      .when('/board/:idBoard/result-group/detail/:idResultGroup?', {
+        controller: 'controllerResultGroupDetail',
+        templateUrl: 'components/ResultGroup/result.group.detail.html',
+        resolve: {
+          autenticado: function (authService) {
+            return authService.isAutenticadoPromise();
+          }
+        }
+      })
+
       .otherwise('/login');
 
   });

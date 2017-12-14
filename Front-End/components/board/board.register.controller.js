@@ -3,11 +3,11 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoardRegister', function ($scope, $location, $window, boardService, toastr) {
+  .controller('controllerBoardRegister', function ($scope, $location, $window, boardService, toastr, utils) {
 
   	$scope.board = { sessions: [] }
 
-  	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
+  	$scope.colorPallet = utils.colorPallet;
 
     $scope.today = new Date();
 

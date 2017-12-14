@@ -21,7 +21,7 @@
 <div class="row middle-xs">
 	<div class="col-xs">
 		<div class="container-base" style="padding: 3px; letter-spacing: 2px">
-				<p>{{boardStatus}} - Data de inativação:  {{deadline | date: 'dd/MMMM/yyyy'}}</p>
+				<p>{{boardStatus ? 'Ativo' : 'Inativo'}} - Data de inativação:  {{deadline | date: 'dd.MM.yyyy'}}</p>
 			
 		</div>
 
