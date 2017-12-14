@@ -5,7 +5,7 @@
 
 		<div class="row start-xs">
 			<div class="col-xs">
-				<form class="form-box" name="resultGroupForm" ng-submit="submitForm(board)" novalidate>
+				<form class="form-box" name="resultGroupForm" ng-submit="submitForm(resultGroup)" novalidate>
 
 					<div class="col-xs-12">
 						<a class="link-text" ng-href="/#!/board/{{idBoard}}">
@@ -20,7 +20,7 @@
 
 					<div class="form-box-input">
 						<label>Título <span class="marker">*</span></label>
-						<input name="titulo" type="text" maxlength="128" class="input-form" ng-model="board.title" placeholder="" required>
+						<input name="titulo" type="text" maxlength="128" class="input-form" ng-model="resultGroup.title" placeholder="" required>
 						<div ng-if="resultGroupForm.titulo.$touched" class="box-erro" role="alert">
 							<div ng-if="resultGroupForm.titulo.$error.required">Campo obrigatório.</div>
 							<div ng-if="resultGroupForm.titulo.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
@@ -29,7 +29,7 @@
 
 					<div class="form-box-input">
 						<label>Descrição</label>
-						<textarea name="description" type="text" maxlength="500" class="input-form" ng-model="board.description" rows="10"></textarea>
+						<textarea name="description" type="text" maxlength="500" class="input-form" ng-model="resultGroup.description" rows="10"></textarea>
 						<div ng-if="resultGroupForm.description.$touched" class="box-erro" role="alert">
 							<div ng-if="resultGroupForm.description.$error.maxlength">Campo deve ter menos de 500 caracteres.</div>
       			</div>

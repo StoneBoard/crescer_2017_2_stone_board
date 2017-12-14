@@ -39,13 +39,18 @@ public class ResultGroupController {
        return ResponseEntity.ok(resultGroupService.findById(id));
     }  
     
+    @GetMapping("/findBoard/{idBoard}")
+    public ResponseEntity findByBoardId(@PathVariable Long idBoard){
+       return ResponseEntity.ok(resultGroupService.findByBoardId(idBoard));
+    }  
+    
     @PutMapping
     public void update(@RequestBody ResultGroupRegisterModel resultGroupRegisterModel){
       resultGroupService.update(resultGroupRegisterModel);
     }
     
     @PutMapping("/addCards/{idResultGroup}/{idCard}")
-    public void addCard(@PathVariable Long idResultGroup, Long idCard){
+    public void addCard(@PathVariable Long idResultGroup, @PathVariable  Long idCard){
          resultGroupService.addCard(idResultGroup, idCard);
     }
     
