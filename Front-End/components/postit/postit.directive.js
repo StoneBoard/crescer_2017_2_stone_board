@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('stoneBoard')
-    .directive('postIt', function () {
+  .directive('postIt', function () {
 
-      return {
+    return {
 
       restrict: 'E',
 
@@ -17,7 +17,7 @@
 
       templateUrl: 'components/postit/postit.html',
 
-      controller: function ($scope, authService, postitService, toastr, voteService, utils) {
+      controller: function ($scope, authService, postitService, toastr,ModalService, voteService, utils) {
 
         console.log($scope.postIt)
         $scope.color = utils.colorPallet[$scope.postIt.color];
@@ -46,8 +46,6 @@
         }
 
         $scope.update = function() {
-          console.log('update')
-          console.log($scope.postIt)
           postitService.editCard($scope.postIt).then();
           $scope.editMode = false;
         }
@@ -57,11 +55,28 @@
         }
 
         $scope.undo = function() {
-          console.log('undo');
           $scope.postIt.text = JSON.parse(JSON.stringify(oldText));
           $scope.changeMode(false);
         }
+        ///////////////// Modal///////////////
+        $scope.showCustom = showCustom;
 
+        function showCustom() {
+          ModalService.showModal({
+            templateUrl: "components/resultGroupModal/resultGroupModal.html",
+            controller: "controllerModalNote",
+            bodyClass: "custom-modal-open",
+            inputs: {
+              postIt : $scope.postIt.id
+            }
+          });
+        };
+
+        $scope.keyPress = function(value) {
+          if (value.keyCode == 42) {
+            ModalService.closeModals(null, 500);
+          }
+        };
       }
 
     }
