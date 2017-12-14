@@ -9,6 +9,8 @@
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
 
+    $scope.today = new Date();
+
   	$scope.submitSessionForm = function(session) {
   		console.log($scope.session);
   		console.log($scope.board.sessions);

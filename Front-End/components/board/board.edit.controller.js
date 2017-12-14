@@ -7,6 +7,8 @@
 
 		$scope.idBoard = $routeParams.idBoard
 
+		$scope.today = new Date();
+
 		displayBoard();
   		function displayBoard(){
 
@@ -16,7 +18,7 @@
 	         	$scope.board.deadline = new Date($scope.board.deadline.slice(0,3).join());
 	         	$scope.checked = $scope.board.deadline > new Date();
 	         	$scope.members = $scope.board.members;
-
+	         	$scope.active = $scope.board.deadline > new Date();
       		 });
       	}
 
@@ -40,9 +42,9 @@
 	        });
   		}
 
-        $scope.changeStatus = function () {
-            $scope.board.deadline = $scope.active ? null : new Date();
-        }
+      $scope.changeStatus = function () {
+          $scope.board.deadline = $scope.active ? null : new Date();
+      }
 
   		$scope.submitBoardForm = function(board){
   			console.log("Entrou update");

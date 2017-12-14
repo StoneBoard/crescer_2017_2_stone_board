@@ -10,20 +10,21 @@
 						<p class="title-sm">CADASTRO DE BOARD</p>
 						
 						<div class="form-box-input">
-							<label>Título<span class="marker">*</span></label>
+							<label>Título <span class="marker">*</span></label>
 							<input name="titulo" type="text" maxlength="128" class="input-form" ng-model="board.title" placeholder="" required>
 							<div ng-if="boardForm.titulo.$touched" class="box-erro" role="alert">
 								<div ng-if="boardForm.titulo.$error.required">Campo obrigatório.</div>
 								<div ng-if="boardForm.titulo.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
-        					</div>
+        			</div>
 						</div>
 
 						<div class="form-box-input">
-							<label>Data Limite para postagens<span class="marker">*</span></label>
-							<input name="date" type="date" class="input-form" ng-model="board.deadline" placeholder="" required>
+							<label>Data Limite para postagens <span class="marker">*</span></label>
+							<input name="date" type="date" class="input-form" ng-model="board.deadline" placeholder="" min={{today}} required>
 							<div ng-if="boardForm.date.$touched" class="box-erro" role="alert">
 								<div ng-if="boardForm.date.$error.required">Campo obrigatório.</div>
-        					</div>
+								<div ng-if="boardForm.date.$error.min">Por favor, informe uma data maior que hoje.</div>
+        			</div>
 						</div>
 
 						<div class="form-separator"></div>
@@ -31,13 +32,13 @@
 						<p class="title-sm sub-title">SESSÕES</p>
 
 						<div class="form-box-input">
-							<label>Título<span class="marker">*</span></label>
+							<label>Título <span class="marker">*</span></label>
 							<input name="tituloSession" type="text" maxlength="128" class="input-form" ng-model="session.title" placeholder="" >
 							
 						</div>
 
 						<div class="form-box-input">
-							<label>Cor<span class="marker">*</span></label>						
+							<label>Cor <span class="marker">*</span></label>						
 
 							<div class="row around-xs">
 
