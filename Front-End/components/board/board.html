@@ -54,9 +54,9 @@
 
 								<div ng-if = "boardStatus" class="post-it pt-rotation-1 bg-{{colorPallet[session.color]}}">
 									<div class="row">
-										<div class="col-xs">
+										<div class="col-xs">{{session}}
 											<textarea ng-model="card.text" maxlength="300" class="pt-input" placeholder="Escreva um novo post it aqui..." rows="5" cols="15"></textarea>
-											<button ng-click="submitCardForm(card, session.id)" class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
+											<button ng-click="submitCardForm(card, session)" class="btn btn-sm {{colorPallet[session.color]}}-bg-btn">ENVIAR</button>
 										</div>
 									</div>
 								</div>
