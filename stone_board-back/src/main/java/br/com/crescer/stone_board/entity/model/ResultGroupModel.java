@@ -5,9 +5,11 @@ import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.ResultGroup;
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,21 +20,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ResultGroupModel implements Serializable{
-    @NotNull(message = "error.title.notnull")
-    @Size(max =128, message = "error.title.size ")
+    private Long id;
     private String title;
-    @NotNull(message ="error.description.notnull")
-    @Size(max = 500, message = "error.description.size")
     private String description;
-    private List<Long> id_cards;
-    private long id_board;
-    
-    public static ResultGroup convertToNote(ResultGroupModel resultGroupModel, Board board) {
-       return ResultGroup.builder()
-               .title(resultGroupModel.getTitle())
-               .description(resultGroupModel.getDescription())
-               .board(board)
+    private List<CardModel> cards;
+       
+    public static ResultGroupModel convertToResultGroupModel(ResultGroup resultGroup) {
+       return ResultGroupModel.builder()
+               .id(resultGroup.getId())
+               .title(resultGroup.getTitle())
+               .description(resultGroup.getDescription())
+               .cards(resultGroup.getCards()
+                       .stream()
+                       .map(CardModel::convertToCardModel)
+                       .collect(Collectors.toList()))
                .build();
    }
 }

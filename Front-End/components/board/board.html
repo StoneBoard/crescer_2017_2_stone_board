@@ -1,5 +1,4 @@
 <nav-bar-header></nav-bar-header>
-<link rel="stylesheet" type="text/css" href="components/board/style.css">
 
 <div class="row middle-xs">
 	<div class="col-xs start-xs" ng-if="isAdmin">	
@@ -63,7 +62,7 @@
 
 							</div>
 							<div ng-repeat= "card in session.cards">
-								<post-it info="card" color="colorPallet[session.color]" send="sendMessage" board-status="boardStatus" card-messages="cardMessages"></post-it>
+								<post-it info="card" color="colorPallet[session.color]" board-status="boardStatus" card-messages="cardMessages"></post-it>
 							</div>
 
 						</div>

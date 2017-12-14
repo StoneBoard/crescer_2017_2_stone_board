@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope, $routeParams, $window, authService, $location, boardService, postitService, personService, utils) {
+  .controller('controllerBoard', function ($scope, $routeParams, $window, utilsService, authService, $location, boardService, postitService, personService, utils) {
 
   	$scope.colorPallet = utils.colorPallet;
   	$scope.rowStyle = {};
@@ -14,35 +14,22 @@
         console.log($scope.isAdmin);
     });
 
-  	let idealWidth = 550; //px
-  	let numSession;
-    let newWidth;
-    let resized = false;
     let socket = null;
     let stompClient = null;
     let interval = null;
 
+  	let idealWidth = 550; //px
+    let numSession;
+    let newWidth;
+    let resized = false;
+  	let rowSession = angular.element(document.getElementById('row-sessions'));
 
-  	// verifica se houve alguma mudança na largura da tela e recalcula largura do board
-		angular.element($window).bind('resize', resizeRow);
+    // verifica se houve alguma mudança na largura da tela e recalcula largura do board
+    angular.element($window).bind('resize', resizeRow);
 
-  	function resizeRow() {
-
-  		let rowSession = angular.element(document.getElementById('row-sessions'));
-  		rowSession.css('width', '100%');
-
-	  	if (idealWidth > rowSession[0].clientWidth) {
-	  		newWidth = $window.innerWidth * numSession + 'px';
-	  	}
-	  	else if ( (idealWidth * numSession) >= rowSession[0].clientWidth ) {
-	  		newWidth =	(idealWidth * numSession) + 'px';
-	  	}
-	  	else {
-	  		newWidth = '100%';
-	  	}
-
-	  	rowSession.css('width', newWidth);
-  	}
+    function resizeRow(){
+      utilsService.resizeBoardWidth(rowSession, idealWidth, numSession);
+    }
 
     $scope.submitCardForm = function(card, session){
       card.id_session = session.id;
