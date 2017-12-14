@@ -8,7 +8,7 @@
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
     $scope.sendMessage = sendMessage;
-    $scope.usuario = authService.getUsuario();
+    $scope.user = authService.getUsuario();
   	let idealWidth = 550; //px
   	let numSession;
     let newWidth;
@@ -60,7 +60,7 @@
     }
 
     function connect() {
-      socket = new SockJS('http://10.99.30.75:9090/api/websocket');
+      socket = new SockJS('http://localhost:9090/api/websocket');
       stompClient = Stomp.over(socket);
       stompClient.connect({}, function (frame) { });
       stompClient.debug = null;
@@ -87,7 +87,7 @@
 		}
 
     function sendMessageCard(card){
-      stompClient.send("/app/card/new/" + $routeParams.idBoard + "/1", {}, JSON.stringify(card));
+      stompClient.send("/app/card/new/" + $routeParams.idBoard + "/"+   $scope.user.id, {}, JSON.stringify(card));
     }
 
     function update(board) {

@@ -10,7 +10,6 @@ import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
-
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;

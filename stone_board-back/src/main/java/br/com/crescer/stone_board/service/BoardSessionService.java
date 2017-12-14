@@ -27,5 +27,5 @@ public class BoardSessionService {
     public BoardSession save(BoardSessionModel boardSessionModel){
          BoardSession boardSession = BoardSessionModel.convertToBoardSession(boardSessionModel);
          return boardSessionRepository.save(boardSession);
-     }
+    }
 }
