@@ -12,8 +12,14 @@
     $scope.today = new Date();
 
   	$scope.submitSessionForm = function(session) {
-  		console.log($scope.session);
-  		console.log($scope.board.sessions);
+      if ( typeof $scope.session === 'undefined'
+        || typeof $scope.session.color === 'undefined' 
+        || typeof $scope.session.title === 'undefined'
+        || $scope.session.title.trim() === '' ) {
+        toastr.error("Informe título e cor para a sessão");
+        return;
+    }
+      
   		$scope.board.sessions.push(JSON.parse(JSON.stringify(session)));
   		delete $scope.session;
   	}

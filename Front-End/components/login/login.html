@@ -16,7 +16,7 @@
 
     <div class="col-xs-12 col-sm-6 col-lg-4" id="right">
 
-      <form novalidate name="formLogin" ng-submit="login(usuario)">
+      <form novalidate name="formLogin" ng-submit="login(usuario)" class="content-login" ng-class="loginClass">
 
         <div class="row start-xs">
           <div class="col-xs">
@@ -49,8 +49,54 @@
 
         <p class="text-center"> Não tem uma conta ainda? </p>
 
-        <button type="submit" class="btn btn-md inactive-bg-btn stretch">Cadastre-se</button>
+        <button type="button" class="btn btn-md inactive-bg-btn stretch" ng-click="loginClass='disappear'; registerClass='appear'">Cadastre-se</button>
       </form>
+
+      <form novalidate name="formRegister" ng-submit="login(usuario)" class="content-register" ng-class="registerClass">
+
+        <div class="row start-xs">
+          <div class="col-xs">
+            <p class="title-sm">CADASTRE-SE</p>
+          </div>
+        </div>
+
+        <div class="row start-xs">
+          <div class="col-xs">
+            
+            <div class="form-box-input">
+              <label>Nome Completo</label>
+              <input type="text" class="input-form" ng-model="usuario.email" placeholder="exemplo@email.com">
+            </div>
+            
+          </div>
+        </div>  
+        
+        <div class="row start-xs">
+          <div class="col-xs">
+            
+            <div class="form-box-input">
+              <label>Email</label>
+              <input type="text" class="input-form" ng-model="usuario.email" placeholder="exemplo@email.com">
+            </div>
+            
+          </div>
+        </div>          
+
+        <div class="row start-xs">
+          <div class="col-xs">
+        
+            <div class="form-box-input">
+              <label>Senha</label>
+              <input type="password" class="input-form" ng-model="usuario.senha">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-md green-bg-btn stretch">Cadastrar</button>
+
+
+      </form>
+
     </div>
   </div>
 

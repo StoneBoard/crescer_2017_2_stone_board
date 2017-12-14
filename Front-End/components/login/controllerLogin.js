@@ -5,6 +5,9 @@
   .module('stoneBoard')
   .controller('controllerLogin', function ($scope, authService, $location, toastr) {
 
+    $scope.loginClass = ''
+    $scope.registerClass = ''
+
     $scope.login = function (usuario) {
 
       authService.login(usuario)
