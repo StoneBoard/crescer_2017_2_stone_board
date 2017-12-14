@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerResultGroup', function ($scope, $window) {
+  .controller('controllerResultGroup', function ($scope, $window, utilsService, resultGroupService, $rootParam) {
 
   	let idealWidth = 550; //px
   	let numSession = 2;
