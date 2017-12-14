@@ -16,11 +16,15 @@
     function findByEmail(email){
       return $http.get(urlBase + '/' + email);
     }
+    function isAdmin(id){
+      return $http.get(urlBase + '/isAdmin/' + id);
+    }
 
   	return {
   		listMyBoards : listMyBoards,
   		listConnectBoards : listConnectBoards,
-      findByEmail : findByEmail
+      findByEmail : findByEmail,
+      isAdmin : isAdmin
   	};
   })
 }());

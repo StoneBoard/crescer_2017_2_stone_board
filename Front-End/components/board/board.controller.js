@@ -3,11 +3,17 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope,$routeParams, $window,authService,$location, boardService,postitService) {
+  .controller('controllerBoard', function ($scope,$routeParams, $window,authService,$location, boardService,postitService, personService) {
 
   	$scope.colorPallet = ['orange', 'blue', 'pink', 'green'];
   	$scope.rowStyle = {};
     $scope.usuario = authService.getUsuario();
+
+   personService.isAdmin($routeParams.idBoard).then(function(response){
+        $scope.isAdmin = response.data;
+        console.log($scope.isAdmin);
+    });
+
   	let idealWidth = 550; //px
   	let numSession;
     let newWidth;

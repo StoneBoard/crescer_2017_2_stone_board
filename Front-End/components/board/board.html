@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="components/board/style.css">
 
 <div class="row middle-xs start-xs">
-	<div class="col-sm-1 col-xs-2">
+	<div class="col-sm-1 col-xs-2" ng-if="isAdmin">
 		<a class="btn btn-sm green-bg-btn" ng-href="/#!/board/{{board.id}}/edit">
 			<i class="material-icons">mode_edit</i>
 		</a>
