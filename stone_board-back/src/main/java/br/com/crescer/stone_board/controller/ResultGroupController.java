@@ -55,7 +55,7 @@ public class ResultGroupController {
     }
     
     @DeleteMapping(path = "/{idResultGroup}/{idBoard}")
-    public void delete(@PathVariable Long idResultGroup, Long idBoard){
+    public void delete(@PathVariable Long idResultGroup, @PathVariable Long idBoard){
         resultGroupService.delete(idResultGroup, idBoard);
     }
 }
