@@ -56,7 +56,9 @@
 
 						<div class="row">
 							<div class="col-xs">
+
 								<div id="title-group" class="title-session">
+									<a ng-if="isAdmin" class="btn btn-sm inactive-bg-btn" ng-href="/#!/board/{{idBoard}}/result-group/detail/{{resultGroup.id}}"><i class="material-icons">settings</i></a>
 									{{resultGroup.title}} 
 								</div>
 							</div>
