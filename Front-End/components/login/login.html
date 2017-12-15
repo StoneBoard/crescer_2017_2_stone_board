@@ -64,7 +64,11 @@
             
             <div class="form-box-input">
               <label>Nome Completo</label>
-              <input type="text" name="nomeCad" class="input-form" ng-model="person.fullName" >
+              <input type="text" name="nomeCad" class="input-form" ng-model="person.fullName" maxlength="128" required>
+              <div ng-if="formRegister.nomeCad.$touched" class="box-erro" role="alert">
+                  <div ng-if="formRegister.nomeCad.$error.required">Campo obrigatório.</div>
+                  <div ng-if="formRegister.nomeCad.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
+             </div>
             </div>
             
           </div>
@@ -75,7 +79,11 @@
             
             <div class="form-box-input">
               <label>Email</label>
-              <input type="text" name="emailCad" class="input-form" ng-model="person.email" placeholder="exemplo@email.com">
+              <input type="text" name="emailCad" class="input-form" ng-model="person.email" placeholder="exemplo@email.com" maxlength="128" required>
+              <div ng-if="formRegister.emailCad.$touched" class="box-erro" role="alert">
+                  <div ng-if="formRegister.emailCad.$error.required">Campo obrigatório.</div>
+                  <div ng-if="formRegister.emailCad.$error.maxlength">Campo deve ter menos de 128 caracteres.</div>
+             </div>
             </div>
             
           </div>
@@ -86,7 +94,11 @@
 
             <div class="form-box-input">
               <label>Senha</label>
-              <input type="password" name="senhaCad" class="input-form" ng-model="person.pass">
+              <input type="password" name="senhaCad" class="input-form" ng-model="person.pass" maxlength="20" required>
+              <div ng-if="formRegister.senhaCad.$touched" class="box-erro" role="alert">
+                  <div ng-if="formRegister.senhaCad.$error.required">Campo obrigatório.</div>
+                  <div ng-if="formRegister.senhaCad.$error.maxlength">Campo deve ter menos de 20 caracteres.</div>
+             </div>
             </div>
 
           </div>

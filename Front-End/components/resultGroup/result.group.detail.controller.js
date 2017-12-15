@@ -41,6 +41,7 @@
 	       promise = resultGroupService.saveResultGroup(resultGroup).then(
 	          function(){
 	            toastr.success('Grupo de resultado cadastrado com sucesso!');
+
 	          }, function(response){
 	            if (typeof(response.data.errors) === 'undefined')
 	              toastr.error(response.data.message)
@@ -50,10 +51,12 @@
 	            });
 	      	})
 	     }
+
 	  }
 
 	   $scope.deleteResultGroup = function(id_result){
 	   	console.log(id_result);
+	   	
 	   		let promise = resultGroupService.deleteResultGroup(id_result, $routeParams.idBoard).then(
 	   			function () {
             		toastr.success('Grupo de resultado deletado com sucesso!')
