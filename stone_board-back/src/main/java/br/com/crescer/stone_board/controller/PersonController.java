@@ -35,9 +35,9 @@ public class PersonController {
     @Autowired
     private PersonComponent personComponent;
     
-    @PostMapping("/addPerson")
-    public ResponseEntity addPerson(@Validated @RequestBody PersonModel personModel) {
-        return ResponseEntity.ok(personService.createAcount(personModel));
+    @PostMapping
+    public void addPerson(@Validated @RequestBody PersonModel personModel) {
+        return personService.createAcount(personModel)
     }
         
     @GetMapping("/listMyBoards")

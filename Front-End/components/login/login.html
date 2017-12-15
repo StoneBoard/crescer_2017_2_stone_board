@@ -28,7 +28,7 @@
             
             <div class="form-box-input">
               <label>Email</label>
-              <input type="text" class="input-form" ng-model="usuario.email" placeholder="exemplo@email.com">
+              <input type="text" name="emailLogin" class="input-form" ng-model="usuario.email" placeholder="exemplo@email.com">
             </div>
             
           </div>
@@ -39,7 +39,7 @@
         
             <div class="form-box-input">
               <label>Senha</label>
-              <input type="password" class="input-form" ng-model="usuario.senha">
+              <input type="password" name="passLogin" class="input-form" ng-model="usuario.senha">
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
         <button type="button" class="btn btn-md inactive-bg-btn stretch" ng-click="loginClass='disappear'; registerClass='appear';">Cadastre-se</button>
       </form>
 
-      <form novalidate name="formRegister" ng-submit="login(usuario)" ng-class="registerClass">
+      <form novalidate name="formRegister" ng-submit="savePerson(person)" ng-class="registerClass">
 
         <div class="row start-xs">
           <div class="col-xs">
@@ -64,7 +64,7 @@
             
             <div class="form-box-input">
               <label>Nome Completo</label>
-              <input type="text" class="input-form" ng-model="usuario.email" placeholder="exemplo@email.com">
+              <input type="text" name="nomeCad" class="input-form" ng-model="person.fullName" >
             </div>
             
           </div>
@@ -75,7 +75,7 @@
             
             <div class="form-box-input">
               <label>Email</label>
-              <input type="text" class="input-form" ng-model="usuario.email" placeholder="exemplo@email.com">
+              <input type="text" name="emailCad" class="input-form" ng-model="person.email" placeholder="exemplo@email.com">
             </div>
             
           </div>
@@ -86,7 +86,7 @@
 
             <div class="form-box-input">
               <label>Senha</label>
-              <input type="password" class="input-form" ng-model="usuario.senha">
+              <input type="password" name="senhaCad" class="input-form" ng-model="person.pass">
             </div>
 
           </div>
