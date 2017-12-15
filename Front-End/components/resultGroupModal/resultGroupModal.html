@@ -3,7 +3,13 @@
 
 <div id="custom-modal">
   <div id="overlay">
-
+	<div class="row" ng-repeat="resultGroup in resultGroups">
+		<button type="button" ng-click="myResultGroup(resultGroup.id)">
+			<i class="material-icons">add</i>
+		</button>		
+		<p>{{resultGroup.title}}</p>			
+	</div>
+			
       <span>Selcione qual grupo de resultado deseja!</span>
       <div class="btn btn-sm bg-btn">
         <button type="button" ng-click="close()" class="btn btn-md green-bg-btn stretch">Sair</button>

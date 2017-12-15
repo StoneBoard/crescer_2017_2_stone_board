@@ -25,7 +25,7 @@
     }
 
     function addCards(idResultGroup, idCard){ 
-      return $http.put(urlBase + '/addCards/' + idResultGroup + '/' + idBoard);
+      return $http.put(urlBase + '/addCards/' + idResultGroup + '/' + idCard);
     }
 
     return{

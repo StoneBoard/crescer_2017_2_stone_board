@@ -5,7 +5,7 @@
 		<p class="title-lg"><a ng-if="isAdmin" class="btn btn-sm inactive-bg-btn" ng-href="/#!/board/{{board.id}}/edit"><i class="material-icons">settings</i></a> {{board.title}}</p>
 	</div>
 
-	<div class="col-xs">
+	<div class="col-xs" ng-if="isAdmin && !boardStatus">
 		<a class="link-text" ng-href="/#!/board/{{board.id}}/result-group">
 			<div class="row end-xs middle-xs">
 				Acessar Grupo de Resultado
