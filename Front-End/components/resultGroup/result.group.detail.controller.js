@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerResultGroupDetail', function ($scope, resultGroupService, $routeParams, toastr) {
+  .controller('controllerResultGroupDetail', function ($scope, resultGroupService,$location, $routeParams, toastr) {
 
   	  $scope.isAlterar = !!$routeParams.idResultGroup;
   	  $scope.idBoard = $routeParams.idBoard;
@@ -41,7 +41,7 @@
 	       promise = resultGroupService.saveResultGroup(resultGroup).then(
 	          function(){
 	            toastr.success('Grupo de resultado cadastrado com sucesso!');
-
+							$location.path('/board/'+$routeParams.idBoard+'/result-group');
 	          }, function(response){
 	            if (typeof(response.data.errors) === 'undefined')
 	              toastr.error(response.data.message)
