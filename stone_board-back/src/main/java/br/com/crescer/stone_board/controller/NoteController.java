@@ -29,11 +29,6 @@ public class NoteController {
        noteService.save(noteModel);
     }
     
-    @GetMapping("/findByCard/{idCard}")
-    public List<NoteModel> findByBoardId(@PathVariable Long idCard){
-       return noteService.findByCardId(idCard);
-    }
-    
     @PutMapping
     public void update(@RequestBody NoteModel noteModel){
       noteService.update(noteModel);

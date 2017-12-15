@@ -57,13 +57,5 @@ public class NoteService {
         Person personLoged = personComponent.loggedPersonDetails();
         Note note = noteRepository.findOne(id);
         noteRepository.delete(id);
-    }
-    
-    public List<NoteModel> findByCardId(Long idCard){
-        return noteRepository.findByCardId(idCard)
-                .stream()
-                .map(NoteModel :: convertToNoteModel)
-                .collect(Collectors.toList());
-    }
-    
+    }    
 }

@@ -16,7 +16,8 @@
       return $http.delete('http://localhost:9090/api/card/' + id);
     }
     function getCardsOutsideResultGroup(idBoard) {
-      return $http.get(urlBase + '/cardsOutsideResoultGroup/' + idBoard)
+      debugger
+      return $http.get(urlBase + '/cardsOutsideResultGroup/' + idBoard)
     }
 
     return {

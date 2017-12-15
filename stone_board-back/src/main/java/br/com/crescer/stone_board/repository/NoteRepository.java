@@ -14,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author willian
  */
 public interface NoteRepository  extends JpaRepository<Note, Long>{
-    List<Note> findByCardId(Long idCard);
+    //List<Note> findByCardId(Long idCard);
 }

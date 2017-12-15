@@ -51,13 +51,12 @@ public class CardController {
         return ResponseEntity.ok(cardService.findById(id));
     }
 
-    @GetMapping(path = "cardsOutsideResoultGroup/{id}")
-    public ResponseEntity CardsOutsideResoultGroup(Long id) {
-        List<Card> card = cardService.findAllCardsOutsideResoultGroup(id);
-        List<CardModel> boardsModel = card.stream()
+    @GetMapping(path = "cardsOutsideResultGroup/{idBoard}")
+    public List<CardModel> CardsOutsideResultGroup(@PathVariable("idBoard") Long idBoard) {
+        List<Card> card = cardService.findAllCardsOutsideResultGroup(idBoard);
+        return card.stream()
                 .map(CardModel::convertToCardModel)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(cardService.findAllCardsOutsideResoultGroup(id));
     }
 
     @PutMapping

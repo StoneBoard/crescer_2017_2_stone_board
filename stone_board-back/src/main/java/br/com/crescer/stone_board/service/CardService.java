@@ -9,6 +9,7 @@ import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -30,6 +31,8 @@ public class CardService {
     PersonComponent personComponent;
     @Autowired
     BoardSessionRepository boardSessionRepository;
+    @Autowired
+    BoardService boardService;
 
     public Card findById(Long id) {
         return cardRepository.findOne(id);
@@ -39,9 +42,15 @@ public class CardService {
         return cardRepository.findAll();
     }
     
-    public List<Card> findAllCardsOutsideResoultGroup(Long id) {
-        List<Card> card = cardRepository.findCardsByBoardSessionId(id);
-        return card.stream().filter(p -> p.getResultGroup() == null).collect(Collectors.toList());
+    public List<Card> findAllCardsOutsideResultGroup(Long idBoard) {
+       List<Card> cards = new ArrayList<>();
+       List<BoardSession> sessions = boardService.findById(idBoard).getSessions();
+       
+       sessions.forEach(session -> cards.addAll(session.getCards()));
+       
+       return cards.stream()
+               .filter(p -> p.getResultGroup() == null)
+               .collect(Collectors.toList());
     }
 
     public void save(CardModel cardModel, Person person) {
