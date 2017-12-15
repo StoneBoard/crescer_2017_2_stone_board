@@ -5,10 +5,15 @@
  */
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
+import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.CardModel;
 import br.com.crescer.stone_board.service.CardService;
 import br.com.crescer.stone_board.utils.PersonComponent;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,35 +33,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/card")
 public class CardController {
+
     @Autowired
     private CardService cardService;
-    
+
     @Autowired
     private PersonComponent personComponent;
-    
+
     @PostMapping
-    public void Save(@Validated @RequestBody CardModel cardModel){
+    public void Save(@Validated @RequestBody CardModel cardModel) {
         Person person = personComponent.loggedPersonDetails();
         cardService.save(cardModel, person);
     }
+
     @GetMapping(path = "/{id}")
-    public ResponseEntity findById(@PathVariable Long id){
-       return ResponseEntity.ok(cardService.findById(id));
-    }  
-    
-      @GetMapping(path = "cardsOutsideResoultGroup/{id}")
-    public ResponseEntity CardsOutsideResoultGroup(Long id){
-       return ResponseEntity.ok(cardService.findAllCardsOutsideResoultGroup(id));
-    }  
-    
-    @PutMapping
-    public void savePut(@RequestBody CardModel cardModel){
-      Person person = personComponent.loggedPersonDetails();
-      cardService.update(cardModel, person.getId());
+    public ResponseEntity findById(@PathVariable Long id) {
+        return ResponseEntity.ok(cardService.findById(id));
     }
-    @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable Long id){
+
+    @GetMapping(path = "cardsOutsideResoultGroup/{id}")
+    public ResponseEntity CardsOutsideResoultGroup(Long id) {
+        List<Card> card = cardService.findAllCardsOutsideResoultGroup(id);
+        List<CardModel> boardsModel = card.stream()
+                .map(CardModel::convertToCardModel)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(cardService.findAllCardsOutsideResoultGroup(id));
+    }
+
+    @PutMapping
+    public void savePut(@RequestBody CardModel cardModel) {
         Person person = personComponent.loggedPersonDetails();
-      //  cardService.delete(id, person.getId());
+        cardService.update(cardModel, person.getId());
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Long id) {
+        Person person = personComponent.loggedPersonDetails();
+        //  cardService.delete(id, person.getId());
     }
 }
