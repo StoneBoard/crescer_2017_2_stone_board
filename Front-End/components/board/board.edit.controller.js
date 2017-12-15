@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerEditBoard', function($scope, toastr, $routeParams, authService, boardService, personService){
+  .controller('controllerEditBoard', function($scope, toastr, $routeParams,resultGroupService, authService, boardService, personService){
 
 		$scope.idBoard = $routeParams.idBoard
 		$scope.userLoged = authService.getUsuario();
@@ -32,7 +32,7 @@
 	  			function(){
 	            	toastr.success('Usuário adicionado com sucesso!')
 	  				displayBoard();
-	  			
+
 	          	}, response => messageError(response.data)
 	  		);
 	  	}
@@ -64,10 +64,19 @@
        		array.splice(index, 1);
 		}
 
+    findResultGroup($scope.idBoard);
+    function findResultGroup(idBoard){
+      let promise = resultGroupService.findBoard(idBoard);
+        promise.then(function (response) {
+            $scope.myResultGroup = response.data;
+            console.log($scope.myResultGroup);
+        });
+    }
+
   		function messageError(data){
   			if (typeof(data.errors) === 'undefined')
 	        	toastr.error(data.message);
-  			else	
+  			else
 	  			data.errors.forEach(error =>{
 		        	toastr.error(error.defaultMessage)
 		        });
