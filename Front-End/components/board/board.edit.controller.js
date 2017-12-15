@@ -66,7 +66,7 @@
 
     findResultGroup($scope.idBoard);
     function findResultGroup(idBoard){
-      let promise = resultGroupService.findBoard(idBoard);
+      let promise = resultGroupService.findByBoard(idBoard);
         promise.then(function (response) {
             $scope.myResultGroup = response.data;
             console.log($scope.myResultGroup);

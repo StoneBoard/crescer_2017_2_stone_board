@@ -9,7 +9,7 @@
     }
 
     function findByBoard(idBoard){
-      return $http.get(urlBase + '/findBoard/' + idBoard);
+      return $http.get(urlBase + '/findByBoard/' + idBoard);
     }
 
     function saveResultGroup(resultGroup){
