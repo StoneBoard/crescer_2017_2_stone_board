@@ -92,9 +92,10 @@ public class ResultGroupService {
 
         if (!boards.stream().anyMatch(b -> b.getId() == idBoard)) {
             throw new BadRequestException("Apenas o usuário que criou o board pode realizar esta ação.");
+           
         }
-        ResultGroup resultGroup = resultGroupRepository.findOne(idResultGroup);
-        resultGroupRepository.delete(resultGroup);
+            ResultGroup resultGroup = resultGroupRepository.findOne(idResultGroup);
+            resultGroupRepository.delete(resultGroup);       
     }
 
 }

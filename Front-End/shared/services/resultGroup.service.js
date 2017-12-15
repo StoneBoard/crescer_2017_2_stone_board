@@ -21,7 +21,7 @@
     }
 
     function deleteResultGroup(idResultGroup, idBoard){
-      return $http.put(urlBase + '/' + idResultGroup + '/' + idBoard);
+      return $http.delete(urlBase + '/' + idResultGroup + '/' + idBoard);
     }
 
     function addCards(idResultGroup, idCard){ 
