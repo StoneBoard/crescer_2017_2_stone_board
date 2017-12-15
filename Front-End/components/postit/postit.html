@@ -28,24 +28,24 @@
 
 		<div class="row arund-xs" ng-if="!editMode && boardStatus">
 			<div class="col-xs {{votoPositivo}}">
-				<div class="pt-icon {{color}}-selected">
+				<div class="pt-icon {{color}}-selected center-xs">
 					<i class="material-icons md-dark" ng-click="vote(true)">keyboard_arrow_up</i>
 					<span>{{vPositivo.length}}</span>
 				</div>
 			</div>
 			<div class="col-xs {{votoNegativo}}">
-				<div class="pt-icon {{color}}-selected">
+				<div class="pt-icon {{color}}-selected center-xs">
 					<i class="material-icons md-dark" ng-click="vote(false)">keyboard_arrow_down</i>
 					<span>{{vNegativo.length}}</span>
 					
 				</div>
 			</div>
-			<div class="col-xs">
+		<!--	<div class="col-xs">
 				<div class="pt-icon">
 					<i class="material-icons md-dark" ng-click='showModalComment()'>message</i>12
 				</div>
 			</div>
-
+-->
 		</div>
 
 		<div ng-if="!boardStatus && isAdmin">
