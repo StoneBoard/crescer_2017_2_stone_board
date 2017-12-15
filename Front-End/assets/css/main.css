@@ -569,6 +569,12 @@ textarea {
 .icon-selected > .orange-selected { background-color: var(--orange); }
 .bg-orange > .post-it-separator { border-top: 1px dashed var(--orange); }
 
+.pink-highlighter { background-color: var(--pink); }
+.blue-highlighter { background-color: var(--blue); }
+.green-highlighter { background-color: var(--green); }
+.orange-highlighter { background-color: var(--orange); }
+
+
 .mobile-version {
   display: none; 
 }
@@ -587,6 +593,16 @@ textarea {
 
 .btn-empty:hover {
   background-color: rgba(144, 153, 183, 0.12); 
+}
+
+.btn-full {
+  /*background-color: var(--grayBlueOk);*/
+  color: white;
+  padding: 7px 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Coming Soon', cursive;
 }
 
 

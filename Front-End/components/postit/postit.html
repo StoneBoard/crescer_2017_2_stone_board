@@ -48,13 +48,13 @@
 
 		</div>
 
-		<div ng-if="!boardStatus">
-			<div class="row center-xs">
-				<div class="btn-empty" ng-click='showModalResultGroup()'>+ Grupo de Resultado</div>
+		<div ng-if="!boardStatus && isAdmin">
+			<div class="row center-xs" ng-if="!!myResultGroup">
+				<div class="btn-full {{color}}-highlighter" ng-click='showModalResultGroup()'><i class="material-icons md-18">check</i> Grupo de Resultado</div>
 			</div>
 
-			<div class="row center-xs">
-				<div class="btn-empty" ng-click='showModalResultGroup()'>+ Grupo de Resultado</div>
+			<div class="row center-xs" ng-if="!myResultGroup">
+				<div class="btn-empty" ng-click='showModalResultGroup()'><b> +</b> Grupo de Resultado </div>
 			</div>
 		</div>
 

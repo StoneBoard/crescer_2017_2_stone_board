@@ -13,14 +13,15 @@
         postIt : '=info',
         boardStatus : '=boardStatus',
         cardMessages : '=cardMessages',
-        myResultGroup : '=myResultGroup'
+        myResultGroup : '=myResultGroup',
+        isAdmin : '=isAdmin',
+        refresh : '=refresh'
       },
 
       templateUrl: 'components/postit/postit.html',
 
       controller: function ($scope, authService, postitService, toastr,resultGroupService,ModalService, voteService, utils) {
         $scope.color = utils.colorPallet[$scope.postIt.color];
-
         let usuario = authService.getUsuario();
 
         $scope.vPositivo = $scope.postIt.votes.filter(v => v.positive);
@@ -83,6 +84,10 @@
               idPostIt : $scope.postIt.id,
               myResultGroup : $scope.myResultGroup,
             }
+          }).then(function(modal) {
+            modal.close.then(function(result) {
+              $scope.refresh();
+            });
           });
         }
 

@@ -3,12 +3,7 @@
 
   angular
     .module('stoneBoard')
-    .controller('controllerBoard', function ($scope, $routeParams, $window, $http, utilsService, authService, $location, boardService, postitService, personService, utils, $interval) {
-
-
-
-
-
+    .controller('controllerBoard', function ($scope, $routeParams, $window, $http, utilsService, resultGroupService, authService, $location, boardService, postitService, personService, utils, $interval) {
 
       $scope.colorPallet = utils.colorPallet;
       $scope.rowStyle = {};
@@ -16,8 +11,9 @@
 
       personService.isAdmin($routeParams.idBoard).then(function (response) {
         $scope.isAdmin = response.data;
-        console.log($scope.isAdmin);
       });
+
+      let groupResults = [];
 
       let socket = null;
       let stompClient = null;
@@ -34,6 +30,10 @@
 
       function resizeRow() {
         utilsService.resizeBoardWidth(rowSession, idealWidth, numSession);
+      }
+
+      $scope.findIdResultGroup = function(idCard) {
+        return groupResults.some(group => (group.cards.some(card => card.id === idCard)));
       }
 
       $scope.submitCardForm = function (card, session) {
@@ -59,6 +59,9 @@
             $location.path('/dashboard');
           });
       }
+
+      resultGroupService.findByBoard($routeParams.idBoard)
+      .then(response => groupResults = response.data);
 
       /* websocket */
 
@@ -88,9 +91,7 @@
       $http.get('http://localhost:9090/api/websocket')
         .then(function (response) {
           connect();
-        });
-
-        
+        });      
 
       function update(board) {
         $scope.$apply(function () {
@@ -103,8 +104,6 @@
           }
         });
       }
-
-
 
       /* envio de mensagens para a controller do websocket */
 
