@@ -5,16 +5,12 @@
  */
 package br.com.crescer.stone_board.controller;
 
-import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.CardModel;
 import br.com.crescer.stone_board.service.CardService;
 import br.com.crescer.stone_board.utils.PersonComponent;
-import br.com.crescer.stone_board.webSocket.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +43,12 @@ public class CardController {
     public ResponseEntity findById(@PathVariable Long id){
        return ResponseEntity.ok(cardService.findById(id));
     }  
+    
+      @GetMapping(path = "cardsOutsideResoultGroup/{id}")
+    public ResponseEntity CardsOutsideResoultGroup(Long id){
+       return ResponseEntity.ok(cardService.findAllCardsOutsideResoultGroup(id));
+    }  
+    
     @PutMapping
     public void savePut(@RequestBody CardModel cardModel){
       Person person = personComponent.loggedPersonDetails();

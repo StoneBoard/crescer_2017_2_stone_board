@@ -37,7 +37,7 @@ public class PersonController {
     
     @PostMapping
     public void addPerson(@Validated @RequestBody PersonModel personModel) {
-        return personService.createAcount(personModel)
+        personService.createAcount(personModel);
     }
         
     @GetMapping("/listMyBoards")

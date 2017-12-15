@@ -11,6 +11,7 @@ import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +35,13 @@ public class CardService {
         return cardRepository.findOne(id);
     }
 
-    public List<Card> findAllBoards() {
+    public List<Card> findAllCards() {
         return cardRepository.findAll();
+    }
+    
+    public List<Card> findAllCardsOutsideResoultGroup(Long id) {
+        List<Card> card = cardRepository.findAll();
+        return card.stream().filter(p -> p.getResultGroup() == null).collect(Collectors.toList());
     }
 
     public void save(CardModel cardModel, Person person) {
