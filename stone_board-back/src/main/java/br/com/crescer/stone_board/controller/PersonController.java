@@ -35,7 +35,7 @@ public class PersonController {
     @Autowired
     private PersonComponent personComponent;
     
-    @PostMapping
+    @PostMapping("/addPerson")
     public void addPerson(@Validated @RequestBody PersonModel personModel) {
         personService.createAcount(personModel);
     }
