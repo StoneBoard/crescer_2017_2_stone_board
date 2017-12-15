@@ -16,8 +16,7 @@ body{
 
 #left{
   background-color: var(--grayBlueDark);
-  padding: 10px 0;
-  height: 100%;
+  height: 373px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -29,17 +28,8 @@ body{
   position: relative;
 }
 
-.content-login {
-}
-
-.content-register {
-  visibility: hidden;
-  transition: opacity 2s;
-  opacity: 0;
-  position: absolute;
-}
-
 .appear {
+  transition: .7s;
   visibility: visible;
   opacity: 1;
   width: 100%;
@@ -49,6 +39,7 @@ body{
 .disappear {
   opacity: 0;
   position: absolute;
+  transition: 0;
 }
 
 @media screen and (min-width: 768px) {

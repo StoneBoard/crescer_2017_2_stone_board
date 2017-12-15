@@ -2,7 +2,7 @@
 
 <div class="row middle-xs" id="login-content">
 
-  <div class="row center-xs">
+  <div class="row center-xs middle-xs">
 
     <div class="col-xs-12 col-sm-3 col-lg-2">
       <div id="box-left">
@@ -14,9 +14,8 @@
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-lg-4" id="right">
-
-      <form novalidate name="formLogin" ng-submit="login(usuario)" class="content-login" ng-class="loginClass">
+    <div class="col-xs-12 col-sm-6 col-lg-4" ng-class="mode" id="right">
+      <form novalidate name="formLogin" ng-submit="login(usuario)" ng-class="loginClass">
 
         <div class="row start-xs">
           <div class="col-xs">
@@ -49,10 +48,10 @@
 
         <p class="text-center"> Não tem uma conta ainda? </p>
 
-        <button type="button" class="btn btn-md inactive-bg-btn stretch" ng-click="loginClass='disappear'; registerClass='appear'">Cadastre-se</button>
+        <button type="button" class="btn btn-md inactive-bg-btn stretch" ng-click="loginClass='disappear'; registerClass='appear';">Cadastre-se</button>
       </form>
 
-      <form novalidate name="formRegister" ng-submit="login(usuario)" class="content-register" ng-class="registerClass">
+      <form novalidate name="formRegister" ng-submit="login(usuario)" ng-class="registerClass">
 
         <div class="row start-xs">
           <div class="col-xs">
@@ -84,16 +83,18 @@
 
         <div class="row start-xs">
           <div class="col-xs">
-        
+
             <div class="form-box-input">
               <label>Senha</label>
               <input type="password" class="input-form" ng-model="usuario.senha">
             </div>
+
           </div>
         </div>
 
         <button type="submit" class="btn btn-md green-bg-btn stretch">Cadastrar</button>
 
+        <p><a href ng-click="loginClass='appear'; registerClass='disappear';">Já possui uma conta? Clique aqui para acessar.</a></p>
 
       </form>
 
