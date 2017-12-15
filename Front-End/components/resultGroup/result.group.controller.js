@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerResultGroup', function ($scope, $window, utilsService, resultGroupService, $routeParams) {
+  .controller('controllerResultGroup', function ($scope, $window, utilsService, postitService, resultGroupService, $routeParams) {
 
     $scope.idBoard = $routeParams.idBoard
 
@@ -21,12 +21,20 @@
     }
 
     (function displayResultsGroups(){
-      resultGroupService.findByBoard($routeParams.idBoard).then(function(response){
-        $scope.resultGroups = response.data;
-        numSession = $scope.resultGroups.length + 1;
-        resizeRow();
-        console.log($scope.resultGroups);
-      });
+      resultGroupService.findByBoard($routeParams.idBoard)
+      .then(
+        function(response){
+          $scope.resultGroups = response.data;
+          numSession = $scope.resultGroups.length + 1;
+          resizeRow();
+          console.log($scope.resultGroups);
+        }
+      );
+    })();
+
+    (function displayCardsOutsideResultGroup (){
+      postitService.getCardsOutsideResultGroup($routeParams.idBoard)
+        .then(response => $scope.cardsOutside = response.data);
     })();
 
   });

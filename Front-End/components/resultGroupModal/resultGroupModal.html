@@ -1,20 +1,33 @@
-
 <link rel="stylesheet" type="text/css" href="components/resultGroupModal/styleResultGroup.css">
 
 <div id="custom-modal">
-  <div id="overlay">
-	<div class="row" ng-repeat="resultGroup in resultGroups">
-		<button type="button" ng-click="myResultGroup(resultGroup.id)">
-			<i class="material-icons">add</i>
-		</button>		
-		<p>{{resultGroup.title}}</p>			
-	</div>
-			
-      <span>Selcione qual grupo de resultado deseja!</span>
-      <div class="btn btn-sm bg-btn">
-        <button type="button" ng-click="close()" class="btn btn-md green-bg-btn stretch">Sair</button>
-      </div>
 
-  </div>
-  <div id="fade"></div>
+	<div style="position: fixed; height: 100%; width: 100%; top: 0;">
+			
+		<div class="row center-xs middle-xs" style="height: 100%; width: 100%; ">
+		  <div id="overlay" class="col-md-5 col-sm-6 col-xs-10">
+				
+				<div class="row">
+					<div class="col-xs-10 start-xs">
+						<p class="title-sm">GRUPOS DE RESULTADO</p>
+					</div>
+					<div class="col-xs end-xs icon-btn" ng-click="close()">
+						<i class="material-icons">close</i>
+					</div>
+				</div>
+
+
+				<div class="row" ng-repeat="resultGroup in resultGroups">
+					<div class="iten-list" ng-click="myResultGroup(resultGroup.id)">
+						<p>{{resultGroup.title}}</p>			
+					</div>
+				</div>
+
+			  </div>
+			  <div id="fade"></div>
+			</div>
+		</div>
+		
+	</div>
+
 </div>

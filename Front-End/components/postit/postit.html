@@ -42,10 +42,17 @@
 			</div>
 			<div class="col-xs">
 				<div class="pt-icon">
-					<i class="material-icons md-dark" ng-click='showCustom()'>message</i>12
+					<i class="material-icons md-dark" ng-click='showModalComment()'>message</i>12
 				</div>
 			</div>
 
 		</div>
+
+		<div ng-if="!boardStatus">
+			<div class="row center-xs">
+				<div class="btn-empty" ng-click='showModalResultGroup()'>+ Grupo de Resultado</div>
+			</div>
+		</div>
+
 	</div>
 </div>

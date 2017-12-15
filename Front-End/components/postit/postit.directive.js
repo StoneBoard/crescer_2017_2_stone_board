@@ -59,9 +59,9 @@
         }
 
         ///////////////// Modal///////////////
-        $scope.showCustom = showCustom;
+        $scope.showModalComment = showModalComment;
 
-        function showCustom() {
+        function showModalComment() {
           ModalService.showModal({
             templateUrl: "components/resultGroupModal/resultGroupModal.html",
             controller: "controllerModalNote",
@@ -74,11 +74,24 @@
           });
         };
 
+        $scope.showModalResultGroup = function() {
+          ModalService.showModal({
+            templateUrl: "components/resultGroupModal/resultGroupModal.html",
+            controller: "controllerModalNote",
+            bodyClass: "custom-modal-open",
+            inputs: {
+              idPostIt : $scope.postIt.id,
+              myResultGroup : $scope.myResultGroup,
+            }
+          });
+        }
+
         $scope.keyPress = function(value) {
           if (value.keyCode == 42) {
             ModalService.closeModals(null, 500);
           }
         };
+
       }
 
     }

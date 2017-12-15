@@ -10,6 +10,7 @@
   --blue: #3468af;
   --darkBlue: #1a4e95;
   --orange: #fcb150;
+  --darkOrange: #FC9D42;
   --grayBlueDark: #1f253d;
   --grayBlue: #394264;
   --grayBlueOk: #50597b;
@@ -251,6 +252,10 @@ textarea {
 
 .link-text{
   paddin: 15px 0;
+}
+
+.icon-btn {
+  cursor: pointer;
 }
 
 /* S C R O L L */
@@ -497,7 +502,8 @@ textarea {
   display: flex;
   align-items: center;
   padding: 2px;
-  border-radius: 5px
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .icon-selected {
@@ -566,6 +572,23 @@ textarea {
 .mobile-version {
   display: none; 
 }
+
+/* grupo de resultado */
+
+.btn-empty {
+  border: 2px dotted var(--grayBlueLight);
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--grayBlueOk);
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Coming Soon', cursive;
+}
+
+.btn-empty:hover {
+  background-color: rgba(144, 153, 183, 0.12); 
+}
+
 
 @media screen and (max-width: 768px) {
   .mobile-version {

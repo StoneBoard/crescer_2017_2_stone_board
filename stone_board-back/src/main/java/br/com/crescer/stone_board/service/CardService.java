@@ -40,7 +40,7 @@ public class CardService {
     }
     
     public List<Card> findAllCardsOutsideResoultGroup(Long id) {
-        List<Card> card = cardRepository.findAll();
+        List<Card> card = cardRepository.findCardsByBoardSessionId(id);
         return card.stream().filter(p -> p.getResultGroup() == null).collect(Collectors.toList());
     }
 

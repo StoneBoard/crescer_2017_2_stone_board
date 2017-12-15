@@ -15,11 +15,15 @@
     function deleteCard(id){
       return $http.delete('http://localhost:9090/api/card/' + id);
     }
+    function getCardsOutsideResultGroup(idBoard) {
+      return $http.get(urlBase + '/cardsOutsideResoultGroup/' + idBoard)
+    }
+
     return {
       saveCard : saveCard,
       editCard : editCard,
-      deleteCard : deleteCard
-
+      deleteCard : deleteCard,
+      getCardsOutsideResultGroup : getCardsOutsideResultGroup
     };
   });
 }());
