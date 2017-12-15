@@ -562,3 +562,16 @@ textarea {
 .bg-orange { background: #FEFABC; }
 .icon-selected > .orange-selected { background-color: var(--orange); }
 .bg-orange > .post-it-separator { border-top: 1px dashed var(--orange); }
+
+.mobile-version {
+  display: none; 
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-version {
+    display: initial;
+  }
+  .normal-version {
+    display: none;
+  }
+}

@@ -5,3 +5,19 @@
 #title-group {
   background-color: var(--grayBlue);
 }
+
+.result-desc {
+	width: 90%;
+
+	box-shadow: 0px 2px 4px #333;
+  -moz-box-shadow: 0px 2px 4px #333;
+  -webkit-box-shadow: 0px 2px 4px #333;
+}
+
+.scotch-tape {
+	background-color: rgba(255,255,255,0.8); 
+	margin: auto; 
+	width: 150px; 
+	height: 30px; 
+	margin-top: -25px;
+}

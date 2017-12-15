@@ -39,7 +39,7 @@ public class ResultGroupController {
        return ResponseEntity.ok(resultGroupService.findById(id));
     }  
     
-    @GetMapping("/findBoard/{idBoard}")
+    @GetMapping("/findByBoard/{idBoard}")
     public ResponseEntity findByBoardId(@PathVariable Long idBoard){
        return ResponseEntity.ok(resultGroupService.findByBoardId(idBoard));
     }  
