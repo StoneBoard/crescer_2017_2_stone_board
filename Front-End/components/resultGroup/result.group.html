@@ -71,12 +71,15 @@
 								</div>
 							</div>
 
+						</div>
+
+						<div class="row center-xs">
+					
+							<div ng-repeat="card in resultGroup.cards"> 
+								<post-it info="card" board-status="boardStatus"></post-it>
+							</div>						
 
 						</div>
-					
-						<div ng-repeat="card in resultGroup.cards"> 
-							<post-it info="card" board-status="boardStatus"></post-it>
-						</div>						
 					
 					</div>
 				</div>
@@ -98,9 +101,12 @@
 							</div>
 						</div>
 
+						<div class="row center-xs">
 					
-						<div ng-repeat="card in cardsOutside"> 
-							<post-it info="card" board-status="boardStatus"></post-it>
+							<div ng-repeat="card in cardsOutside"> 
+								<post-it info="card" board-status="boardStatus"></post-it>
+							</div>
+
 						</div>
 					
 					</div>
