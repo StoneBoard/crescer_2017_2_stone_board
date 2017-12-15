@@ -7,7 +7,7 @@
   	let urlBase = 'http://localhost:9090/api/person';
 
     function savePerson(person){
-      return $http.post(urlBase , person);
+      return $http.post(urlBase +'/addPerson' , person);
     }
 
   	function listMyBoards(){

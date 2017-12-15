@@ -3,7 +3,13 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerBoard', function ($scope, $routeParams, $window, utilsService, authService, $location, boardService, postitService, personService, utils) {
+  .controller('controllerBoard', function ($scope, $routeParams, $window,$http, utilsService, authService, $location, boardService, postitService, personService, utils) {
+    
+    openConnection()
+
+    function openConnection(){
+    $http.get('http://localhost:9090/api/websocket').then(function(response){ connect();});
+    }
 
   	$scope.colorPallet = utils.colorPallet;
   	$scope.rowStyle = {};
@@ -92,7 +98,7 @@
       });
     }
 
-    connect();
+    
 
 		/* envio de mensagens para a controller do websocket */
 
