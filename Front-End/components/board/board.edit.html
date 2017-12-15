@@ -52,7 +52,7 @@
 
 							<div class="row center-xs">
 								<div class="col-sm col-xs-6">
-									<button class="btn btn-md inactive-bg-btn stretch">CANCELAR</button>
+									<a ng-href="/#!/board/{{idBoard}}" class="btn btn-md inactive-bg-btn stretch">CANCELAR</a>
 								</div>
 								<div class="col-sm col-xs-6">
 									<button type="submit" class="btn btn-md green-bg-btn stretch">SALVAR</button>
@@ -102,7 +102,7 @@
 							</button>
 						</div>
 						<div class="col-xs">
-							<p class="title-sm">{{person.fullName}}</p>
+							<p class="title-sm">{{person.fullName}} - {{person.email}}</p>
 						</div>
 						<div class="col-xs-12">
 							<div class="form-separator"></div>
@@ -124,7 +124,7 @@
 							</button>
 						</div>
 						<div class="col-xs">
-							<p class="title-sm">{{member.fullName}}</p>
+							<p class="title-sm">{{member.fullName}} - {{member.email}}</p>
 						</div>
 						<div class="col-xs-12">
 							<div class="form-separator"></div>

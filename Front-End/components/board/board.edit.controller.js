@@ -3,7 +3,7 @@
 
   angular
   .module('stoneBoard')
-  .controller('controllerEditBoard', function($scope, toastr, $routeParams,resultGroupService, authService, boardService, personService){
+  .controller('controllerEditBoard', function($scope, toastr, $routeParams, resultGroupService, authService, boardService, personService){
 
 		$scope.idBoard = $routeParams.idBoard
 		$scope.userLoged = authService.getUsuario();
