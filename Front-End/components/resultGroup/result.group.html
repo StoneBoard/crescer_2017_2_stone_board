@@ -3,13 +3,13 @@
 <nav-bar-header></nav-bar-header>
 
 <div class="row middle-xs">
-	<div class="col-xs start-xs" ng-if="isAdmin">	
-		<p class="title-lg"><a class="btn btn-sm inactive-bg-btn" ng-href="/#!/board/{{board.id}}/edit"><i class="material-icons">settings</i></a> {{board.title}}</p>
+	<div class="col-xs start-xs">	
+		<p class="title-lg"><a ng-if="isAdmin" class="btn btn-sm inactive-bg-btn" ng-href="/#!/board/{{board.id}}/edit"><i class="material-icons">settings</i></a> teste {{board.title}}</p>
 	</div>
 
 	<div class="col-xs">
 		<a class="link-text" ng-href="/#!/board/{{idBoard}}">
-			<div class="row start-xs middle-xs">
+			<div class="row end-xs middle-xs">
 				Voltar ao board
 				<i class="material-icons">chevron_right</i> 
 			</div>
