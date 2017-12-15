@@ -6,6 +6,8 @@
   .controller('controllerResultGroupDetail', function ($scope, resultGroupService, $routeParams, toastr) {
 
   	  $scope.isAlterar = !!$routeParams.idResultGroup;
+  	  $scope.idBoard = $routeParams.idBoard;
+
 
   	  setup();
   	  function setup() {
