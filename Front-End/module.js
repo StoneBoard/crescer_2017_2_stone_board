@@ -1,8 +1,6 @@
-(function(){
-  'use strict';
 
   angular
-    .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket','toastr','angularModalService']);
+    .module('stoneBoard', ['ngStorage','ngRoute','ngWebSocket','toastr','angularModalService','AngularStompDK']);
 
   angular
     .module('stoneBoard').constant('utils', {
@@ -22,7 +20,3 @@
 
       urlLogout: '/home'
   });
-
-
-
-})();

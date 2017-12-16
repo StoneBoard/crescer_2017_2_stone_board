@@ -3,7 +3,7 @@
 
   angular
     .module('stoneBoard')
-    .controller('controllerBoard', function ($scope, $routeParams, $window, $http, utilsService, resultGroupService, authService, $location, boardService, postitService, personService, utils, $interval) {
+    .controller('controllerBoard', function ($scope, $routeParams,ngstomp, $window, $http, utilsService, resultGroupService, authService, $location, boardService, postitService, personService, utils, $interval) {
 
       $scope.colorPallet = utils.colorPallet;
       $scope.rowStyle = {};
@@ -12,6 +12,7 @@
       personService.isAdmin($routeParams.idBoard).then(function (response) {
         $scope.isAdmin = response.data;
       });
+
 
       let groupResults = [];
 
@@ -65,33 +66,48 @@
 
       /* websocket */
 
-      function connect() {
-        socket = new SockJS('http://localhost:9090/api/websocket');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) { });
-        stompClient.debug = null;
-        socket.onopen = function () {
-          stompClient.subscribe('/stoneboard/sendBoard', function (board) {
-            update(board);
-          });
-          startMessage();
-        };
 
-        clearInterval(interval);
+         this.$onInit = function() {
+             this.items = [];
 
-        socket.onclose = function () {
-          socket = null;
-          interval = setInterval(function () {
-            connect();
-          }, 2000);
-        };
+             this.unSubscriber = ngstomp
+                 .subscribeTo('/stoneboard/sendBoard')
+                     .callback(whatToDoWhenMessageComming)
+                     .withBodyInJson()
+                     .bindTo($scope)
+                 .connect();
+             };
 
-      }
+         this.$onDestroy = function() {
+             this.unSubscriber.unSubscribeAll();
+         }
 
-      $http.get('http://localhost:9090/api/websocket')
-        .then(function (response) {
-          connect();
-        });      
+         this.whatToDoWhenMessageComming = function(message) {
+             update(message)
+         }
+
+
+
+
+
+
+
+
+
+  //
+  //       debugger;
+  //
+  //
+  //       clearInterval(interval);
+  //
+  //       socket.onclose = function () {
+  //         socket = null;
+  //         interval = setInterval(function () {
+  //           connect();
+  //         }, 2000);
+  //       };
+
+  //    }
 
       function update(board) {
         $scope.$apply(function () {
@@ -104,6 +120,11 @@
           }
         });
       }
+
+
+
+
+
 
       /* envio de mensagens para a controller do websocket */
 
