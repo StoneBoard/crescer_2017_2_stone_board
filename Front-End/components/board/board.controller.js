@@ -3,7 +3,7 @@
 
   angular
     .module('stoneBoard')
-    .controller('controllerBoard', function ($scope, $routeParams, $window, $http, utilsService, resultGroupService, authService, $location, boardService, postitService, personService, utils, $interval) {
+    .controller('controllerBoard', function ($scope, $routeParams, $window, $http, utilsService, resultGroupService, authService, $location, boardService, postitService, personService, utils, $interval, websocketService) {
 
       $scope.colorPallet = utils.colorPallet;
       $scope.rowStyle = {};
@@ -14,10 +14,6 @@
       });
 
       let groupResults = [];
-
-      let socket = null;
-      let stompClient = null;
-      let interval = null;
 
       let idealWidth = 550; //px
       let numSession;
@@ -39,7 +35,7 @@
       $scope.submitCardForm = function (card, session) {
         card.id_session = session.id;
         card.color = session.color;
-        sendNewCard(card);
+        websocketService.sendNewCard(card);
       }
 
       function boardStatus(date) {
@@ -55,7 +51,7 @@
             boardStatus($scope.deadline);
           },
           function (response) {
-            socket = null;
+            websocketService.cancel();
             $location.path('/dashboard');
           });
       }
@@ -63,35 +59,9 @@
       resultGroupService.findByBoard($routeParams.idBoard)
       .then(response => groupResults = response.data);
 
-      /* websocket */
-
-      function connect() {
-        socket = new SockJS('http://localhost:9090/api/websocket');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) { });
-        stompClient.debug = null;
-        socket.onopen = function () {
-          stompClient.subscribe('/stoneboard/sendBoard', function (board) {
-            update(board);
-          });
-          startMessage();
-        };
-
-        clearInterval(interval);
-
-        socket.onclose = function () {
-          socket = null;
-          interval = setInterval(function () {
-            connect();
-          }, 2000);
-        };
-
-      }
-
-      $http.get('http://localhost:9090/api/websocket')
-        .then(function (response) {
-          connect();
-        });      
+      /* websocketService */
+    
+      websocketService.connect(update, $routeParams.idBoard);
 
       function update(board) {
         $scope.$apply(function () {
@@ -103,39 +73,6 @@
             resized = true;
           }
         });
-      }
-
-      /* envio de mensagens para a controller do websocket */
-
-      function sendMessage(url, obj) {
-        stompClient.send('/app' + url, {}, JSON.stringify(obj));
-      }
-
-      function startMessage() {
-        sendMessage("/board/" + $routeParams.idBoard);
-      }
-
-      function sendNewCard(card) {
-        sendMessage('/card/new/' + $routeParams.idBoard + '/' + $scope.usuario.id, card);
-      }
-
-      function updateCard(card) {
-        debugger;
-        sendMessage('/card/edit/' + $routeParams.idBoard, card);
-      }
-
-      function deleteCard(card) {
-        sendMessage('/card/delete/' + $routeParams.idBoard, card);
-      }
-
-      function vote(vote) {
-        sendMessage('/vote/' + $routeParams.idBoard, vote);
-      }
-
-      $scope.cardMessages = {
-        updateCard: updateCard,
-        deleteCard: deleteCard,
-        vote: vote
       }
 
     });

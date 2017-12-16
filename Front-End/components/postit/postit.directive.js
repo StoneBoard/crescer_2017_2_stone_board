@@ -9,10 +9,8 @@
       restrict: 'E',
 
       scope: {
-        sendMessage : '=send',
         postIt : '=info',
         boardStatus : '=boardStatus',
-        cardMessages : '=cardMessages',
         myResultGroup : '=myResultGroup',
         isAdmin : '=isAdmin',
         refresh : '=refresh'
@@ -20,7 +18,7 @@
 
       templateUrl: 'components/postit/postit.html',
 
-      controller: function ($scope, authService, postitService, toastr,resultGroupService,ModalService, voteService, utils) {
+      controller: function ($scope, $route, authService, postitService, toastr,resultGroupService,ModalService, voteService, utils, websocketService) {
         $scope.color = utils.colorPallet[$scope.postIt.color];
         let usuario = authService.getUsuario();
 
@@ -42,7 +40,7 @@
         }
 
         $scope.deleteCard = function(){
-          $scope.cardMessages.deleteCard($scope.postIt);
+          websocketService.deleteCard($scope.postIt);
         }
 
         $scope.update = function() {
@@ -51,7 +49,7 @@
         }
         $scope.vote = function(_positive) {
           let newVote = {positive: _positive, id_person: usuario.id,  id_card: $scope.postIt.id,}
-          $scope.cardMessages.vote(newVote);
+          websocketService.vote(newVote);
         }
 
         $scope.undo = function() {
@@ -86,7 +84,7 @@
             }
           }).then(function(modal) {
             modal.close.then(function(result) {
-              $scope.refresh();
+              $route.reload();
             });
           });
         }

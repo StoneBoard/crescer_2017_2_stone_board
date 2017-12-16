@@ -54,11 +54,10 @@ public class WebSocketController {
         return new Greeting(BoardModel.convertToBoardModel(board));
     }
     
-    @MessageMapping("/card/new/{idBoard}/{idPerson}")
+    @MessageMapping("/card/new/{idBoard}")
     @SendTo("/stoneboard/sendBoard")
     public Greeting saveNewCard(
             @DestinationVariable Long idBoard, 
-            @DestinationVariable Long idPerson,
             @Validated CardModel cardModel) throws Exception {
         
         Person person = personComponent.loggedPersonDetails();
