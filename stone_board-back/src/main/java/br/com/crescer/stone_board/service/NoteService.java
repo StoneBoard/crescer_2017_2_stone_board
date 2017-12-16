@@ -35,9 +35,11 @@ public class NoteService {
     @Autowired
     PersonComponent personComponent;
     
-    public void save(NoteModel noteModel) {
-        Person personLoged = personRepository.findOne(noteModel.getId_writer());
-        Note note = noteModel.convertToNote(noteModel, personLoged) ;
+    public Note findById(Long id){
+       return noteRepository.findOne(id);
+    }
+    public void save(NoteModel noteModel, Person person ) {
+        Note note = noteModel.convertToNote(noteModel, person) ;
         Card card = cardRepository.findOne(noteModel.getId_card());
         card.getNotes().add(note);
         cardRepository.save(card);
@@ -54,8 +56,6 @@ public class NoteService {
     }
 
     public void delete(Long id) {
-        Person personLoged = personComponent.loggedPersonDetails();
-        Note note = noteRepository.findOne(id);
         noteRepository.delete(id);
     }    
 }

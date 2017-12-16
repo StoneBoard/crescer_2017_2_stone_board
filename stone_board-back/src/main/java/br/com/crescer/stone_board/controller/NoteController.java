@@ -1,7 +1,9 @@
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.NoteModel;
 import br.com.crescer.stone_board.service.NoteService;
+import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -24,9 +26,13 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
     
+    @Autowired
+    private PersonComponent personComponent; 
+    
     @PostMapping
     public void Save(@Validated @RequestBody NoteModel noteModel) {
-       noteService.save(noteModel);
+      Person person = personComponent.loggedPersonDetails();
+       noteService.save(noteModel, person);
     }
     
     @PutMapping
