@@ -24,33 +24,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/board")
 public class BoardController {
-    
+
     @Autowired
     private BoardService boardService;
-    
+
     @PostMapping
     public ResponseEntity Save(@Validated @RequestBody BoardRegisterModel boardRegister) {
         return ResponseEntity.ok(boardService.save(boardRegister));
     }
-    
+
     @PutMapping("/addMember")
-    public void addMembers(@RequestBody BoardMemberModel boardMemberModel){
-         boardService.addMembers(boardMemberModel);
+    public void addMembers(@RequestBody BoardMemberModel boardMemberModel) {
+        boardService.addMembers(boardMemberModel);
     }
-    
+
     @PutMapping
-    public BoardModel update(@Validated @RequestBody BoardRegisterModel boardRegister){
+    public BoardModel update(@Validated @RequestBody BoardRegisterModel boardRegister) {
         return boardService.update(boardRegister);
     }
- 
+
     @GetMapping("/{id}")
     public BoardModel findById(@PathVariable Long id) throws Exception {
         Board board = boardService.findById(id);
-        if(boardService.userAuthenticadedBoard(id))
+        if (boardService.userAuthenticadedBoard(id)) {
             return BoardModel.convertToBoardModel(board);
-        else
+        } else {
             throw new BadRequestException("Não Autorizado");
-                
-    }    
-  
+        }
+
+    }
+
 }

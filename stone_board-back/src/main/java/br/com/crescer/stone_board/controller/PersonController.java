@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.controller;
 
 import br.com.crescer.stone_board.entity.Board;
@@ -30,16 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/person")
 public class PersonController {
+
     @Autowired
     private PersonService personService;
     @Autowired
     private PersonComponent personComponent;
-    
+
     @PostMapping("/addPerson")
     public void addPerson(@Validated @RequestBody PersonModel personModel) {
         personService.createAcount(personModel);
     }
-        
+
     @GetMapping("/listMyBoards")
     public ResponseEntity getMyBoardsByUserId() {
         List<Board> boards = personService.listMyBoards();
@@ -49,6 +45,7 @@ public class PersonController {
 
         return ResponseEntity.ok(boardsModel);
     }
+
     @GetMapping("/listConnectBoards")
     public List<BoardModel> getConnectBoardsByUserId() {
         List<Board> boards = personService.listConnectBoards();
@@ -56,14 +53,15 @@ public class PersonController {
                 .map(BoardModel::convertToBoardModel)
                 .collect(Collectors.toList());
     }
+
     @GetMapping("/{email}")
-    public List<PersonModel> findByEmail(@PathVariable String email){
+    public List<PersonModel> findByEmail(@PathVariable String email) {
         return personService.findPersonsByEmail(email);
     }
-    
+
     @GetMapping("/isAdmin/{id}")
-    public boolean isAdmin(@PathVariable Long id){
-        Person person = personComponent.loggedPersonDetails();  
+    public boolean isAdmin(@PathVariable Long id) {
+        Person person = personComponent.loggedPersonDetails();
         List<Board> boards = person.getMyBoards();
         return boards.stream().anyMatch(b -> b.getId() == id);
     }

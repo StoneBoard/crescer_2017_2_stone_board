@@ -36,7 +36,6 @@ public class BoardServiceTest extends ConfigurationTest {
     }
 
     @Test
-    @Ignore
     public void testSave() {        
         List<BoardSession> sessions = new ArrayList();
         sessions.add(DataGenerator.createBoardSesssion());

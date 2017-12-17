@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Board;
@@ -49,14 +44,14 @@ public class ResultGroupService {
                 .collect(Collectors.toList());
         return resultsModel;
     }
-    
-    public List<ResultGroupModel> findByBoardId(Long idBoard){
+
+    public List<ResultGroupModel> findByBoardId(Long idBoard) {
         return resultGroupRepository.findByBoardId(idBoard)
                 .stream()
-                .map(ResultGroupModel :: convertToResultGroupModel)
+                .map(ResultGroupModel::convertToResultGroupModel)
                 .collect(Collectors.toList());
     }
-    
+
     public void save(ResultGroupRegisterModel resultGroupRegisterModel) {
         Board board = boardRepository.findOne(resultGroupRegisterModel.getId_board());
         ResultGroup resultGroup = ResultGroupRegisterModel.convertToResultGroup(resultGroupRegisterModel, board);
@@ -67,9 +62,7 @@ public class ResultGroupService {
         Card card = cardRepository.findOne(idCard);
         ResultGroup resultGroup = resultGroupRepository.findOne(idResultGroup);
         card.setResultGroup(resultGroup);
-      //  resultGroup.getCards().add(card);
-         cardRepository.save(card);
-       // resultGroupRepository.save(resultGroup);
+        cardRepository.save(card);
     }
 
     public void update(ResultGroupRegisterModel resultGroupRegisterModel) {
@@ -92,10 +85,9 @@ public class ResultGroupService {
 
         if (!boards.stream().anyMatch(b -> b.getId() == idBoard)) {
             throw new BadRequestException("Apenas o usuário que criou o board pode realizar esta ação.");
-           
         }
-            ResultGroup resultGroup = resultGroupRepository.findOne(idResultGroup);
-            resultGroupRepository.delete(resultGroup);       
+        ResultGroup resultGroup = resultGroupRepository.findOne(idResultGroup);
+        resultGroupRepository.delete(resultGroup);
     }
 
 }

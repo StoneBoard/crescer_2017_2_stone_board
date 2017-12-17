@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Card;
@@ -14,8 +9,6 @@ import br.com.crescer.stone_board.repository.NoteRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
-import java.util.stream.Collectors;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NoteService {
-           
+
     @Autowired
     NoteRepository noteRepository;
     @Autowired
@@ -34,21 +27,22 @@ public class NoteService {
     PersonRepository personRepository;
     @Autowired
     PersonComponent personComponent;
-    
-    public Note findById(Long id){
-       return noteRepository.findOne(id);
+
+    public Note findById(Long id) {
+        return noteRepository.findOne(id);
     }
-    public void save(NoteModel noteModel, Person person ) {
-        Note note = noteModel.convertToNote(noteModel, person) ;
+
+    public void save(NoteModel noteModel, Person person) {
+        Note note = noteModel.convertToNote(noteModel, person);
         Card card = cardRepository.findOne(noteModel.getId_card());
         card.getNotes().add(note);
         cardRepository.save(card);
     }
-    
+
     public void update(NoteModel noteModel) {
-       Person personLoged = personComponent.loggedPersonDetails();
-        if(personLoged.getId() != noteModel.getId_writer()){
-             throw new BadRequestException("Apenas o usuário que criou o comentario pode realizar esta ação.");
+        Person personLoged = personComponent.loggedPersonDetails();
+        if (personLoged.getId() != noteModel.getId_writer()) {
+            throw new BadRequestException("Apenas o usuário que criou o comentario pode realizar esta ação.");
         }
         Note note = noteRepository.findOne(noteModel.getId());
         note.setText(noteModel.getText());
@@ -57,5 +51,5 @@ public class NoteService {
 
     public void delete(Long id) {
         noteRepository.delete(id);
-    }    
+    }
 }

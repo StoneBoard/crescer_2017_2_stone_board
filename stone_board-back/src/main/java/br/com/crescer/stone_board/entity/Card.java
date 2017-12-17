@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.entity;
 
 import br.com.crescer.stone_board.utils.LocalDateTimeConverter;
@@ -39,50 +34,52 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Entity
 @Table(name = "CARD",
-        indexes = {@Index(name = "IDX_CARD", columnList = "ID,ID_SESSION,ID_RESULT_GROUP")})
+        indexes = {
+            @Index(name = "IDX_CARD", columnList = "ID,ID_SESSION,ID_RESULT_GROUP")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Card implements Serializable{
+public class Card implements Serializable {
+
     private static final String SQ_NAME = "SQ_CARD";
-    
+
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = SQ_NAME)
     @SequenceGenerator(name = SQ_NAME, sequenceName = SQ_NAME, allocationSize = 1)
     @Column(name = "ID")
     @Basic(optional = false)
     private Long id;
-    
+
     @Basic(optional = false)
-    @Column(name = "TEXT", length=300)
+    @Column(name = "TEXT", length = 300)
     private String text;
-    
+
     @ManyToOne
     @JoinColumn(name = "ID_PERSON_WRITER", nullable = false)
     private Person writer;
-    
+
     @Column(name = "CREATION_DATE")
     @Basic(optional = false)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime creationDate;
-    
+
     @Basic(optional = false)
     @Column(name = "COLOR")
     private int color;
-    
+
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CARD", nullable = false)
     @Fetch(FetchMode.SUBSELECT)
     private List<Vote> votes;
-    
+
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CARD", nullable = false)
     @Fetch(FetchMode.SUBSELECT)
     private List<Note> notes;
-    
+
     @ManyToOne
     @JoinColumn(name = "ID_RESULT_GROUP")
     private ResultGroup resultGroup;
-    
+
 }

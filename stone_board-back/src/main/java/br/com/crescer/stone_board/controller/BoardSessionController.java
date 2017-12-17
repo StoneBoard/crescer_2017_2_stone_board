@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.controller;
 
 import br.com.crescer.stone_board.entity.BoardSession;
@@ -28,30 +23,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/session")
 public class BoardSessionController {
-    
+
     @Autowired
     private BoardSessionService boardSessionService;
-    
+
     @PostMapping
-    public ResponseEntity Save(@Validated @RequestBody BoardSessionModel boardSessionModel){
+    public ResponseEntity Save(@Validated @RequestBody BoardSessionModel boardSessionModel) {
         return ResponseEntity.ok(boardSessionService.save(boardSessionModel));
     }
+
     @GetMapping(path = "/findById/{id}")
-    public BoardSessionModel FindById(Long id){
+    public BoardSessionModel FindById(Long id) {
         BoardSession boardSession = boardSessionService.findById(id);
         return BoardSessionModel.convertToBoardSessionModel(boardSession);
     }
-    
+
     @GetMapping(path = "/findAll")
-    public ResponseEntity FindAll(){
-       return ResponseEntity.ok(boardSessionService.findAllBoards());
+    public ResponseEntity FindAll() {
+        return ResponseEntity.ok(boardSessionService.findAllBoards());
     }
-    
+
     @MessageMapping("loadSessionById/{id}")
     @SendTo("/session")
     public Greeting greeting(@PathVariable Long id) throws Exception {
-        Thread.sleep(1000); 
-         BoardSession boardSession = boardSessionService.findById(id);
+        Thread.sleep(1000);
+        BoardSession boardSession = boardSessionService.findById(id);
         return new Greeting(BoardSessionModel.convertToBoardSessionModel(boardSession));
     }
 }

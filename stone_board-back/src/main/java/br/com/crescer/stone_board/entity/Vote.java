@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.entity;
 
 import java.io.Serializable;
@@ -29,26 +24,27 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "VOTE",
-        indexes = {@Index(name = "IDX_VOTE", columnList = "ID,ID_CARD,ID_PERSON")})
+        indexes = {
+            @Index(name = "IDX_VOTE", columnList = "ID,ID_CARD,ID_PERSON")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Vote implements Serializable{
-    
+public class Vote implements Serializable {
+
     private static final String SQ_NAME = "SQ_VOTE";
-    
+
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = SQ_NAME)
     @SequenceGenerator(name = SQ_NAME, sequenceName = SQ_NAME, allocationSize = 1)
     @Column(name = "ID")
     @Basic(optional = false)
     private Long id;
-    
+
     @ManyToOne
     @Basic(optional = false)
     @JoinColumn(name = "ID_PERSON", nullable = false)
     private Person person;
-    
+
     @Basic(optional = false)
     private boolean positive;
 }

@@ -17,26 +17,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PersonModel implements Serializable{
+public class PersonModel implements Serializable {
+
     private Long id;
     @NotNull(message = "error.fullName.notnull")
-    @Size(max= 255, message = "error.fullName.size")
+    @Size(max = 255, message = "error.fullName.size")
     private String fullName;
     @NotNull(message = "error.email.notnull")
-    @Size(max= 255, message = "error.email.size")
+    @Size(max = 255, message = "error.email.size")
     private String email;
     @NotNull(message = "error.pass.notnull")
-    @Size(max= 128, message = "error.pass.size")
+    @Size(max = 128, message = "error.pass.size")
     private String pass;
-    
+
     public static Person convertToPerson(PersonModel personModel) {
-       return Person.builder()
-               .fullName(personModel.getFullName())
-               .email(personModel.getEmail())
-               .pass(personModel.getPass())
-               .build();
-   }
-    public static PersonModel convertToPersonModel(Person person){
+        return Person.builder()
+                .fullName(personModel.getFullName())
+                .email(personModel.getEmail())
+                .pass(personModel.getPass())
+                .build();
+    }
+
+    public static PersonModel convertToPersonModel(Person person) {
         return PersonModel.builder()
                 .id(person.getId())
                 .fullName(person.getFullName())

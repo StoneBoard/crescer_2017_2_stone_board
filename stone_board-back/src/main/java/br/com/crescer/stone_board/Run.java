@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 /**
- * @author carloshenrique
+ * @author Marcele
  */
 @SpringBootApplication
 public class Run {
@@ -14,7 +14,8 @@ public class Run {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Run.class, args);
     }
-     @Bean(name = "messageSource")
+
+    @Bean(name = "messageSource")
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageBundle = new ReloadableResourceBundleMessageSource();
         messageBundle.setBasename("classpath:messages");

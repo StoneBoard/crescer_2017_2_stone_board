@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.entity;
 
 import br.com.crescer.stone_board.utils.LocalDateTimeConverter;
@@ -39,7 +34,8 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Entity
 @Table(name = "BOARD",
-        indexes = {@Index(name = "IDX_BOARD", columnList = "ID,ID_PERSON")})
+        indexes = {
+            @Index(name = "IDX_BOARD", columnList = "ID,ID_PERSON")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -69,10 +65,9 @@ public class Board implements Serializable {
     @Fetch(FetchMode.SUBSELECT)
     private List<Person> members;
 
-    
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_BOARD", nullable = false)
     @Fetch(FetchMode.SUBSELECT)
     private List<BoardSession> sessions;
-    
+
 }

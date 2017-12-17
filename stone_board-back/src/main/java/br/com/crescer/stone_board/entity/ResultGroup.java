@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.entity;
 
 import java.io.Serializable;
@@ -31,11 +26,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "RESULT_GROUP",
-        indexes = {@Index(name = "IDX_RESULT_GROUP", columnList = "ID")})
+        indexes = {
+            @Index(name = "IDX_RESULT_GROUP", columnList = "ID")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ResultGroup implements Serializable{
+public class ResultGroup implements Serializable {
 
     private static final String SQ_NAME = "SQ_RESULT_GROUP";
 
@@ -53,11 +49,11 @@ public class ResultGroup implements Serializable{
     @Basic(optional = false)
     @Column(name = "DESCRIPTION", length = 500)
     private String description;
-    
+
     @Basic(optional = true)
     @OneToMany(mappedBy = "resultGroup")
     private List<Card> cards;
-    
+
     @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name = "ID_BOARD", nullable = false)

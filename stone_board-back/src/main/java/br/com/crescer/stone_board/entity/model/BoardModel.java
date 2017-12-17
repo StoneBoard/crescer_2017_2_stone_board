@@ -1,8 +1,6 @@
 package br.com.crescer.stone_board.entity.model;
 
 import br.com.crescer.stone_board.entity.Board;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,7 +32,7 @@ public class BoardModel implements Serializable {
                 .title(board.getTitle())
                 .deadline(board.getDeadline())
                 .members(board.getMembers().stream()
-                        .map(PersonModel :: convertToPersonModel).collect(Collectors.toList()))
+                        .map(PersonModel::convertToPersonModel).collect(Collectors.toList()))
                 .sessions(board.getSessions().stream()
                         .map(BoardSessionModel::convertToBoardSessionModel)
                         .collect(Collectors.toList()))

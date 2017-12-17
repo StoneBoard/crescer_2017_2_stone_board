@@ -4,7 +4,6 @@ package br.com.crescer.stone_board.webSocket;
  *
  * @author willian
  */
-
 public class Greeting {
 
     private Object content;

@@ -18,22 +18,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoteModel implements Serializable{
-    
+public class NoteModel implements Serializable {
+
     private long id;
     private long id_writer;
     @NotNull(message = "error.text.notnull")
     @Size(max = 200, message = "error.text.icon.size")
     private String text;
     private Long id_card;
-    
+
     public static Note convertToNote(NoteModel noteModel, Person writer) {
         return Note.builder()
                 .writer(writer)
                 .text(noteModel.getText())
                 .build();
     }
-    
+
     public static NoteModel convertToNoteModel(Note note) {
         return NoteModel.builder()
                 .id(note.getId())

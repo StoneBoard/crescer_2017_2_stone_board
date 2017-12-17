@@ -1,14 +1,12 @@
 package br.com.crescer.stone_board.repository;
 
 import br.com.crescer.stone_board.entity.Card;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Marcele Dorneles
  */
-public interface CardRepository extends JpaRepository<Card, Long>{
-    
-    //List<Card> findCardsByBoardSessionId(Long id);
+public interface CardRepository extends JpaRepository<Card, Long> {
+
 }

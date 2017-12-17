@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.controller;
 
-import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Person;
-import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.CardModel;
 import br.com.crescer.stone_board.service.CardService;
 import br.com.crescer.stone_board.utils.PersonComponent;
@@ -68,6 +61,5 @@ public class CardController {
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id) {
         Person person = personComponent.loggedPersonDetails();
-        //  cardService.delete(id, person.getId());
     }
 }

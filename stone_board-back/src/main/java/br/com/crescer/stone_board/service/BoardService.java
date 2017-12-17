@@ -37,9 +37,10 @@ public class BoardService {
     BoardSessionRepository boardSessionRepository;
 
     public Long save(BoardRegisterModel boardRegister) {
-        if (!boardRegister.getDeadline().isAfter(LocalDateTime.now()))
+        if (!boardRegister.getDeadline().isAfter(LocalDateTime.now())) {
             throw new BadRequestException("A Data deve ser maior que o dia atual");
-        
+        }
+
         Board board = BoardRegisterModel.convertToBoard(boardRegister);
 
         if (CollectionUtils.isEmpty(boardRegister.getSessions())) {
@@ -65,11 +66,11 @@ public class BoardService {
     public void addMembers(BoardMemberModel boardMemberModel) {
         Person person = personRepository.findOne(boardMemberModel.getId_person());
         Person personLoged = personComponent.loggedPersonDetails();
-        if(personLoged.getId() ==  person.getId()){
+        if (personLoged.getId() == person.getId()) {
             throw new BadRequestException("Usuário não pode ser adicionado");
         }
         Board board = boardRepository.findOne(boardMemberModel.getId_board());
-        if(person.getConnectBoards().stream().anyMatch(b -> b.getId() == board.getId())){
+        if (person.getConnectBoards().stream().anyMatch(b -> b.getId() == board.getId())) {
             throw new BadRequestException("Usuário não pode ser adicionado");
         }
         person.getConnectBoards().add(board);
@@ -78,11 +79,12 @@ public class BoardService {
 
     public BoardModel update(BoardRegisterModel boardRegister) {
         Board board = boardRepository.findOne(boardRegister.getId());
-        
-        if (!boardRegister.getDeadline().equals(board.getDeadline()) && 
-                !boardRegister.getDeadline().isAfter(LocalDateTime.now()))
+
+        if (!boardRegister.getDeadline().equals(board.getDeadline())
+                && !boardRegister.getDeadline().isAfter(LocalDateTime.now())) {
             throw new BadRequestException("A Data deve ser maior que o dia atual");
-        
+        }
+
         board.setTitle(boardRegister.getTitle());
         board.setDeadline(boardRegister.getDeadline());
         boardRepository.save(board);
@@ -94,7 +96,7 @@ public class BoardService {
         Board board = findById(id);
         Person personLoged = personComponent.loggedPersonDetails();
         return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personLoged.getId()))
-            || personLoged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(),id));     
+                || personLoged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(), id));
 
     }
 

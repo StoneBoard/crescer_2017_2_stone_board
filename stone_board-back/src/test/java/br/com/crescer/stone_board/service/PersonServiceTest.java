@@ -3,6 +3,9 @@ package br.com.crescer.stone_board.service;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
+import br.com.crescer.stone_board.entity.Board;
+import br.com.crescer.stone_board.repository.BoardRepository;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,6 +22,12 @@ public class PersonServiceTest extends ConfigurationTest {
 
     @Autowired
     PersonRepository personRepository;
+    
+    @Autowired
+    BoardService boardService;
+    
+    @Autowired
+    BoardRepository boardRepository;
 
     @Before
     public void setUp() {
@@ -39,6 +48,20 @@ public class PersonServiceTest extends ConfigurationTest {
         
         personRepository.delete(person.getId());
     }
+    
+    @Test
+    public void testListConectedBoard() {
+        Person person = DataGenerator.createPerson();
+        personRepository.save(person);
+        Board board = DataGenerator.createBoard();
+        boardRepository.save(board);
+        
+        List<Board> result = personService.listMyBoards();
+
+        
+        personRepository.delete(person.getId());
+    }
+
 
     @Test
     public void testFindByEmailWithNull() {

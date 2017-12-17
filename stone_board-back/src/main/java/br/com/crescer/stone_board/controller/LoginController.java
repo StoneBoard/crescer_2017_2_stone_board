@@ -1,4 +1,3 @@
-
 package br.com.crescer.stone_board.controller;
 
 import br.com.crescer.stone_board.utils.PersonComponent;
@@ -16,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/initial", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LoginController {
-    
+
     @Autowired
     PersonComponent personComponent;
-    
+
     @GetMapping(path = "/login")
     public ResponseEntity getLoggedPerson() {
         return ResponseEntity.ok(personComponent.loggedPerson());

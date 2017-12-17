@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.stone_board.service;
 
 import br.com.crescer.stone_board.entity.Card;
@@ -24,7 +19,7 @@ import org.springframework.util.CollectionUtils;
  */
 @Service
 public class VoteService {
-    
+
     @Autowired
     VoteRepository voteRepository;
     @Autowired
@@ -33,8 +28,8 @@ public class VoteService {
     PersonRepository personRepository;
     @Autowired
     PersonComponent personComponent;
-    
-     public void save(VoteModel voteModel, Person person) {        
+
+    public void save(VoteModel voteModel, Person person) {
         Card card = cardRepository.findOne(voteModel.getId_card());
 
         Vote vote = Vote.builder()
@@ -63,5 +58,5 @@ public class VoteService {
 
         cardRepository.save(card);
     }
-    
+
 }

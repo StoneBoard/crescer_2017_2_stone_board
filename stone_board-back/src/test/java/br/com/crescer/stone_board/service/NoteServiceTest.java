@@ -38,18 +38,18 @@ public class NoteServiceTest extends ConfigurationTest
     @Before
     public void setUp() {
         noteRepository.deleteAll();
+        cardRepository.deleteAll();
     }
    
     @Test
-   
     public void testSave(){
         Note note = DataGenerator.createNote();
-        Card card = new Card();
+        Card card = DataGenerator.createCard();
         
         card.getNotes().add(note);
         cardRepository.save(card);
         
-        Note noteResult = noteService.findById(new Long(1));
+        Note noteResult = noteService.findById(1L);
         
         assertEquals(note.getText(), noteResult.getText());
         assertEquals(note.getWriter(), noteResult.getWriter());
@@ -60,7 +60,7 @@ public class NoteServiceTest extends ConfigurationTest
     @Test
     public void testUpdate(){
         Note note = DataGenerator.createNote();
-        Card card = new Card();
+        Card card = DataGenerator.createCard();
         
         card.getNotes().add(note);
         cardRepository.save(card);
