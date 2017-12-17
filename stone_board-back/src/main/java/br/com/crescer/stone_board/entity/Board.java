@@ -19,6 +19,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -37,7 +38,9 @@ import org.hibernate.annotations.FetchMode;
  */
 @Data
 @Entity
-@Table(name = "BOARD")
+@Table(name = "BOARD",
+       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true),
+                  @Index(name = "SEARCH_BY_ID_CREATOR", columnList="ID_PERSON", unique = true)})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

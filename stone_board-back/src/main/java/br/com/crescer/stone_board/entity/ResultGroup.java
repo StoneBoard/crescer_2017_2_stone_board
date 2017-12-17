@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -29,7 +30,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Entity
-@Table(name = "RESULT_GROUP")
+@Table(name = "RESULT_GROUP",
+       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true)})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
