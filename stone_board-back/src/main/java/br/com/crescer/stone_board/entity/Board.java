@@ -39,8 +39,7 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Entity
 @Table(name = "BOARD",
-       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true),
-                  @Index(name = "SEARCH_BY_ID_CREATOR", columnList="ID_PERSON", unique = true)})
+        indexes = {@Index(name = "IDX_BOARD", columnList = "ID,ID_PERSON")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -70,9 +69,10 @@ public class Board implements Serializable {
     @Fetch(FetchMode.SUBSELECT)
     private List<Person> members;
 
+    
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_BOARD", nullable = false)
     @Fetch(FetchMode.SUBSELECT)
     private List<BoardSession> sessions;
-
+    
 }

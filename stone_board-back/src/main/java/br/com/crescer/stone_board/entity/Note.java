@@ -30,8 +30,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "NOTE",
-       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true),
-                  @Index(name = "SEARCH_NOTE_BY_ID_CARD", columnList="ID_CARD", unique = true)})
+        indexes = {@Index(name = "IDX_NOTE", columnList = "ID,ID_CARD")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -30,8 +30,7 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Entity
 @Table(name = "BOARD_SESSION",
-       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true),
-                  @Index(name = "SEARCH_BY_ID_BOARD", columnList="ID_BOARD", unique = true)})
+        indexes = {@Index(name = "IDX_BOARD_SESSION", columnList = "ID,ID_BOARD")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

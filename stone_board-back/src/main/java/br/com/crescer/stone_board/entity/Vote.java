@@ -29,10 +29,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "VOTE",
-       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true),
-                  @Index(name = "SEARCH_VOTE_BY_ID_CARD",  columnList="ID_CARD", unique = true),
-                  @Index(name = "SEARCH_VOTE_BY_ID_PERSON", columnList="ID_PERSON", unique = true)})
-
+        indexes = {@Index(name = "IDX_VOTE", columnList = "ID,ID_CARD,ID_PERSON")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

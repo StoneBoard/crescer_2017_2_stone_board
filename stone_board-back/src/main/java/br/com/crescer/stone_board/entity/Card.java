@@ -39,9 +39,7 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Entity
 @Table(name = "CARD",
-       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true),
-                  @Index(name = "SEARCH_BY_ID_SESSION",  columnList="ID_SESSION", unique = true),
-                  @Index(name = "SEARCH_BY_ID_RESULT_GROUP", columnList="ID_RESULT_GROUP", unique = true)})
+        indexes = {@Index(name = "IDX_CARD", columnList = "ID,ID_SESSION,ID_RESULT_GROUP")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

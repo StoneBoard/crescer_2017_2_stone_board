@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "RESULT_GROUP",
-       indexes = {@Index(name = "SEARCH_BY_ID",  columnList="ID", unique = true)})
+        indexes = {@Index(name = "IDX_RESULT_GROUP", columnList = "ID")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
