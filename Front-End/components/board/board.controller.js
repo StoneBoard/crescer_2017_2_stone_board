@@ -60,7 +60,7 @@
       .then(response => groupResults = response.data);
 
       /* websocketService */
-    
+
       websocketService.connect(update, $routeParams.idBoard);
 
       function update(board) {

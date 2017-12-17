@@ -1,46 +1,48 @@
-(function(){
+(function () {
   'use strict'
 
   angular.module('stoneBoard')
-  .factory('authService', function (authConfig, $http, $q, $location, $localStorage, $rootScope) {
+    .factory('authService', function (authConfig, $http, $q, $location, $localStorage, $rootScope) {
 
-    let urlUsuario = authConfig.urlUsuario;
-    let urlLogin = authConfig.urlLogin;
-    let urlPrivado = authConfig.urlPrivado;
-    let urlLogout = authConfig.urlLogout;
+      let urlUsuario = authConfig.urlUsuario;
+      let urlLogin = authConfig.urlLogin;
+      let urlPrivado = authConfig.urlPrivado;
+      let urlLogout = authConfig.urlLogout;
 
-    function login(usuario) {
-      let deferred = $q.defer();
-      let headerAuth = montarHeader(usuario);
+      function login(usuario) {
+        let deferred = $q.defer();
+        let hash = gerarHash(usuario);
+        let headerAuth = montarHeader(hash);
 
-      $http({
-        url: urlUsuario,
-        method: 'GET',
-        headers: headerAuth
-      }).then(
-        function (response) {
-          $localStorage.usuarioLogado = response.data;
-          $localStorage.headerAuth = montarHeader(usuario)['Authorization'];
-          $http.defaults.headers.common.Authorization = $localStorage.headerAuth;
-          $rootScope.$broadcast('authLoginSuccess');
+        $http({
+          url: urlUsuario,
+          method: 'GET',
+          headers: headerAuth
+        }).then(
+          function (response) {
+            $localStorage.usuarioLogado = response.data;
+            $localStorage.headerAuth = montarHeader(hash)['Authorization'];
+            $localStorage.webSocketAuth = hash;
+            $http.defaults.headers.common.Authorization = $localStorage.headerAuth;
+            $rootScope.$broadcast('authLoginSuccess');
 
 
-          $location.path('/dashboard');
+            $location.path('/dashboard');
 
-          deferred.resolve(response);
-        },
+            deferred.resolve(response);
+          },
 
-        function (response) {
-          deferred.reject(response);
-        });
+          function (response) {
+            deferred.reject(response);
+          });
 
         return deferred.promise;
       };
 
-
       function logout() {
         delete $localStorage.usuarioLogado;
         delete $localStorage.headerAuth;
+        delete $localStorage.webSocketAuth;
         $http.defaults.headers.common.Authorization = undefined;
 
         $rootScope.$broadcast('authLogoutSuccess');
@@ -60,7 +62,7 @@
 
       function possuiPermissao(permissao) {
         return isAutenticado() &&
-        getUsuario().Permissoes.find((p) => p.authority === permissao);
+          getUsuario().Permissoes.find((p) => p.authority === permissao);
       };
 
 
@@ -93,8 +95,15 @@
         return deferred.promise;
       };
 
-      function montarHeader(usuario) {
-        let hash = window.btoa(`${usuario.email}:${usuario.senha}`);
+      function webSocketAuth() {
+        return $localStorage.webSocketAuth;
+      }
+
+      function gerarHash(usuario) {
+        return window.btoa(`${usuario.email}:${usuario.senha}`);
+      }
+
+      function montarHeader(hash) {
         return {
           'Authorization': `Basic ${hash}`
         };
@@ -107,8 +116,9 @@
         possuiPermissao: possuiPermissao,
         isAutenticado: isAutenticado,
         isAutenticadoPromise: isAutenticadoPromise,
-        possuiPermissaoPromise: possuiPermissaoPromise
+        possuiPermissaoPromise: possuiPermissaoPromise,
+        webSocketAuth: webSocketAuth
       };
     });
 
-  })();
+})();
