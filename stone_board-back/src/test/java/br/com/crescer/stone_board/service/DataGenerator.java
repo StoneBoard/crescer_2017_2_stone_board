@@ -8,6 +8,7 @@ package br.com.crescer.stone_board.service;
 import br.com.crescer.stone_board.entity.Board;
 import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Card;
+import br.com.crescer.stone_board.entity.Note;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import java.time.LocalDateTime;
@@ -62,5 +63,14 @@ public class DataGenerator {
                 .build();
                 
         return card;
+    }
+    
+    public static Note createNote(){
+        Person person = createPerson();
+        Note note = Note.builder()
+                .writer(person)
+                .text("Texto do meu comentário")
+                .build();
+        return note;
     }
 }

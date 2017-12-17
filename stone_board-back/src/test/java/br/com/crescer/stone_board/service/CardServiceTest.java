@@ -55,7 +55,7 @@ public class CardServiceTest extends ConfigurationTest {
         assertEquals(card.getText(), result.getText());
         assertEquals(card.getCreationDate(), result.getCreationDate());
     }
-    ;
+    
     @Test
     public void testFindByIdWithNotExists() {
         assertNull(cardService.findById(200l));
