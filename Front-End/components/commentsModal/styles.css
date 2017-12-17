@@ -1,7 +1,6 @@
 .comment {
 	text-align: justify;
-	padding: 0 0 10px 20px;
+	padding: 0 20px 10px 20px;
 	margin: 5px;
 	border-bottom: 1px dotted var(--grayBlueLight);
-	/*border-style: solid none;*/
 }

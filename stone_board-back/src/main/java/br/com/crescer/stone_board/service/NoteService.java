@@ -49,7 +49,9 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public void delete(Long id) {
-        noteRepository.delete(id);
+    public void delete(Long idNote, Long idCard) {
+        Card card = cardRepository.findOne(idCard);
+        card.getNotes().removeIf(note -> note.getId() == idNote);
+        cardRepository.save(card);
     }
 }

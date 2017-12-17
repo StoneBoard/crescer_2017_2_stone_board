@@ -9,9 +9,6 @@
 		  <div class="overlay col-md-5 col-sm-6 col-xs-10">
 				
 				<div class="row">
-				<!--	<div class="col-xs-9 start-xs">
-						<p class="title-sm">COMENTÁRIOS</p>
-					</div> -->
 					<div class="col-xs end-xs icon-btn" ng-click="close()">
 						<i class="material-icons">close</i>
 					</div>
@@ -46,14 +43,14 @@
 		      </form>
 		    </div>     
 
-				<div class="row bottom-xs comment" ng-repeat="note in postIt.notes">
+				<div class="row bottom-xs comment" ng-repeat="note in postIt.notes | orderBy:'id':'reverse'">
 					<div class="col-xs-10">
 						<div >
 							<p>{{note.text}}</p>
 						</div>
 					</div>
-					<div class="col-xs end-xs">
-						<a><i class="material-icons">delete</i></a>	
+					<div class="col-xs end-xs" ng-if="usuario.id === note.id_writer">
+						<a><i ng-click="deleteComment(note)" class="material-icons">delete</i></a>	
 					</div>
 				</div>
 

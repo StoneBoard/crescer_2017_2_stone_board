@@ -27,6 +27,7 @@
         });
         stompClient.subscribe('/stoneboard/sendComment', function (board) {
           updatePostIt(board);
+          startMessage();
         });
         startMessage();
       };
@@ -69,12 +70,12 @@
     }
 
     function sendNewComment(comment, idCard, _updatePostIt) {
-      debugger
       updatePostIt = _updatePostIt;
       sendMessage('/note/new/' + idCard, comment);
     }
 
     function deleteComment(comment, idCard, _updatePostIt) {
+      debugger
       updatePostIt = _updatePostIt;
       sendMessage('/note/delete/' + idCard, comment);
     }

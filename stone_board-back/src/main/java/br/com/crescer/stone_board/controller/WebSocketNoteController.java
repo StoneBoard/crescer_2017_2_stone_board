@@ -49,7 +49,7 @@ public class WebSocketNoteController {
     public Greeting deleteNote(
             @DestinationVariable Long idCard, 
             NoteModel noteModel) throws Exception {
-        noteService.delete(noteModel.getId());
+        noteService.delete(noteModel.getId(), idCard);
         return new Greeting(findCardModel(idCard));
     }
 
