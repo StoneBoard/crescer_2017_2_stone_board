@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "RESULT_GROUP",
         indexes = {
-            @Index(name = "IDX_RESULT_GROUP", columnList = "ID")})
+            @Index(name = "IDX_RESULT_GROUP", columnList = "ID,ID_BOARD")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
