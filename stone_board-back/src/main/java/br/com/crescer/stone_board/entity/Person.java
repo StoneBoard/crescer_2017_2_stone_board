@@ -33,7 +33,7 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 @Table(name = "PERSON",
         indexes = {
-            @Index(name = "IDX_PERSON", columnList = "ID")})
+            @Index(name = "IDX_PERSON", columnList = "ID,EMAIL")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
