@@ -62,13 +62,11 @@
 
         function showModalComment() {
           ModalService.showModal({
-            templateUrl: "components/resultGroupModal/resultGroupModal.html",
-            controller: "controllerModalNote",
+            templateUrl: "components/commentsModal/commentsModal.html",
+            controller: "controllerCommentsModal",
             bodyClass: "custom-modal-open",
             inputs: {
-              idPostIt : $scope.postIt.id,
-              myResultGroup : $scope.myResultGroup,
-
+              postIt : $scope.postIt
             }
           });
         };

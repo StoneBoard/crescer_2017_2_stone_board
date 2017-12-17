@@ -37,19 +37,18 @@ public class WebSocketNoteController {
     @MessageMapping("/note/new/{idCard}")
     @SendTo("/stoneboard/sendComment")
     public Greeting note(
-            @DestinationVariable Long idCard,
+            @DestinationVariable Long idCard, 
             @Validated NoteModel noteModel) throws Exception {
         Person person = personComponent.loggedPersonDetails();
         noteService.save(noteModel, person);
         return new Greeting(findCardModel(idCard));
     }
-
+    
     @MessageMapping("/note/delete/{idCard}")
     @SendTo("/stoneboard/sendComment")
     public Greeting deleteNote(
-            @DestinationVariable Long idCard,
+            @DestinationVariable Long idCard, 
             NoteModel noteModel) throws Exception {
-        Person person = personComponent.loggedPersonDetails();
         noteService.delete(noteModel.getId());
         return new Greeting(findCardModel(idCard));
     }

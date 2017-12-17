@@ -1,13 +1,14 @@
-
-#overlay {
+.overlay {
   padding: 25px;
   background-color: var(--grayBlue);
   z-index: 100;
   border-radius: 3px;
+  max-height: 90vh;
+  overflow: auto; 
 }
 
 
-#fade {
+.fade {
   position: absolute;
   background-color: black;
   opacity: .7;
