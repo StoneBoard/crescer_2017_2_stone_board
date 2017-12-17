@@ -37,6 +37,7 @@ public class DataGenerator {
     
     public static Board createBoard() {
         Board board = Board.builder()
+                .id(new Long(1))
                 .title("Titulo do Board")
                 .deadline(LocalDateTime.now())
                 .build();
@@ -58,7 +59,6 @@ public class DataGenerator {
     public static Card createCard() {
         Person person = createPerson();
         Card card = Card.builder()
-                .id(new Long(1))
                 .text("Texto do meu post it")
                 .writer(person)
                 .creationDate(LocalDateTime.now())

@@ -44,10 +44,15 @@ public class CardServiceTest extends ConfigurationTest {
     @Test
  
     public void testSave() {
+        //Board board = DataGenerator.createBoard();
+        //BoardSession boardSession = DataGenerator.createBoardSesssion();
         Card card = DataGenerator.createCard();
-        BoardSession boardSession = DataGenerator.createBoardSesssion();
-        boardSession.getCards().add(card);
-        boardSessionRepository.save(boardSession);
+        
+        //board.getSessions().add(boardSession);
+        //boardSession.getCards().add(card);
+        
+        //boardSessionRepository.save(boardSession);
+        cardRepository.save(card);
         
         Card result = cardService.findById(new Long(1));
 
