@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Coming+Soon');
 
-/* R O T A T I O N S */
-
-.pt-rotation-1 {
-  -moz-transform: rotate(2deg);
-	-webkit-transform: rotate(2deg);
-	-o-transform: rotate(2deg);
-	-ms-transform: rotate(2deg);
-	transform: rotate(2deg);
-}
-
 /* P O S T  I T */
 
 .post-it {

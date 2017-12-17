@@ -76,7 +76,7 @@
 						</div>
 
 						<div class="row center-xs">
-							<div ng-repeat="card in resultGroup.cards"> 
+							<div class="post-it-container" ng-repeat="card in resultGroup.cards"> 
 								<post-it info="card" board-status="boardStatus" my-result-group="true" is-admin="isAdmin" refresh="refresh"></post-it>
 							</div>						
 
@@ -103,7 +103,7 @@
 						</div>
 
 						<div class="row center-xs">
-							<div ng-repeat="card in cardsOutside"> 
+							<div class="post-it-container" ng-repeat="card in cardsOutside"> 
 								<post-it info="card" board-status="boardStatus" is-admin="isAdmin" refresh="refresh"></post-it>
 							</div>
 

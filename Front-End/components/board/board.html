@@ -61,9 +61,11 @@
 								</div>
 
 							</div>
-							<div ng-repeat= "card in session.cards">
-								<post-it info="card" color="colorPallet[session.color]" board-status="boardStatus" my-Result-Group="findIdResultGroup(card.id)" card-messages="cardMessages" is-admin="isAdmin"></post-it>
-							</div>
+
+								<div class="post-it-container" ng-repeat="card in session.cards">
+									<post-it info="card" color="colorPallet[session.color]" board-status="boardStatus" my-Result-Group="findIdResultGroup(card.id)" card-messages="cardMessages" is-admin="isAdmin"></post-it>
+								</div>
+								
 
 						</div>
 

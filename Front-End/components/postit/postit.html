@@ -1,11 +1,11 @@
 <div class="pt-box">
-		<div class="post-it pt-rotation-1 bg-{{color}}">
+		<div class="post-it bg-{{color}}">
 
 		<div class="row end-xs" ng-if="isWriter">
 			<div class="col-xs">
 
-				<i class="material-icons md-dark" ng-if="!editMode && boardStatus" ng-click="changeMode(true)">mode_edit</i>
-				<i class="material-icons md-dark" ng-if="boardStatus"  ng-click="deleteCard()">close</i>
+				<i class="material-icons md-dark icon-btn" ng-if="!editMode && boardStatus" ng-click="changeMode(true)">mode_edit</i>
+				<i class="material-icons md-dark icon-btn" ng-if="boardStatus"  ng-click="deleteCard()">close</i>
 			</div>
 		</div>
 		<div class="row" ng-style="paddingCard">
@@ -40,12 +40,13 @@
 					
 				</div>
 			</div>
-		<!--	<div class="col-xs">
+
+			<div class="col-xs center-xs">
 				<div class="pt-icon">
 					<i class="material-icons md-dark" ng-click='showModalComment()'>message</i>12
 				</div>
 			</div>
--->
+
 		</div>
 
 		<div ng-if="!boardStatus && isAdmin">
