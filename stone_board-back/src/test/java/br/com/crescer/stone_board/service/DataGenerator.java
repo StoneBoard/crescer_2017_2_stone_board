@@ -46,6 +46,7 @@ public class DataGenerator {
     
     public static BoardSession createBoardSesssion() {
         BoardSession boardSession = BoardSession.builder()
+                .id(new Long (1))
                 .title("Titulo da Session")
                 .color(1)
                 .icon("url.icon")
@@ -57,6 +58,7 @@ public class DataGenerator {
     public static Card createCard() {
         Person person = createPerson();
         Card card = Card.builder()
+                .id(new Long(1))
                 .text("Texto do meu post it")
                 .writer(person)
                 .creationDate(LocalDateTime.now())

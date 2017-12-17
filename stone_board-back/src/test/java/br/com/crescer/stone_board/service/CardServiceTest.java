@@ -42,10 +42,10 @@ public class CardServiceTest extends ConfigurationTest {
     }
 
     @Test
-    @Ignore
+ 
     public void testSave() {
         Card card = DataGenerator.createCard();
-        BoardSession boardSession = newBoardSession();
+        BoardSession boardSession = DataGenerator.createBoardSesssion();
         boardSession.getCards().add(card);
         boardSessionRepository.save(boardSession);
         
@@ -56,21 +56,21 @@ public class CardServiceTest extends ConfigurationTest {
         assertEquals(card.getCreationDate(), result.getCreationDate());
     }
     
-    @Test
-    public void testFindByIdWithNotExists() {
-        assertNull(cardService.findById(200l));
-    }
-    
-    private BoardSession newBoardSession() {
-        Person person = DataGenerator.createPerson();
-        Board board = DataGenerator.createBoard();
-        BoardSession boardSession = DataGenerator.createBoardSesssion();
-        board.getSessions().add(boardSession);
-        
-        personRepository.save(person);
-        
-        return boardSession;
-    }
- 
+//    @Test
+//    public void testFindByIdWithNotExists() {
+//        assertNull(cardService.findById(200l));
+//    }
+//    
+//    private BoardSession newBoardSession() {
+//        Person person = DataGenerator.createPerson();
+//        Board board = DataGenerator.createBoard();
+//        BoardSession boardSession = DataGenerator.createBoardSesssion();
+//        board.getSessions().add(boardSession);
+//        
+//        personRepository.save(person);
+//        
+//        return boardSession;
+//    }
+// 
 }
 
