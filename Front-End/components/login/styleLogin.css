@@ -17,9 +17,9 @@ body{
 
 #left{
   background-color: var(--grayBlueDark);
-  height: 373px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  padding: 10px 0;
 }
 
 #right{
@@ -48,5 +48,9 @@ body{
 @media screen and (min-width: 768px) {
   #box-left {
     padding:20px 0;
+  }
+
+  #left {
+    height: 373px;
   }
 }
