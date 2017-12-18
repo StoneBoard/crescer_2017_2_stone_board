@@ -64,13 +64,20 @@
       websocketService.connect(update, $routeParams.idBoard);
 
       function update(board) {
+        let _board = angular.fromJson(board.body).content
+        if (_board.id != $routeParams.idBoard) return;
+
         $scope.$apply(function () {
-          $scope.board = angular.fromJson(board.body).content;
-          $scope.sessions = $scope.board.sessions;
           if (!resized) {
+            $scope.board = _board;
+            $scope.sessions = $scope.board.sessions;
             numSession = $scope.sessions.length;
             resizeRow();
             resized = true;
+          }else{
+            $scope.board.sessions.forEach(function(session){
+              session.cards = _board.sessions.find(s => s.id == session.id).cards;
+            });
           }
         });
       }
