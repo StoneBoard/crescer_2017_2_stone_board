@@ -42,10 +42,6 @@ public class BoardService {
 
 
     public Long save(BoardRegisterModel boardRegister, Person personLoged) {
-        LocalDate _deadline = boardRegister.getDeadline().toLocalDate();
-        if (!_deadline.isAfter(LocalDate.now())) {
-            throw new BadRequestException("A Data deve ser maior que o dia atual");
-        }
 
         Board board = BoardRegisterModel.convertToBoard(boardRegister);
 
