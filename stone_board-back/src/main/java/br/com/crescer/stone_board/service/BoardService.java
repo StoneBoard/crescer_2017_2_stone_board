@@ -10,6 +10,7 @@ import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
 import br.com.crescer.stone_board.utils.PersonComponent;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +38,8 @@ public class BoardService {
     BoardSessionRepository boardSessionRepository;
 
     public Long save(BoardRegisterModel boardRegister) {
-        if (!boardRegister.getDeadline().isAfter(LocalDateTime.now())) {
+        LocalDate _deadline = boardRegister.getDeadline().toLocalDate();
+        if (!_deadline.isAfter(LocalDate.now())) {
             throw new BadRequestException("A Data deve ser maior que o dia atual");
         }
 

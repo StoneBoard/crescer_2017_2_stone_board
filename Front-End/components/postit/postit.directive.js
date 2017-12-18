@@ -78,12 +78,8 @@
             bodyClass: "custom-modal-open",
             inputs: {
               idPostIt : $scope.postIt.id,
-              myResultGroup : $scope.myResultGroup,
+              myResultGroup : $scope.myResultGroup
             }
-          }).then(function(modal) {
-            modal.close.then(function(result) {
-              $route.reload();
-            });
           });
         }
 

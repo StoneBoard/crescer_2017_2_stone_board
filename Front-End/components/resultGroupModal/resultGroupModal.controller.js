@@ -1,6 +1,6 @@
 angular
 .module('stoneBoard')
-.controller('controllerModalNote', function($scope, myResultGroup, resultGroupService, close, idPostIt, $routeParams, toastr) {
+.controller('controllerModalNote', function($scope, $route, myResultGroup, resultGroupService, close, idPostIt, $routeParams, toastr) {
   $scope.close = close;
   $scope.myResultGroup = myResultGroup;
 
@@ -8,17 +8,18 @@ angular
   	
     resultGroupService.addCards(idResultGroup, idPostIt).then(
     	function(){
-	       toastr.success('Grupo de resultado inserido com sucesso!');
-	     }, 
+	      toastr.success('Grupo de resultado inserido com sucesso!');
+        $route.reload();
+      }, 
       function(response){
-	       if (typeof(response.data.errors) === 'undefined')
-	         toastr.error(response.data.message)
-	       else{ 
-	         response.data.errors.forEach(error =>{
-	           toastr.error(error.defaultMessage)
-	         });
-        }
-	     });
+        if (typeof(response.data.errors) === 'undefined')
+          toastr.error(response.data.message)
+	      else{ 
+	        response.data.errors.forEach(error =>{
+	        toastr.error(error.defaultMessage)
+	      });
+      }
+	  });
     close();
   }
 

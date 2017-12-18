@@ -51,7 +51,9 @@
     }
 
   	$scope.submitBoardForm = function(board){
-  		board.deadline = new Date(board.deadline.setHours(0,0,0,0));
+  		console.log(board.deadline)
+  		if(typeof board.deadline !== 'undefined')
+  			board.deadline = new Date(board.deadline.setHours(0,0,0,0));
 	  	boardService.update(board).then(
 	  		function(){
 	        	toastr.success('Board editado com sucesso!')

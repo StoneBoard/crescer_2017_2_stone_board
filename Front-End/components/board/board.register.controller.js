@@ -24,6 +24,7 @@
   		delete $scope.session;
   	}
     $scope.submitBoardForm = function(board){
+      board.deadline = new Date(board.deadline.setTime(0,0,0,0));
       let promise = boardService.saveBoard(board).then(
         function(){
           toastr.success('Board cadastrado com sucesso!');
