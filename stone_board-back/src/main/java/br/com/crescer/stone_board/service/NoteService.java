@@ -20,8 +20,10 @@ public class NoteService {
 
     @Autowired
     NoteRepository noteRepository;
+    
     @Autowired
     CardRepository cardRepository;
+    
     @Autowired
     PersonRepository personRepository;
 

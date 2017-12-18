@@ -24,10 +24,13 @@ public class CardService {
 
     @Autowired
     CardRepository cardRepository;
+    
     @Autowired
     PersonRepository personRepository;
+    
     @Autowired
     BoardSessionRepository boardSessionRepository;
+    
     @Autowired
     BoardService boardService;
 

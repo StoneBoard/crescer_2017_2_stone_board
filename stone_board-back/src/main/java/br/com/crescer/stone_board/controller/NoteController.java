@@ -29,7 +29,7 @@ public class NoteController {
     private PersonComponent personComponent;
 
     @PostMapping
-    public void Save(@Validated @RequestBody NoteModel noteModel) {
+    public void save(@Validated @RequestBody NoteModel noteModel) {
         Person person = personComponent.loggedPersonDetails();
         noteService.save(noteModel, person);
     }

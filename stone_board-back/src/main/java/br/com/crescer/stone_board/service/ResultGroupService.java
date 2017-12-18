@@ -10,7 +10,6 @@ import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.ResultGroupRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
-import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,10 @@ public class ResultGroupService {
 
     @Autowired
     ResultGroupRepository resultGroupRepository;
+    
     @Autowired
     BoardRepository boardRepository;
+    
     @Autowired
     CardRepository cardRepository;
 

@@ -34,7 +34,7 @@ public class CardController {
     private PersonComponent personComponent;
 
     @PostMapping
-    public void Save(@Validated @RequestBody CardModel cardModel) {
+    public void save(@Validated @RequestBody CardModel cardModel) {
         Person person = personComponent.loggedPersonDetails();
         cardService.save(cardModel, person);
     }
@@ -45,7 +45,7 @@ public class CardController {
     }
 
     @GetMapping(path = "cardsOutsideResultGroup/{idBoard}")
-    public List<CardModel> CardsOutsideResultGroup(@PathVariable("idBoard") Long idBoard) {
+    public List<CardModel> cardsOutsideResultGroup(@PathVariable("idBoard") Long idBoard) {
         List<Card> card = cardService.findAllCardsOutsideResultGroup(idBoard);
         return card.stream()
                 .map(CardModel::convertToCardModel)
