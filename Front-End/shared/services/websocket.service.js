@@ -75,7 +75,6 @@
     }
 
     function deleteComment(comment, idCard, _updatePostIt) {
-      debugger
       updatePostIt = _updatePostIt;
       sendMessage('/note/delete/' + idCard, comment);
     }

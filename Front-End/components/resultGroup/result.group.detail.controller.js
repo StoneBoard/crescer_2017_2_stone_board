@@ -16,7 +16,6 @@
         }
         resultGroupService.findById($routeParams.idResultGroup).then(function (response) {
             $scope.resultGroup = response.data;
-            console.log(response);
         });
       }
 
@@ -54,21 +53,20 @@
 
 	  }
 
-	   $scope.deleteResultGroup = function(id_result){
-	   	console.log(id_result);
-	   	
-	   		let promise = resultGroupService.deleteResultGroup(id_result, $routeParams.idBoard).then(
-	   			function () {
-            		toastr.success('Grupo de resultado deletado com sucesso!')
-       		 	}, function(response){
-       		 		console.log(response);
-		            if (typeof(response.data.errors) === 'undefined')
-		              toastr.error(response.data.message)
-		            else 
-		            response.data.errors.forEach(error =>{
-		              toastr.error(error.defaultMessage)
-	            });
-	      	});
+	  $scope.deleteResultGroup = function(id_result){
+	   	let promise = resultGroupService.deleteResultGroup(id_result, $routeParams.idBoard).then(
+	   		function () {
+         	toastr.success('Grupo de resultado deletado com sucesso!')
+       	}, 
+       	function(response){
+		     	if (typeof(response.data.errors) === 'undefined')
+		       	toastr.error(response.data.message)
+		     	else{ 
+		       	response.data.errors.forEach(error =>{
+		         	toastr.error(error.defaultMessage)
+	         	});
+	         }
+	      });
 	   }
 
   });

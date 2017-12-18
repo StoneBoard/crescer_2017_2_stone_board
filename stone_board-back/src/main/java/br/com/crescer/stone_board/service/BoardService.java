@@ -80,11 +80,6 @@ public class BoardService {
     public BoardModel update(BoardRegisterModel boardRegister) {
         Board board = boardRepository.findOne(boardRegister.getId());
 
-        if (!boardRegister.getDeadline().equals(board.getDeadline())
-                && !boardRegister.getDeadline().isAfter(LocalDateTime.now())) {
-            throw new BadRequestException("A Data deve ser maior que o dia atual");
-        }
-
         board.setTitle(boardRegister.getTitle());
         board.setDeadline(boardRegister.getDeadline());
         boardRepository.save(board);

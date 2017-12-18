@@ -14,8 +14,6 @@
               x =>
               { x.deadline = new Date(x.deadline.slice(0,3).join())
               });
-
-            console.log($scope.myBoards);
         });
     }
 
