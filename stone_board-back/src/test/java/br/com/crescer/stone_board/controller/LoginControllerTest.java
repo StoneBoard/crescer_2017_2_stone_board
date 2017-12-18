@@ -3,6 +3,7 @@ import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
