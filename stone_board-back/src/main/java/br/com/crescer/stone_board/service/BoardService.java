@@ -41,7 +41,7 @@ public class BoardService {
     BoardSessionRepository boardSessionRepository;
 
 
-    public Long save(BoardRegisterModel boardRegister) {
+    public Long save(BoardRegisterModel boardRegister, Person personLoged) {
         LocalDate _deadline = boardRegister.getDeadline().toLocalDate();
         if (!_deadline.isAfter(LocalDate.now())) {
             throw new BadRequestException("A Data deve ser maior que o dia atual");
@@ -53,7 +53,6 @@ public class BoardService {
             throw new BadRequestException("O Board deve possuir ao menos uma Sessão");
         }
 
-        Person personLoged = personComponent.loggedPersonDetails();
         personLoged.getMyBoards().add(board);
 
         personRepository.save(personLoged);
