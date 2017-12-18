@@ -26,8 +26,6 @@ public class VoteService {
     CardRepository cardRepository;
     @Autowired
     PersonRepository personRepository;
-    @Autowired
-    PersonComponent personComponent;
 
     public void save(VoteModel voteModel, Person person) {
         Card card = cardRepository.findOne(voteModel.getId_card());

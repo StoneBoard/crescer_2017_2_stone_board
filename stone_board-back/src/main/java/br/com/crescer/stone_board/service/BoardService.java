@@ -27,15 +27,19 @@ public class BoardService {
 
     @Autowired
     BoardRepository boardRepository;
+
     @Autowired
     PersonService personService;
+
     @Autowired
     PersonRepository personRepository;
+
     @Autowired
     PersonComponent personComponent;
 
     @Autowired
     BoardSessionRepository boardSessionRepository;
+
 
     public Long save(BoardRegisterModel boardRegister) {
         LocalDate _deadline = boardRegister.getDeadline().toLocalDate();
@@ -65,10 +69,9 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public void addMembers(BoardMemberModel boardMemberModel) {
+    public void addMembers(BoardMemberModel boardMemberModel, Person personLogged) {
         Person person = personRepository.findOne(boardMemberModel.getId_person());
-        Person personLoged = personComponent.loggedPersonDetails();
-        if (personLoged.getId() == person.getId()) {
+        if (personLogged.getId() == person.getId()) {
             throw new BadRequestException("Usuário não pode ser adicionado");
         }
         Board board = boardRepository.findOne(boardMemberModel.getId_board());
@@ -89,11 +92,10 @@ public class BoardService {
 
     }
 
-    public boolean userAuthenticadedBoard(Long id) {
+    public boolean userAuthenticadedBoard(Long id,Person personLogged) {
         Board board = findById(id);
-        Person personLoged = personComponent.loggedPersonDetails();
-        return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personLoged.getId()))
-                || personLoged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(), id));
+        return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personLogged.getId()))
+                || personLogged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(), id));
 
     }
 
