@@ -56,7 +56,7 @@ public class PersonServiceTest extends ConfigurationTest {
         Board board = DataGenerator.createBoard();
         boardRepository.save(board);
         
-        List<Board> result = personService.listMyBoards();
+        List<Board> result = personService.listMyBoards(person);
 
         
         personRepository.delete(person.getId());
