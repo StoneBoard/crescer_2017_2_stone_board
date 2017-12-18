@@ -7,6 +7,7 @@ import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardRegisterModel;
 import br.com.crescer.stone_board.service.BoardService;
 import br.com.crescer.stone_board.utils.BadRequestException;
+import br.com.crescer.stone_board.utils.NotFoundException;
 import br.com.crescer.stone_board.utils.PersonComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -49,11 +50,16 @@ public class BoardController {
         return boardService.update(boardRegister);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping("/{id}")
     public BoardModel findById(@PathVariable Long id) throws Exception {
-        Person person = personComponent.loggedPersonDetails();
         Board board = boardService.findById(id);
-        if (boardService.userAuthenticadedBoard(id,person)) {
+        Person person = personComponent.loggedPersonDetails();
+        
+        if(board == null) {
+            throw new NotFoundException("Board não Encontrado");
+        }
+        
+        if (boardService.userAuthenticadedBoard(id, person)) {
             return BoardModel.convertToBoardModel(board);
         } else {
             throw new BadRequestException("Não Autorizado");

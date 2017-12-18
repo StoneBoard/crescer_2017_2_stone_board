@@ -80,7 +80,7 @@ public class CardServiceTest extends ConfigurationTest {
         
         Card cardResult = cardService.findById(new Long(1));
         
-        assertEquals(cardModel.getId_writer(), result.getWriter().getId());
+        assertEquals(cardModel.getId_writer(), cardResult.getWriter().getId());
         assertNotEquals(cardModel.getText(), cardResult.getText());
         assertEquals(cardModel.getCreationDate(), cardResult.getCreationDate());
         

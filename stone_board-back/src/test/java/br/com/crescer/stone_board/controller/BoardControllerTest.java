@@ -1,4 +1,4 @@
-package br.com.crescer.stone_board.controller;
+
 
 import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
