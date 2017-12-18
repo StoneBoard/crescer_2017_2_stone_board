@@ -33,7 +33,7 @@ public class PersonController {
 
     @PostMapping(path = "/addPerson")
     public void addPerson(@Validated @RequestBody PersonModel personModel) {
-        personService.createAcount(personModel);
+        personService.createAccount(personModel);
     }
 
     @GetMapping(path = "/listMyBoards")

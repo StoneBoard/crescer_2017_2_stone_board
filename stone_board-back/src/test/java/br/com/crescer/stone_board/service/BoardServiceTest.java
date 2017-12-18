@@ -6,13 +6,11 @@ import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.repository.PersonRepository;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
