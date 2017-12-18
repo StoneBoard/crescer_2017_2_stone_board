@@ -1,7 +1,9 @@
 package br.com.crescer.stone_board.controller;
 
+import br.com.crescer.stone_board.entity.Person;
 import br.com.crescer.stone_board.entity.model.ResultGroupRegisterModel;
 import br.com.crescer.stone_board.service.ResultGroupService;
+import br.com.crescer.stone_board.utils.PersonComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,14 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @author marcele.dorneles
  */
 @RestController
-@RequestMapping("/resultGroup")
+@RequestMapping(path = "/resultGroup")
 public class ResultGroupController {
 
     @Autowired
     private ResultGroupService resultGroupService;
 
+    @Autowired
+    PersonComponent personComponent;
+
     @PostMapping
-    public void Save(@Validated @RequestBody ResultGroupRegisterModel resultGroupRegisterModel) {
+    public void save(@Validated @RequestBody ResultGroupRegisterModel resultGroupRegisterModel) {
         resultGroupService.save(resultGroupRegisterModel);
     }
 
@@ -35,23 +40,25 @@ public class ResultGroupController {
         return ResponseEntity.ok(resultGroupService.findById(id));
     }
 
-    @GetMapping("/findByBoard/{idBoard}")
+    @GetMapping(path = "/findByBoard/{idBoard}")
     public ResponseEntity findByBoardId(@PathVariable Long idBoard) {
         return ResponseEntity.ok(resultGroupService.findByBoardId(idBoard));
     }
 
     @PutMapping
     public void update(@RequestBody ResultGroupRegisterModel resultGroupRegisterModel) {
-        resultGroupService.update(resultGroupRegisterModel);
+        Person personLogged = personComponent.loggedPersonDetails();
+        resultGroupService.update(resultGroupRegisterModel, personLogged);
     }
 
-    @PutMapping("/addCards/{idResultGroup}/{idCard}")
+    @PutMapping(path = "/addCards/{idResultGroup}/{idCard}")
     public void addCard(@PathVariable Long idResultGroup, @PathVariable Long idCard) {
         resultGroupService.addCard(idResultGroup, idCard);
     }
 
     @DeleteMapping(path = "/{idResultGroup}/{idBoard}")
     public void delete(@PathVariable Long idResultGroup, @PathVariable Long idBoard) {
-        resultGroupService.delete(idResultGroup, idBoard);
+        Person personLogged = personComponent.loggedPersonDetails();
+        resultGroupService.delete(idResultGroup, idBoard, personLogged);
     }
 }

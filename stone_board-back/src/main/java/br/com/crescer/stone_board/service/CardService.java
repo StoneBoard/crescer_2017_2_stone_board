@@ -8,7 +8,6 @@ import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
-import br.com.crescer.stone_board.utils.PersonComponent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,8 +26,6 @@ public class CardService {
     CardRepository cardRepository;
     @Autowired
     PersonRepository personRepository;
-    @Autowired
-    PersonComponent personComponent;
     @Autowired
     BoardSessionRepository boardSessionRepository;
     @Autowired

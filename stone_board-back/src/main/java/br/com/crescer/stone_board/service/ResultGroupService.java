@@ -29,8 +29,7 @@ public class ResultGroupService {
     BoardRepository boardRepository;
     @Autowired
     CardRepository cardRepository;
-    @Autowired
-    PersonComponent personComponent;
+
 
     public ResultGroupModel findById(Long id) {
         ResultGroup resultGroup = resultGroupRepository.findOne(id);
@@ -65,9 +64,8 @@ public class ResultGroupService {
         cardRepository.save(card);
     }
 
-    public void update(ResultGroupRegisterModel resultGroupRegisterModel) {
-        Person personLoged = personComponent.loggedPersonDetails();
-        List<Board> boards = personLoged.getMyBoards();
+    public void update(ResultGroupRegisterModel resultGroupRegisterModel,Person personLogged ) {
+        List<Board> boards = personLogged.getMyBoards();
 
         if (!boards.stream().anyMatch(b -> b.getId() == resultGroupRegisterModel.getId_board())) {
             throw new BadRequestException("Apenas o usuário que criou o board pode realizar esta ação.");
@@ -79,9 +77,8 @@ public class ResultGroupService {
         resultGroupRepository.save(resultGroup);
     }
 
-    public void delete(Long idResultGroup, Long idBoard) {
-        Person personLoged = personComponent.loggedPersonDetails();
-        List<Board> boards = personLoged.getMyBoards();
+    public void delete(Long idResultGroup, Long idBoard,Person personLogged ) {
+        List<Board> boards = personLogged.getMyBoards();
 
         if (!boards.stream().anyMatch(b -> b.getId() == idBoard)) {
             throw new BadRequestException("Apenas o usuário que criou o board pode realizar esta ação.");

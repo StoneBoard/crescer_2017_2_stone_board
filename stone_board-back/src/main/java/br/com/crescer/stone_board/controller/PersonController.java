@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marcele Dorneles
  */
 @RestController
-@RequestMapping("/person")
+@RequestMapping(path = "/person")
 public class PersonController {
 
     @Autowired
@@ -31,14 +31,15 @@ public class PersonController {
     @Autowired
     private PersonComponent personComponent;
 
-    @PostMapping("/addPerson")
+    @PostMapping(path = "/addPerson")
     public void addPerson(@Validated @RequestBody PersonModel personModel) {
         personService.createAcount(personModel);
     }
 
-    @GetMapping("/listMyBoards")
+    @GetMapping(path = "/listMyBoards")
     public ResponseEntity getMyBoardsByUserId() {
-        List<Board> boards = personService.listMyBoards();
+        Person person = personComponent.loggedPersonDetails();
+        List<Board> boards = personService.listMyBoards(person);
         List<BoardModel> boardsModel = boards.stream()
                 .map(BoardModel::convertToBoardModel)
                 .collect(Collectors.toList());
@@ -46,20 +47,21 @@ public class PersonController {
         return ResponseEntity.ok(boardsModel);
     }
 
-    @GetMapping("/listConnectBoards")
+    @GetMapping(path = "/listConnectBoards")
     public List<BoardModel> getConnectBoardsByUserId() {
-        List<Board> boards = personService.listConnectBoards();
+        Person person = personComponent.loggedPersonDetails();
+        List<Board> boards = personService.listConnectBoards(person);
         return boards.stream()
                 .map(BoardModel::convertToBoardModel)
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{email}")
+    @GetMapping(path = "/{email}")
     public List<PersonModel> findByEmail(@PathVariable String email) {
         return personService.findPersonsByEmail(email);
     }
 
-    @GetMapping("/isAdmin/{id}")
+    @GetMapping(path = "/isAdmin/{id}")
     public boolean isAdmin(@PathVariable Long id) {
         Person person = personComponent.loggedPersonDetails();
         List<Board> boards = person.getMyBoards();

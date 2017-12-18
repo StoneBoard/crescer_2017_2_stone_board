@@ -7,8 +7,7 @@ import br.com.crescer.stone_board.entity.model.NoteModel;
 import br.com.crescer.stone_board.repository.CardRepository;
 import br.com.crescer.stone_board.repository.NoteRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
-import br.com.crescer.stone_board.utils.BadRequestException;
-import br.com.crescer.stone_board.utils.PersonComponent;
+import br.com.crescer.stone_board.utils.BadRequestException;;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +24,6 @@ public class NoteService {
     CardRepository cardRepository;
     @Autowired
     PersonRepository personRepository;
-    @Autowired
-    PersonComponent personComponent;
 
     public Note findById(Long id) {
         return noteRepository.findOne(id);
@@ -39,9 +36,8 @@ public class NoteService {
         cardRepository.save(card);
     }
 
-    public void update(NoteModel noteModel) {
-        Person personLoged = personComponent.loggedPersonDetails();
-        if (personLoged.getId() != noteModel.getId_writer()) {
+    public void update(NoteModel noteModel,Person personLogged) {
+        if (personLogged.getId() != noteModel.getId_writer()) {
             throw new BadRequestException("Apenas o usuário que criou o comentario pode realizar esta ação.");
         }
         Note note = noteRepository.findOne(noteModel.getId());
@@ -55,3 +51,4 @@ public class NoteService {
         cardRepository.save(card);
     }
 }
+
