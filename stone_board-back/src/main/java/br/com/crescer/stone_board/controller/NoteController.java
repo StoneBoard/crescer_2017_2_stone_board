@@ -36,12 +36,13 @@ public class NoteController {
 
     @PutMapping
     public void update(@RequestBody NoteModel noteModel) {
-        noteService.update(noteModel);
+        Person person = personComponent.loggedPersonDetails();
+        noteService.update(noteModel,person);
     }
 
     @DeleteMapping("{idNote}")
     public void delete(@PathVariable Long idNote) {
-        noteService.delete(idNote);
+        //noteService.delete(idNote);
     }
 
 }

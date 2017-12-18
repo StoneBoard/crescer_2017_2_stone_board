@@ -21,8 +21,7 @@ public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
-    @Autowired
-    PersonComponent personComponent;
+
 
     private static PasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -36,12 +35,12 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public List<Board> listMyBoards() {
-        return personComponent.loggedPersonDetails().getMyBoards();
+    public List<Board> listMyBoards(Person person) {
+        return person.getMyBoards();
     }
 
-    public List<Board> listConnectBoards() {
-        return personComponent.loggedPersonDetails().getConnectBoards();
+    public List<Board> listConnectBoards(Person person) {
+        return person.getConnectBoards();
     }
 
     public List<PersonModel> findPersonsByEmail(String email) {

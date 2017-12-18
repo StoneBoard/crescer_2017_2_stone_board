@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="components/commentsModal/styles.css">
+<link rel="stylesheet" type="text/css" href="assets/css/modal.styles.css">
+
+<div id="custom-modal">
+
+	<div style="position: fixed; height: 100%; width: 100%; top: 0;">
+			
+		<div class="row center-xs middle-xs" style="height: 100%; width: 100%; ">
+		  <div class="overlay col-md-5 col-sm-6 col-xs-10">
+				
+				<div class="row">
+					<div class="col-xs end-xs icon-btn" ng-click="close()">
+						<i class="material-icons">close</i>
+					</div>
+				</div>
+
+				<div class="col-xs-12" ng-class="mode" id="right">
+		      <form novalidate name="formComment" ng-submit="submitForm(comment)">
+
+		        <div class="row start-xs">
+		          <div class="col-xs">
+		            <p class="title-sm">COMENTÁRIOS</p>
+		          </div>
+		        </div>
+		        
+		        <div class="row start-xs">
+		          <div class="col-xs">
+		            
+		            <div class="form-box-input">
+		              <label>Escrever comentário</label>
+		              <textarea name="description" type="text" maxlength="500" class="input-form" ng-model="comment.text" rows="5"></textarea>
+		            </div>
+		            
+		          </div>
+		        </div>
+
+		        <div class="row">
+		        	<div class="col-xs-12 end-xs">
+		        		<button type="submit" class="btn btn-md green-bg-btn">Enviar</button>
+		        	</div>
+		        </div>     
+
+		      </form>
+		    </div>     
+
+				<div class="row bottom-xs comment" ng-repeat="note in postIt.notes | orderBy:'id':'reverse'">
+					<div class="col-xs-10">
+						<div >
+							<p>{{note.text}}</p>
+						</div>
+					</div>
+					<div class="col-xs end-xs" ng-if="usuario.id === note.id_writer">
+						<a><i ng-click="deleteComment(note)" class="material-icons">delete</i></a>	
+					</div>
+				</div>
+
+			  </div>
+			  <div class="fade"></div>
+			</div>
+		</div>
+		
+	</div>
+
+</div>

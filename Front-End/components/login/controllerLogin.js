@@ -15,13 +15,11 @@
         function (response) {},
 
         function (response) {
-          console.log(response);
           toastr.error('Usuario ou senha inválidos!');
         });
       };
 
       $scope.savePerson = function(person){
-        console.log("entrou@@@")
         let promise = personService.savePerson(person).then(
             function(){
               toastr.success('Usuário cadastrado com sucesso!');

@@ -1,10 +1,26 @@
 angular
-.module('stoneBoard')
-.controller('controllerCommentsModal', function($scope, close) {
-  $scope.close = close;
+	.module('stoneBoard')
+	.controller('controllerCommentsModal', function($scope, close, postIt, websocketService, authService) {
+  	
+  	$scope.close = close;
 
-    $scope.myResultGroup = function(idPostIt, idResultGroup) {
-      resultGroupService.addCards(idPostIt, idResultGroup);
+  	$scope.postIt = postIt;
 
-    }
+    $scope.usuario = authService.getUsuario();
+
+  	$scope.submitForm = function(comment) {
+      comment.id_card = postIt.id;
+  		websocketService.sendNewComment(comment, postIt.id, updateComment);
+  	}
+
+  	$scope.deleteComment = function(comment) {
+  		websocketService.deleteComment(comment, postIt.id, updateComment);
+  	}
+
+  	function updateComment(_postIt){
+  		$scope.$apply(function() {
+  			$scope.postIt = angular.fromJson(_postIt.body).content;
+  		});
+  	}
+
 });

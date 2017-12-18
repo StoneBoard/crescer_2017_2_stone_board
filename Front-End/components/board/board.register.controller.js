@@ -24,20 +24,20 @@
   		delete $scope.session;
   	}
     $scope.submitBoardForm = function(board){
-      console.log(board);
       let promise = boardService.saveBoard(board).then(
-          function(){
-            toastr.success('Board cadastrado com sucesso!');
-            $location.path('/dashboard');
-          }, function(response){
-            if (typeof(response.data.errors) === 'undefined')
-              toastr.error(response.data.message)
-            else 
-            response.data.errors.forEach(error =>{
-              toastr.error(error.defaultMessage)
-            });
+        function(){
+          toastr.success('Board cadastrado com sucesso!');
+          $location.path('/dashboard');
+        }, 
+        function(response){
+          if (typeof(response.data.errors) === 'undefined')
+            toastr.error(response.data.message)
+          else 
+          response.data.errors.forEach(error =>{
+            toastr.error(error.defaultMessage)
           });
-      console.log(promise);
+        }
+      );
     }
 
   });
