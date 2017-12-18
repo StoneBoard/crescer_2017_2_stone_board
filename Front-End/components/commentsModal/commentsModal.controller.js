@@ -3,14 +3,15 @@ angular
 	.controller('controllerCommentsModal', function($scope, close, postIt, websocketService, authService) {
   	
   	$scope.close = close;
-
+		$scope.comment = {};
   	$scope.postIt = postIt;
 
     $scope.usuario = authService.getUsuario();
 
   	$scope.submitForm = function(comment) {
       comment.id_card = postIt.id;
-  		websocketService.sendNewComment(comment, postIt.id, updateComment);
+			websocketService.sendNewComment(comment, postIt.id, updateComment);
+			delete $scope.comment.text;
   	}
 
   	$scope.deleteComment = function(comment) {

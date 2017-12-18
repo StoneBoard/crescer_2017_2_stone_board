@@ -24,7 +24,7 @@ public class BoardSessionController {
     private BoardSessionService boardSessionService;
 
     @PostMapping
-    public void Save(@Validated @RequestBody BoardSessionModel boardSessionModel) {
+    public void save(@Validated @RequestBody BoardSessionModel boardSessionModel) {
         boardSessionService.save(boardSessionModel);
     }
 

@@ -34,7 +34,7 @@ public class BoardController {
     PersonComponent personComponent;
 
     @PostMapping
-    public void Save(@Validated @RequestBody BoardRegisterModel boardRegister) {
+    public void save(@Validated @RequestBody BoardRegisterModel boardRegister) {
         Person person = personComponent.loggedPersonDetails();
         boardService.save(boardRegister, person);
     }

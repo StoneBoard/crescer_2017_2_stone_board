@@ -9,9 +9,9 @@ import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.repository.BoardSessionRepository;
 import br.com.crescer.stone_board.repository.PersonRepository;
 import br.com.crescer.stone_board.utils.BadRequestException;
-import br.com.crescer.stone_board.utils.PersonComponent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,23 +35,22 @@ public class BoardService {
     PersonRepository personRepository;
 
     @Autowired
-    PersonComponent personComponent;
-
-    @Autowired
     BoardSessionRepository boardSessionRepository;
 
-
-    public Long save(BoardRegisterModel boardRegister, Person personLoged) {
-
+    public Long save(BoardRegisterModel boardRegister, Person personLogged) {
+        boardRegister.setDeadline(boardRegister.getDeadline().with(LocalTime.MIN));
+        if (!boardRegister.getDeadline().isAfter(LocalDateTime.now())) {
+            throw new BadRequestException("A Data deve ser maior que o dia atual");
+        }
         Board board = BoardRegisterModel.convertToBoard(boardRegister);
 
         if (CollectionUtils.isEmpty(boardRegister.getSessions())) {
             throw new BadRequestException("O Board deve possuir ao menos uma Sessão");
         }
 
-        personLoged.getMyBoards().add(board);
+        personLogged.getMyBoards().add(board);
 
-        personRepository.save(personLoged);
+        personRepository.save(personLogged);
 
         return board.getId();
     }
@@ -87,7 +86,7 @@ public class BoardService {
 
     }
 
-    public boolean userAuthenticadedBoard(Long id,Person personLogged) {
+    public boolean userAuthenticadedBoard(Long id, Person personLogged) {
         Board board = findById(id);
         return board.getMembers().stream().anyMatch(x -> Objects.equals(x.getId(), personLogged.getId()))
                 || personLogged.getMyBoards().stream().anyMatch(x -> Objects.equals(x.getId(), id));
