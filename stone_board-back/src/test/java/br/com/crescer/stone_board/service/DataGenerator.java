@@ -10,14 +10,15 @@ import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Card;
 import br.com.crescer.stone_board.entity.Note;
 import br.com.crescer.stone_board.entity.Person;
+import br.com.crescer.stone_board.entity.model.BoardModel;
 import br.com.crescer.stone_board.entity.model.BoardRegisterModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionModel;
 import br.com.crescer.stone_board.entity.model.BoardSessionRegisterModel;
 import br.com.crescer.stone_board.entity.model.CardModel;
-import br.com.crescer.stone_board.repository.PersonRepository;
+import br.com.crescer.stone_board.entity.model.PersonModel;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -40,21 +41,54 @@ public class DataGenerator {
         return person;
     }
     
+    public static PersonModel createPersonModel () {        
+        
+        PersonModel personModel = PersonModel.builder()
+                .fullName("Fulaninho da Silveira")
+                .email("fulaniho@email.com")
+                .pass(encoder.encode("123456"))
+                .build();
+                
+        return personModel;
+    }
+    
     public static Board createBoard() {
+         List<BoardSession> sessions = new ArrayList<>();
+        sessions.add(createBoardSesssion());
+         List<Person> members = new ArrayList<>();
+        members.add(createPerson());
         Board board = Board.builder()
                 .title("Titulo do Board")
-                .deadline(LocalDateTime.now())
+                .deadline(LocalDateTime.now().plusDays(1L))
+                .members(members)
+                .sessions(sessions)
                 .build();
                
         return board; 
     }
     
+    public static BoardModel createBoardModel() {
+        List<BoardSessionModel> sessions = new ArrayList<>();
+        sessions.add(createBoardSesssionModel());
+         List<PersonModel> members = new ArrayList<>();
+        members.add(createPersonModel());
+        BoardModel boardModel = BoardModel.builder()
+                .title("Titulo do Board")
+                .deadline(LocalDateTime.now().plusDays(1))
+                .members(members)
+                .sessions(sessions)
+                .build();
+               
+        return boardModel; 
+    }
+    
+    
     public static BoardRegisterModel createBoardRegisterModel() {
-        List<BoardSessionRegisterModel> sessions = null;
+        List<BoardSessionRegisterModel> sessions = new ArrayList<>();
         sessions.add(createBoardSesssionRegisterModel());
         BoardRegisterModel boardRegisterModel = BoardRegisterModel.builder()
                 .title("Titulo do Board")
-                .deadline(LocalDateTime.now())
+                .deadline(LocalDateTime.now().plusDays(1))
                 .sessions(sessions)
                 .build();
                

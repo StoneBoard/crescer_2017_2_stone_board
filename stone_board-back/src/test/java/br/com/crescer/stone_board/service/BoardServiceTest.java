@@ -5,7 +5,11 @@ import br.com.crescer.stone_board.repository.BoardRepository;
 import br.com.crescer.stone_board.Utils.ConfigurationTest;
 import br.com.crescer.stone_board.entity.BoardSession;
 import br.com.crescer.stone_board.entity.Person;
+import br.com.crescer.stone_board.entity.model.BoardRegisterModel;
+import br.com.crescer.stone_board.entity.model.BoardSessionRegisterModel;
 import br.com.crescer.stone_board.repository.PersonRepository;
+import br.com.crescer.stone_board.utils.BadRequestException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -21,10 +25,13 @@ public class BoardServiceTest extends ConfigurationTest {
 
     @Autowired
     BoardService boardService;
-    
+
     @Autowired
     BoardRepository boardRepository;
-    
+
+    @Autowired
+    PersonService personService;
+
     @Autowired
     PersonRepository personRepository;
 
@@ -33,24 +40,14 @@ public class BoardServiceTest extends ConfigurationTest {
         personRepository.deleteAll();
     }
 
-    @Test
-    public void testSave() {        
-        List<BoardSession> sessions = new ArrayList();
-        sessions.add(DataGenerator.createBoardSesssion());
-        sessions.add(DataGenerator.createBoardSesssion());
-
-        Board board = DataGenerator.createBoard();
-        board.getSessions().addAll(sessions);
-        
+    @Test(expected = BadRequestException.class)
+    public void testFailedToSaveWithIncorrectDeadline() {
+        BoardRegisterModel boardRegistarModel = DataGenerator.createBoardRegisterModel();
         Person person = DataGenerator.createPerson();
-        person.getMyBoards().add(board);
-        
         personRepository.save(person);
-        
-        Board result = boardService.findById(board.getId());
+        boardRegistarModel.setDeadline(LocalDateTime.now());
+        boardService.save(boardRegistarModel, person);
 
-        assertEquals(board.getTitle(), result.getTitle());
-        assertEquals(board.getDeadline(), result.getDeadline());
     }
 
     @Test

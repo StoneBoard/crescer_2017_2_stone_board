@@ -58,8 +58,4 @@ public class CardController {
         cardService.update(cardModel, person.getId());
     }
 
-    @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable Long id) {
-        Person person = personComponent.loggedPersonDetails();
-    }
 }
