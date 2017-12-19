@@ -28,13 +28,13 @@
 
 		<div class="row arund-xs" ng-if="!editMode && boardStatus">
 			<div class="col-xs {{votoPositivo}}">
-				<div class="pt-icon {{color}}-selected center-xs">
+				<div class="pt-icon {{color}}-selected icon-btn center-xs">
 					<i class="material-icons md-dark" ng-click="vote(true)">keyboard_arrow_up</i>
 					<span>{{vPositivo.length}}</span>
 				</div>
 			</div>
 			<div class="col-xs {{votoNegativo}}">
-				<div class="pt-icon {{color}}-selected center-xs">
+				<div class="pt-icon {{color}}-selected icon-btn center-xs">
 					<i class="material-icons md-dark" ng-click="vote(false)">keyboard_arrow_down</i>
 					<span>{{vNegativo.length}}</span>
 					
@@ -43,10 +43,29 @@
 
 			<div class="col-xs center-xs">
 				<div class="pt-icon">
-					<i class="material-icons md-dark" ng-click='showModalComment()'>message</i>{{postIt.notes.length}}
+					<i class="material-icons md-dark" ng-click="showModalComment()">message</i>{{postIt.notes.length}}
 				</div>
 			</div>
+		</div>
 
+		<div class="row arund-xs" ng-if="!boardStatus">
+			<div class="col-xs">
+				<div class="pt-icon center-xs">
+					<i class="material-icons md-dark">keyboard_arrow_up</i>
+					<span>{{vPositivo.length}}</span>
+				</div>
+			</div>
+			<div class="col-xs">
+				<div class="pt-icon center-xs">
+					<i class="material-icons md-dark"">keyboard_arrow_down</i>
+					<span>{{vNegativo.length}}</span>					
+				</div>
+			</div>
+			<div class="col-xs center-xs">
+				<div class="pt-icon">
+					<i class="material-icons md-dark icon-btn" ng-click="showModalComment()">message</i>{{postIt.notes.length}}
+				</div>
+			</div>
 		</div>
 
 		<div ng-if="!boardStatus && isAdmin">

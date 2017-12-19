@@ -66,7 +66,8 @@
             controller: "controllerCommentsModal",
             bodyClass: "custom-modal-open",
             inputs: {
-              postIt : $scope.postIt
+              postIt : $scope.postIt,
+              boardAtivo: $scope.boardStatus
             }
           });
         };

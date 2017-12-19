@@ -1,10 +1,11 @@
 angular
 	.module('stoneBoard')
-	.controller('controllerCommentsModal', function($scope, close, postIt, websocketService, authService) {
+	.controller('controllerCommentsModal', function($scope, close, postIt, boardAtivo, websocketService, authService) {
   	
   	$scope.close = close;
 		$scope.comment = {};
   	$scope.postIt = postIt;
+    $scope.boardAtivo = boardAtivo;
 
     $scope.usuario = authService.getUsuario();
 
